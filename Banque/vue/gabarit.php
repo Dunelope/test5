@@ -7,12 +7,15 @@
 	  
     </head>
 	<body>
-		<form id="monForm1" action="site.php" method="post">
-  
-  
-		</form>
-				<?php echo $contenu ; ?>
 
-  
-	</body>
+            <?php echo $contenu ; ?>
+
+
+
+
+
+
+
+
+    </body>
 </html>
