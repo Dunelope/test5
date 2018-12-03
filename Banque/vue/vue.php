@@ -5,6 +5,7 @@ function afficherLog(){
     require_once('gabarit.php');
 }
 function afficherDirecteur() {
+    $contenu='<p>Cest le directeur ici </p>';
 
 
 	require_once('gabarit.php');
@@ -22,7 +23,7 @@ function afficherAgentAcc(){
 
 
 function afficherErreur($erreur){
-    $contenu='<p>'.$erreur.'</p> <p><a href="forum.php"/>Revenir au forum </p>';
+    $contenu='<p>'.$erreur.'</p> <p><a href="site.php"/>Revenir au forum </p>';
     require_once ('gabarit.php');
 
 }

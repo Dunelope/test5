@@ -8,6 +8,18 @@ function getConnect(){
     return $connexion;
 }
 
-function checkUser($login,$mdp){
-	
+function LoginEmploye($login,$mdp){
+    $connexion=getConnect();
+    $requette="SELECT typeemploye from employe where loginemploye='$login' and mdpemploye='$mdp'";
+    $resultat=$connexion->query($requette);
+    $resultat->setFetchMode(PDO::FETCH_OBJ);
+    $typeEmp=$resultat->fetch();
+    $typeEmp=$typeEmp->typeemploye;
+    $resultat->closeCursor();
+    return $typeEmp;
+}
+
+function getContrats(){
+    $connexion=getConnect();
+    $requette="Select "
 }
