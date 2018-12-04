@@ -21,5 +21,20 @@ function LoginEmploye($login,$mdp){
 
 function getContrats(){
     $connexion=getConnect();
-    $requette="Select "
+    $requette="Select * from CONTRAT";
+    $resultat=$connexion->query($requette);
+    $resultat->setFetchMode(PDO::FETCH_OBJ);
+    $touscontrats=$resultat->fetchAll();
+    $resultat->closeCursor();
+    return $touscontrats;
+}
+
+function getCompte(){
+    $connexion=getConnect();
+    $requette="Select * from compte";
+    $resultat=$connexion->query($requette);
+    $resultat->setFetchMode(PDO::FETCH_OBJ);
+    $touscomptes=$resultat->fetchAll();
+    $resultat->closeCursor();
+    return $touscomptes;
 }

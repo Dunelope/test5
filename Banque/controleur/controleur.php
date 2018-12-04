@@ -2,9 +2,6 @@
 require_once ('modele/modele.php');
 require_once ('vue/vue.php');
 
-function CtlAcceuil(){
-    afficherAccueuil();
-}
 function ctlSeConnecter($logi,$mdp){
     $type=LoginEmploye($logi,$mdp);
     if ($logi!=null && $mdp!=null) {
@@ -20,6 +17,12 @@ function ctlSeConnecter($logi,$mdp){
     }else{
         throw new Exception("Un des champs est vide");
     }
+
+}
+
+function CtlContrats(){
+    $con=getContrats();
+    afficherContrat($con);
 
 }
 
