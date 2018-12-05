@@ -38,3 +38,39 @@ function getCompte(){
     $resultat->closeCursor();
     return $touscomptes;
 }
+
+function addCompte($nomcompte){
+    $connexion=getConnect();
+    $requette="INSERT INTO `compte`(`NOMCOMPTE`) VALUES ('$nomcompte')";
+    $connexion->query($requette);
+}
+
+function addContrat($nomcontrat){
+    $connexion=getConnect();
+    $requette="INSERT INTO `contrat`(`NOMCONTRAT`) VALUES ('$nomcontrat')";
+    $connexion->query($requette);
+}
+
+function delcomptes($nomcompte)
+{
+    $connexion=getConnect();
+    $requete2 = "delete from compte where nomcompte='$nomcompte'";
+    $connexion->query($requete2);
+}
+
+function delContrat($nomcontrat)
+{
+    $connexion=getConnect();
+    $requete2 = "delete from contrat where nomcontrat='$nomcontrat'";
+    $connexion->query($requete2);
+}
+function modifcontrat($nomcontrat,$mod){
+    $connexion=getConnect();
+    $requette="UPDATE `contrat` SET `NOMCONTRAT`='$mod' WHERE '$nomcontrat'";
+    $connexion->query($requette);
+}
+function modifcompte($nomcompte,$mod){
+    $connexion=getConnect();
+    $requette="UPDATE `compte` SET `NOMCONTRAT`='$mod' WHERE '$nomcompte'";
+    $connexion->query($requette);
+}
