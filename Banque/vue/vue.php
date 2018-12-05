@@ -5,16 +5,29 @@ function afficherLog(){
     require_once('gabarit.php');
 }
 function afficherDirecteur() {
+    CtlContrats();
 
 
-	require_once('gabarit.php');
+}
+
+function afficherContrat($contrats){
+    $c='';
+    foreach ($contrats as $con){
+        $c=$c.'<p><input type="checkbox" name="' . $con->NOMCONTRAT . '"> Nom Contrat : <input type="text" style="width:350px" value="' . $con->NOMCONTRAT .'" readonly="readonly"/> </p>';
+    }
+    $contenu='<form id="formContrats"><fieldset><legend>Listes des contrats</legend>'.$c.'<p> <input type="submit" value="Supprimer Contrat" name="delcontrat"  /><input type="submit" value="modifierContrat" name="modcontrat"/></p></fieldset></form>';
+    require_once('gabarit.php');
+
 }
 
 function afficherConseiller(){
+    $contenu='<p>Cest le conseiller ici </p>';
     require_once('gabarit.php');
 }
 
 function afficherAgentAcc(){
+    $contenu='<p>Cest l oui ici </p>';
+
 
 
     require_once('gabarit.php');
@@ -22,7 +35,7 @@ function afficherAgentAcc(){
 
 
 function afficherErreur($erreur){
-    $contenu='<p>'.$erreur.'</p> <p><a href="forum.php"/>Revenir au forum </p>';
+    $contenu='<p>'.$erreur.'</p> <p><a href="site.php"/>Revenir au forum </p>';
     require_once ('gabarit.php');
 
 }

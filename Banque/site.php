@@ -2,9 +2,8 @@
 require_once('controleur/controleur.php');    // charge les méthodes du contrôleur
 try {
     if (isset($_POST['Connecter'])&&!empty($_POST['Login']) && !empty($_POST['Mdp'])) {
-        CtlSeconnecter();
+        CtlSeconnecter($_POST['Login'],$_POST['Mdp']);
 
-	
 	}
 	afficherLog();
 }catch (Exception $e){
