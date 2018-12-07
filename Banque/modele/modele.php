@@ -10,8 +10,8 @@ function getConnect(){
 
 function LoginEmploye($login,$mdp){
     $connexion=getConnect();
-    $requette="SELECT typeemploye from employe where loginemploye='$login' and mdpemploye='$mdp'";
-    $resultat=$connexion->query($requette);
+    $requete="SELECT typeemploye from employe where loginemploye='$login' and mdpemploye='$mdp'";
+    $resultat=$connexion->query($requete);
     $resultat->setFetchMode(PDO::FETCH_OBJ);
     $typeEmp=$resultat->fetch();
     $typeEmp=$typeEmp->typeemploye;
@@ -19,10 +19,12 @@ function LoginEmploye($login,$mdp){
     return $typeEmp;
 }
 
+/*-------------------------------------------------*/
+
 function getContrats(){
     $connexion=getConnect();
-    $requette="Select * from CONTRAT";
-    $resultat=$connexion->query($requette);
+    $requete="Select * from CONTRAT";
+    $resultat=$connexion->query($requete);
     $resultat->setFetchMode(PDO::FETCH_OBJ);
     $touscontrats=$resultat->fetchAll();
     $resultat->closeCursor();
@@ -31,46 +33,101 @@ function getContrats(){
 
 function getCompte(){
     $connexion=getConnect();
-    $requette="Select * from compte";
-    $resultat=$connexion->query($requette);
+    $requete="Select * from compte";
+    $resultat=$connexion->query($requete);
     $resultat->setFetchMode(PDO::FETCH_OBJ);
     $touscomptes=$resultat->fetchAll();
     $resultat->closeCursor();
     return $touscomptes;
 }
+function getMotif(){
+    $connexion=getConnect();
+    $requete="Select * from motifs";
+    $resultat=$connexion->query($requete);
+    $resultat->setFetchMode(PDO::FETCH_OBJ);
+    $tousmotifs=$resultat->fetchAll();
+    $resultat->closeCursor();
+    return $tousmotifs;
+}
+function getEmployer(){
+    $connexion=getConnect();
+    $requete="Select * from Employe";
+    $resultat=$connexion->query($requete);
+    $resultat->setFetchMode(PDO::FETCH_OBJ);
+    $tousmotifs=$resultat->fetchAll();
+    $resultat->closeCursor();
+    return $tousmotifs;
+}
+
+
+/*-------------------------------------------------*/
+
 
 function addCompte($nomcompte){
     $connexion=getConnect();
-    $requette="INSERT INTO `compte`(`NOMCOMPTE`) VALUES ('$nomcompte')";
-    $connexion->query($requette);
+    $requete="INSERT INTO `compte`(`NOMCOMPTE`) VALUES ('$nomcompte')";
+    $connexion->query($requete);
 }
 
 function addContrat($nomcontrat){
     $connexion=getConnect();
-    $requette="INSERT INTO `contrat`(`NOMCONTRAT`) VALUES ('$nomcontrat')";
-    $connexion->query($requette);
+    $requete="INSERT INTO `contrat`(`NOMCONTRAT`) VALUES ('$nomcontrat')";
+    $connexion->query($requete);
 }
+function addMotif($nommotif,$listePiece){
+    $connexion=getConnect();
+    $requete="INSERT INTO `motifs`(`NOMMOTIF`, `LISTEPIECES`) VALUES ('$nommotif','$listePiece')";
+    $connexion->query($requete);
+}
+function addEmploye($nom,$login,$mdp,$type){
+    $connexion=getConnect();
+    $requete="INSERT INTO `employe`(`NOMEMPLOYE`,`LOGINEMPLOYE`, `MDPEMPLOYE`,`TYPEEMPLOYE`) VALUES ('$nom','$login','$mdp','$type')";
+    $connexion->query($requete);
+}
+
+/*-------------------------------------------------*/
+
+
 
 function delcomptes($nomcompte)
 {
     $connexion=getConnect();
-    $requete2 = "delete from compte where nomcompte='$nomcompte'";
-    $connexion->query($requete2);
+    $requete = "delete from compte where nomcompte='$nomcompte'";
+    $connexion->query($requete);
 }
 
 function delContrat($nomcontrat)
 {
     $connexion=getConnect();
-    $requete2 = "delete from contrat where nomcontrat='$nomcontrat'";
-    $connexion->query($requete2);
+    $requete = "delete from contrat where nomcontrat='$nomcontrat'";
+    $connexion->query($requete);
 }
+
+function delMotif($idmotif)
+{
+    $connexion=getConnect();
+    $requete = "delete from motifs where idmotif='$idmotif'";
+    $connexion->query($requete);
+}
+
+
+/*-------------------------------------------------*/
+
+
 function modifcontrat($nomcontrat,$mod){
     $connexion=getConnect();
-    $requette="UPDATE `contrat` SET `NOMCONTRAT`='$mod' WHERE '$nomcontrat'";
-    $connexion->query($requette);
+    $requete="UPDATE `contrat` SET `nomcontrat`='$mod' WHERE nomcontrat='$nomcontrat'";
+    $connexion->query($requete);
 }
 function modifcompte($nomcompte,$mod){
     $connexion=getConnect();
-    $requette="UPDATE `compte` SET `NOMCONTRAT`='$mod' WHERE '$nomcompte'";
-    $connexion->query($requette);
+    $requete="UPDATE `compte` SET `nomcompte`='$mod' WHERE nomcompte='$nomcompte'";
+    $connexion->query($requete);
 }
+
+function modifMotif($idmotif,$mod){
+    $connexion=getConnect();
+    $requete="UPDATE `motifs` SET `listePieces`='$mod' WHERE idmotif='$idmotif'";
+    $connexion->query($requete);
+}
+
