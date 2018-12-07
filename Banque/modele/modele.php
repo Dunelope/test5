@@ -131,3 +131,9 @@ function modifMotif($idmotif,$mod){
     $connexion->query($requete);
 }
 
+function modifEmploye($idEmploye,$modLog,$modMdp){
+    $connexion=getConnect();
+    $requete="UPDATE `Employe` SET `LOGINEMPLOYE`='$modLog', `MDPEMPLOYE`='$modMdp' WHERE idEmploye='$idEmploye'";
+    $connexion->query($requete);
+}
+

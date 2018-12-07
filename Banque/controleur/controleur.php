@@ -60,6 +60,9 @@ function CtlModifierContrat($nomcontrat,$modif){
 function CtlModifierMotif($idMotif,$modif){
     modifMotif($idMotif,$modif);
 }
+function CtlModifierEmploye($idEmploye,$modifLogin,$modifMDP){
+    modifEmploye($idEmploye,$modifLogin,$modifMDP);
+}
 
 /*-------------------------------------------------*/
 function CtlDirecteur(){

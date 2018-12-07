@@ -48,10 +48,10 @@ function afficherMotif($motif){
 function afficherEmployer($login){
     $c='';
     foreach ($login as $log){
-        $c=$c.'<p><input type="checkbox" name="idMotif[]" value="' . $log->IDEMPLOYE .'"> Login pour : '.$log->TYPEEMPLOYE.'  ' .$log->NOMEMPLOYE.' <input name="'. $log->IDEMPLOYE  .'" type="text" value="' . $log->LOGINEMPLOYE .'" /> <input name="'. $log->MDPEMPLOYE  .'" type="text" value="' . $log->MDPEMPLOYE .'" /></p>';
+        $c=$c.'<p><input type="checkbox" name="idEmploye[]" value="' . $log->IDEMPLOYE .'"> Login pour : '.$log->TYPEEMPLOYE.'  ' .$log->NOMEMPLOYE.' <input name="'. $log->IDEMPLOYE  .'[]" type="text" value="' . $log->LOGINEMPLOYE .'" /> <input name="'. $log->IDEMPLOYE  .'[]" type="text" value="' . $log->MDPEMPLOYE .'" /></p>';
 
     }
-    $contenu='<form id="formMotifs" action="site.php" method="post"><fieldset><legend>Listes des Employes </legend>'.$c.'<p><label>  Ajouter Employer : Nom   : </label><input type="text" name="NomEmploye"  /> <label> Login : </label><input type="text" name="LogienEmploye"  /><label> Mot De passe : </label><input type="text" name="MdpEmploye"  /> <label> Type : </label><select name="TypeEmploye" ><option value="Conseiller">Conseiller</option><option value="Agent">Agent</option></select> </p> <p><input type="submit" value="Ajouter Employer" name="AjoutEmploye"  /><input type="submit" value="Modifier Employé" name="modMotif"/></p></fieldset></form>';
+    $contenu='<form id="formMotifs" action="site.php" method="post"><fieldset><legend>Listes des Employes </legend>'.$c.'<p><label>  Ajouter Employer : Nom   : </label><input type="text" name="NomEmploye"  /> <label> Login : </label><input type="text" name="LogienEmploye"  /><label> Mot De passe : </label><input type="text" name="MdpEmploye"  /> <label> Type : </label><select name="TypeEmploye" ><option value="Conseiller">Conseiller</option><option value="Agent">Agent</option></select> </p> <p><input type="submit" value="Ajouter Employer" name="AjoutEmploye"  /><input type="submit" value="Modifier Employé" name="modEmploye"/></p></fieldset></form>';
     return $contenu;
 }
 
