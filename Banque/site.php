@@ -5,6 +5,21 @@ try {
         CtlSeconnecter($_POST['Login'], $_POST['Mdp']);
     }
 
+    if (isset($_POST['opera'])) {
+        $val = $_POST['ope'];
+        if ($val == 'c1') {
+            CtlCompte();
+        } elseif ($val == 'c2') {
+            CtlContrats();
+        } elseif ($val == 'c3') {
+            CtlMotifs();
+        } elseif ($val == 'c4') {
+            CtlEmploye();
+        } elseif ($val=='c5'){
+            CtlStats(1500-01-01,9999-01-01);
+        }
+    }
+
     /*-------------------------------------------------*/
 
     if (isset($_POST['delcontrat'])) {
@@ -13,7 +28,7 @@ try {
                 CtldelContrats($valeur);
             }
         }
-        CtlDirecteur();
+        CtlContrats();
     }
     if (isset($_POST['delComptes'])){
         if (!empty($_POST['nomcomptes'])) {
@@ -22,7 +37,7 @@ try {
                 CtldelCompte($valeur);
             }
         }
-        CtlDirecteur();
+        CtlCompte();
     }
 
     if (isset($_POST['delMotif'])) {
@@ -31,7 +46,7 @@ try {
                 CtldelMotif($valeur);
             }
         }
-        CtlDirecteur();
+        CtlMotifs();
     }
 
     /*-------------------------------------------------*/
@@ -41,26 +56,26 @@ try {
         if (!empty($_POST['contrat'])) {
             CtladdContrat($_POST['contrat']);
         }
-        CtlDirecteur();
+        CtlContrats();
     }
 
     if (isset($_POST['AjoutCompte'])) {
         if (!empty($_POST['compte'])) {
             CtladdCompte($_POST['compte']);
         }
-        CtlDirecteur();
+        CtlCompte();
     }
     if (isset($_POST['AjoutMotif']) ) {
         if (!empty($_POST['motif']) && !empty($_POST['pieces'])) {
             CtladdMotif($_POST['motif'], $_POST['pieces']);
         }
-        CtlDirecteur();
+        CtlMotifs();
     }
     if (isset($_POST['AjoutEmploye'])) {
         if ((!empty($_POST['NomEmploye']) && !empty($_POST['LogienEmploye']) && !empty($_POST['MdpEmploye']) && !empty($_POST['TypeEmploye']))) {
             CtladdEmploye($_POST['NomEmploye'], $_POST['LogienEmploye'], $_POST['MdpEmploye'], $_POST['TypeEmploye']);
         }
-        CtlDirecteur();
+        CtlEmploye();
     }
     /*-------------------------------------------------*/
 
@@ -74,7 +89,7 @@ try {
                 CtlModifierContrat($con, $modif);
             }
         }
-        CtlDirecteur();
+        CtlContrats();
     }
 
     if (isset($_POST['modComptes'])){
@@ -86,7 +101,7 @@ try {
                 CtlModifierCompte($com, $modif);
             }
         }
-        CtlDirecteur();
+        CtlCompte();
     }
 
     if (isset($_POST['modMotif'])){
@@ -97,7 +112,7 @@ try {
                 CtlModifierMotif($idMotif, $modif);
             }
         }
-        CtlDirecteur();
+        CtlMotifs();
     }
 
     if (isset($_POST['modEmploye'])){
@@ -110,7 +125,7 @@ try {
                 CtlModifierEmploye($idEmploye,$modifLogin,$modifMDP);
             }
         }
-        CtlDirecteur();
+        CtlEmploye();
     }
 
     /*-------------------------------------------------*/

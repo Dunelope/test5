@@ -65,13 +65,42 @@ function CtlModifierEmploye($idEmploye,$modifLogin,$modifMDP){
 }
 
 /*-------------------------------------------------*/
-function CtlDirecteur(){
-    $con=getContrats();
-    $com=getCompte();
-    $mot=getMotif();
-    $eml=getEmployer();
-    afficherDirecteur($con,$com,$mot,$eml);
+function CtlStats($date1,$date2){
+    $con=getStatsContrats($date1,$date2);
+    $red=getStatsRDV($date1,$date2);
+    $nbCli=getNbClients($date1);
+    $montanttot=getmontant($date1);
+    afficherStats($con,$red,$nbCli,$montanttot);
 }
+
+
+
+/*-------------------------------------------------*/
+function CtlDirecteur(){
+
+    afficherDirecteur();
+}
+
+function CtlContrats(){
+    $con=getContrats();
+    afficherContrat($con);
+}
+
+function CtlCompte(){
+    $com=getCompte();
+    afficherComptes($com);
+}
+
+function CtlMotifs(){
+    $mot=getMotif();
+    afficherMotif($mot);
+}
+
+function CtlEmploye(){
+    $em=getEmployer();
+    afficherEmployer($em);
+}
+/*-------------------------------------------------*/
 
 function CtlAgent(){
 

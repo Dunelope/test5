@@ -137,3 +137,45 @@ function modifEmploye($idEmploye,$modLog,$modMdp){
     $connexion->query($requete);
 }
 
+/*-------------------------------------------------*/
+function getStatsContrats($date1,$date2){
+    $connexion=getConnect();
+    $requete="Select Count(*) from compteClient where dateouverture between '$date1' and '$date2'";
+    $resultat=$connexion->query($requete);
+    $resultat->setFetchMode(PDO::FETCH_OBJ);
+    foreach ($resultat->fetch() as $val) {
+        return $val; // a revoir si erreur
+    }
+}
+
+function getStatsRDV($date1,$date2){
+    $connexion=getConnect();
+    $requete="Select Count(*) from rendez_vous where daterdv between '$date1' and '$date2' ";
+    $resultat=$connexion->query($requete);
+    $resultat->setFetchMode(PDO::FETCH_OBJ);
+    foreach ($resultat->fetch() as $val) {
+        return $val; // a revoir si erreur
+    }
+}
+
+function getNbClients($date){
+    $connexion=getConnect();
+    $requete="Select Count(*) from contratClient where dateouvertureContrat <= '$date'";
+    $resultat=$connexion->query($requete);
+    $resultat->setFetchMode(PDO::FETCH_OBJ);
+    foreach ($resultat->fetch() as $val) {
+        return $val; // a revoir si erreur
+    }
+}
+
+function getmontant($date)
+{
+    $connexion = getConnect();
+    $requete = "Select sum(solde) from compteClient where dateouverture <= '$date'";
+    $resultat = $connexion->query($requete);
+    $resultat->setFetchMode(PDO::FETCH_OBJ);
+    foreach ($resultat->fetch() as $val) {
+        return $val; // a revoir si erreur
+    }
+}
+
