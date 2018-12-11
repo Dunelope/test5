@@ -30,6 +30,35 @@ function getContrats(){
     $resultat->closeCursor();
     return $touscontrats;
 }
+function addContrat($nomcontrat){
+    $connexion=getConnect();
+    $requete="INSERT INTO `contrat`(`NOMCONTRAT`) VALUES ('$nomcontrat')";
+    $connexion->query($requete);
+}
+function delContrat($nomcontrat)
+{
+    $connexion=getConnect();
+    $requete = "delete from contrat where nomcontrat='$nomcontrat'";
+    $connexion->query($requete);
+}
+function modifcontrat($nomcontrat,$mod){
+    $connexion=getConnect();
+    $requete="UPDATE `contrat` SET `nomcontrat`='$mod' WHERE nomcontrat='$nomcontrat'";
+    $connexion->query($requete);
+}
+
+function verifContrat($nomContrat){
+    $connexion=getConnect();
+    $requete="Select * from CONTRAT where nomcontrat='$nomContrat'";
+    $resultat=$connexion->query($requete);
+    $resultat->setFetchMode(PDO::FETCH_OBJ);
+    $contratExiste=$resultat->fetch();
+    return $contratExiste;
+}
+
+
+/*-------------------------------------------------*/
+
 
 function getCompte(){
     $connexion=getConnect();
@@ -40,6 +69,36 @@ function getCompte(){
     $resultat->closeCursor();
     return $touscomptes;
 }
+function addCompte($nomcompte){
+    $connexion=getConnect();
+    $requete="INSERT INTO `compte`(`NOMCOMPTE`) VALUES ('$nomcompte')";
+    $connexion->query($requete);
+}
+function delcomptes($nomcompte)
+{
+    $connexion=getConnect();
+    $requete = "delete from compte where nomcompte='$nomcompte'";
+    $connexion->query($requete);
+}
+function modifcompte($nomcompte,$mod){
+    $connexion=getConnect();
+    $requete="UPDATE `compte` SET `nomcompte`='$mod' WHERE nomcompte='$nomcompte'";
+    $connexion->query($requete);
+}
+
+function verifCompte($nomCompte){
+    $connexion=getConnect();
+    $requete="Select * from compte where nomcompte='$nomCompte'";
+    $resultat=$connexion->query($requete);
+    $resultat->setFetchMode(PDO::FETCH_OBJ);
+    $compteExiste=$resultat->fetch();
+    return $compteExiste;
+}
+
+
+/*-------------------------------------------------*/
+
+
 function getMotif(){
     $connexion=getConnect();
     $requete="Select * from motifs";
@@ -49,6 +108,36 @@ function getMotif(){
     $resultat->closeCursor();
     return $tousmotifs;
 }
+function addMotif($nommotif,$listePiece){
+    $connexion=getConnect();
+    $requete="INSERT INTO `motifs`(`NOMMOTIF`, `LISTEPIECES`) VALUES ('$nommotif','$listePiece')";
+    $connexion->query($requete);
+}
+function delMotif($idmotif)
+{
+    $connexion=getConnect();
+    $requete = "delete from motifs where idmotif='$idmotif'";
+    $connexion->query($requete);
+}
+function modifMotif($idmotif,$mod){
+    $connexion=getConnect();
+    $requete="UPDATE `motifs` SET `listePieces`='$mod' WHERE idmotif='$idmotif'";
+    $connexion->query($requete);
+}
+
+function verifMotif($nommotif){
+    $connexion=getConnect();
+    $requete="Select * from motifs where NOMMOTIF='$nommotif'";
+    $resultat=$connexion->query($requete);
+    $resultat->setFetchMode(PDO::FETCH_OBJ);
+    $compteMotif=$resultat->fetch();
+    return $compteMotif;
+}
+
+
+/*-------------------------------------------------*/
+
+
 function getEmployer(){
     $connexion=getConnect();
     $requete="Select * from Employe";
@@ -58,84 +147,18 @@ function getEmployer(){
     $resultat->closeCursor();
     return $tousmotifs;
 }
-
-
-/*-------------------------------------------------*/
-
-
-function addCompte($nomcompte){
-    $connexion=getConnect();
-    $requete="INSERT INTO `compte`(`NOMCOMPTE`) VALUES ('$nomcompte')";
-    $connexion->query($requete);
-}
-
-function addContrat($nomcontrat){
-    $connexion=getConnect();
-    $requete="INSERT INTO `contrat`(`NOMCONTRAT`) VALUES ('$nomcontrat')";
-    $connexion->query($requete);
-}
-function addMotif($nommotif,$listePiece){
-    $connexion=getConnect();
-    $requete="INSERT INTO `motifs`(`NOMMOTIF`, `LISTEPIECES`) VALUES ('$nommotif','$listePiece')";
-    $connexion->query($requete);
-}
 function addEmploye($nom,$login,$mdp,$type){
     $connexion=getConnect();
     $requete="INSERT INTO `employe`(`NOMEMPLOYE`,`LOGINEMPLOYE`, `MDPEMPLOYE`,`TYPEEMPLOYE`) VALUES ('$nom','$login','$mdp','$type')";
     $connexion->query($requete);
 }
-
-/*-------------------------------------------------*/
-
-
-
-function delcomptes($nomcompte)
-{
-    $connexion=getConnect();
-    $requete = "delete from compte where nomcompte='$nomcompte'";
-    $connexion->query($requete);
-}
-
-function delContrat($nomcontrat)
-{
-    $connexion=getConnect();
-    $requete = "delete from contrat where nomcontrat='$nomcontrat'";
-    $connexion->query($requete);
-}
-
-function delMotif($idmotif)
-{
-    $connexion=getConnect();
-    $requete = "delete from motifs where idmotif='$idmotif'";
-    $connexion->query($requete);
-}
-
-
-/*-------------------------------------------------*/
-
-
-function modifcontrat($nomcontrat,$mod){
-    $connexion=getConnect();
-    $requete="UPDATE `contrat` SET `nomcontrat`='$mod' WHERE nomcontrat='$nomcontrat'";
-    $connexion->query($requete);
-}
-function modifcompte($nomcompte,$mod){
-    $connexion=getConnect();
-    $requete="UPDATE `compte` SET `nomcompte`='$mod' WHERE nomcompte='$nomcompte'";
-    $connexion->query($requete);
-}
-
-function modifMotif($idmotif,$mod){
-    $connexion=getConnect();
-    $requete="UPDATE `motifs` SET `listePieces`='$mod' WHERE idmotif='$idmotif'";
-    $connexion->query($requete);
-}
-
 function modifEmploye($idEmploye,$modLog,$modMdp){
     $connexion=getConnect();
     $requete="UPDATE `Employe` SET `LOGINEMPLOYE`='$modLog', `MDPEMPLOYE`='$modMdp' WHERE idEmploye='$idEmploye'";
     $connexion->query($requete);
 }
+
+
 
 /*-------------------------------------------------*/
 function getStatsContrats($date1,$date2){
@@ -143,9 +166,11 @@ function getStatsContrats($date1,$date2){
     $requete="Select Count(*) from compteClient where dateouverture between '$date1' and '$date2'";
     $resultat=$connexion->query($requete);
     $resultat->setFetchMode(PDO::FETCH_OBJ);
+    $x=null;
     foreach ($resultat->fetch() as $val) {
-        return $val; // a revoir si erreur
+        $x= $val; // a revoir si erreur
     }
+    return $x;
 }
 
 function getStatsRDV($date1,$date2){
@@ -154,18 +179,27 @@ function getStatsRDV($date1,$date2){
     $resultat=$connexion->query($requete);
     $resultat->setFetchMode(PDO::FETCH_OBJ);
     foreach ($resultat->fetch() as $val) {
-        return $val; // a revoir si erreur
+        $x= $val; // a revoir si erreur
     }
-}
+    return $x;
 
+}
+/*
+  SELECT COUNT(*) from client where IDCLIENT IN(SELECT idclient FROM client NATURAL JOIN contratclientWHERE dateOuvertureContrat <= '$date'UNIONSELECT idclient FROM client NATURAL JOIN compteclientWHERE dateouverture <= '$date')
+ */
+//    $requete="Select Count(*) from contratClient where dateouvertureContrat <= '$date'";
 function getNbClients($date){
     $connexion=getConnect();
-    $requete="Select Count(*) from contratClient where dateouvertureContrat <= '$date'";
+        //$requete="Select Count(*) from contratClient where dateouvertureContrat <= '$date'";
+    $requete="SELECT COUNT(*) from client where IDCLIENT IN ( SELECT idclient FROM client NATURAL JOIN contratclient WHERE dateOuvertureContrat <= '$date' UNION  SELECT idclient FROM client NATURAL JOIN compteclient WHERE dateouverture <= '$date');";
     $resultat=$connexion->query($requete);
     $resultat->setFetchMode(PDO::FETCH_OBJ);
+    $x=null;
     foreach ($resultat->fetch() as $val) {
-        return $val; // a revoir si erreur
+        $x= $val; // a revoir si erreur
     }
+    return $x;
+
 }
 
 function getmontant($date)
@@ -174,8 +208,11 @@ function getmontant($date)
     $requete = "Select sum(solde) from compteClient where dateouverture <= '$date'";
     $resultat = $connexion->query($requete);
     $resultat->setFetchMode(PDO::FETCH_OBJ);
+    $x=null;
     foreach ($resultat->fetch() as $val) {
-        return $val; // a revoir si erreur
+        $x= $val; // a revoir si erreur
     }
+    return $x;
+
 }
 
