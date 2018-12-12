@@ -1,6 +1,11 @@
 <?php
 require_once ('modele/modele.php');
-require_once ('vue/vue.php');
+require_once ('vue/vueDirecteur.php');
+require_once ('vue/vueAgent.php');
+require_once ('vue/vueDirecteur.php');
+require_once ('vue/vueConseiller.php');
+
+
 
 function ctlSeConnecter($logi,$mdp){
     $type=LoginEmploye($logi,$mdp);
@@ -25,80 +30,95 @@ function ctlSeConnecter($logi,$mdp){
 function CtladdContrat($contrat){
     addContrat($contrat);
 }
-
-function CtladdCompte($compte){
-    addCompte($compte);
-}
-function CtladdMotif($motif,$pieces){
-    addMotif($motif,$pieces);
-}
-function CtladdEmploye($nom,$login,$mdp,$type){
-    addEmploye($nom,$login,$mdp,$type);
-}
-
-
-
-/*-------------------------------------------------*/
-
-function CtldelCompte($compte){
-    delcomptes($compte);
-}
 function CtldelContrats($cont){
     delcontrat($cont);
-}
-function CtldelMotif($idmotif){
-    delMotif($idmotif);
-}
-/*-------------------------------------------------*/
-
-function CtlModifierCompte($nomcompte,$modif){
-    modifcompte($nomcompte,$modif);
 }
 function CtlModifierContrat($nomcontrat,$modif){
     modifcontrat($nomcontrat,$modif);
 }
-function CtlModifierMotif($idMotif,$modif){
-    modifMotif($idMotif,$modif);
-}
-function CtlModifierEmploye($idEmploye,$modifLogin,$modifMDP){
-    modifEmploye($idEmploye,$modifLogin,$modifMDP);
-}
-
-/*-------------------------------------------------*/
-function CtlStats($date1,$date2){
-    $con=getStatsContrats($date1,$date2);
-    $red=getStatsRDV($date1,$date2);
-    $nbCli=getNbClients($date1);
-    $montanttot=getmontant($date1);
-    afficherStats($con,$red,$nbCli,$montanttot);
-}
-
-
-
-/*-------------------------------------------------*/
-function CtlDirecteur(){
-
-    afficherDirecteur();
-}
-
 function CtlContrats(){
     $con=getContrats();
     afficherContrat($con);
 }
+function CtlVerifContrats($contrat){
+    $con=verifContrat($contrat);
+    return $con;
+}
 
+
+/*-------------------------------------------------*/
+
+
+function CtladdCompte($compte){
+    addCompte($compte);
+}
+function CtldelCompte($compte){
+    delcomptes($compte);
+}
+function CtlModifierCompte($nomcompte,$modif){
+    modifcompte($nomcompte,$modif);
+}
 function CtlCompte(){
     $com=getCompte();
     afficherComptes($com);
 }
+function CtlVerifCompte($compte){
+    $com=verifCompte($compte);
+    return $com;
+}
 
+
+/*-------------------------------------------------*/
+
+
+function CtladdMotif($motif,$pieces){
+    addMotif($motif,$pieces);
+}
+function CtldelMotif($idmotif){
+    delMotif($idmotif);
+}
+function CtlModifierMotif($idMotif,$modif){
+    modifMotif($idMotif,$modif);
+}
 function CtlMotifs(){
     $mot=getMotif();
     afficherMotif($mot);
 }
+function CtlVerifMotif($motif){
+    $mot=verifMotif($motif);
+    return $mot;
+}
 
+
+
+/*-------------------------------------------------*/
+
+
+function CtladdEmploye($nom,$login,$mdp,$type){
+    addEmploye($nom,$login,$mdp,$type);
+}
+function CtlModifierEmploye($idEmploye,$modifLogin,$modifMDP){
+    modifEmploye($idEmploye,$modifLogin,$modifMDP);
+}
 function CtlEmploye(){
     $em=getEmployer();
     afficherEmployer($em);
+}
+
+
+/*-------------------------------------------------*/
+
+
+function CtlStats($date1,$date2){
+    $con=getStatsContrats($date1,$date2);
+    $red=getStatsRDV($date1,$date2);
+    $nbCli=getNbClients($date2);
+    $montanttot=getmontant($date2);
+    afficherStats($con,$red,$nbCli,$montanttot);
+}
+/*-------------------------------------------------*/
+function CtlDirecteur(){
+    afficherDirecteur();
 }
 /*-------------------------------------------------*/
 
