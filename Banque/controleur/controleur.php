@@ -127,6 +127,7 @@ function CtlAgent(){
 
 }
 function CtlConseiller(){
+    afficherConseiller();
 
 }
 
