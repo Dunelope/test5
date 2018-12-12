@@ -48,6 +48,6 @@ function afficherConseiller(){
 }
 
 function afficherMenuConseiller(){
-    $contenu='<form id="formMenu" method="post" action="site.php"><nav><ul><li><input type="submit" value="Retour à la page principale" name="retour"></li><li><input type="submit" value="Deconnexion" name="Deco"></li></ul></nav></form>';
+    $contenu='<form id="formMenu" method="post" action="site.php"><input type="submit" value="Deconnexion" name="Deco"></form>';
     return $contenu;
 }
