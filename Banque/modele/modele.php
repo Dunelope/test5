@@ -216,3 +216,9 @@ function getmontant($date)
 
 }
 
+function addClient($nom,$prenom,$datN,$adresse,$numT,$email,$profession,$situation){
+    $connexion = getConnect();
+    $requete = "INSERT INTO `Client`(`nomcli`,`prenomcli`,`datenaisscli`,`adresse`,`numtel`,`email`,`profession`,`situation_familiale`) VALUES ($nom,$prenom,$datN,$adresse,$numT,$email,$profession,$situation) ";
+    $connexion->query($requete);
+}
+

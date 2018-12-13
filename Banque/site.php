@@ -152,17 +152,22 @@ try {
     }
 
     /*-------------------------------------------------*/
+    if(isset($_POST['retourC'])){
+        CtlConseiller();
+    }
+
+    /*-------------------------------------------------*/
 
     if(isset($_POST['interCli'])){
         $val =$_POST['interactionCli'];
         if($val=='inscrireCli') {
-            CtlInscrireCli();
+            CtlAfficherInscrireCli();
         }
-        if($val=='vendreContrat') {
-
+        if($val=='vendreContrat'){
+            CtlAfficherVendreContrat();
         }
         if($val=='ouvrirCompte') {
-
+            CtlAfficherOuvrirCompte();
         }
         if($val=='modifDecouvert') {
 
@@ -173,6 +178,13 @@ try {
         if($val=='resilierCompte') {
 
         }
+    }
+
+    /*-------------------------------------------------*/
+
+    if(isset($_POST['inscrireClient'])){
+        CtlInscrireCli($_GET['nomCli'],$_GET['prenomCli'],$_POST['dateNCli'],$_POST['adresseCli'],$_POST['numTelCli'],$_POST['emailCli'],$_POST['professionCli'],$_POST['situationFCli']);
+
     }
 
 

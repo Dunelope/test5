@@ -131,8 +131,21 @@ function CtlConseiller(){
 
 }
 
-function CtlInscrireCli(){
+function CtlAfficherInscrireCli(){
     afficherInscrireCli();
+}
+
+function CtlInscrireCli($nom,$prenom,$datN,$adresse,$numT,$email,$profession,$situation){
+    addClient($nom,$prenom,$datN,$adresse,$numT,$email,$profession,$situation);
+    afficherMenuConseiller();
+}
+
+function CtlAfficherVendreContrat(){
+    afficherVendreContrat();
+}
+
+function CtlAfficherOuvrirCompte(){
+    afficherOuvrirCompte();
 }
 
 
