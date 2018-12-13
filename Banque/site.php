@@ -153,6 +153,28 @@ try {
 
     /*-------------------------------------------------*/
 
+    if(isset($_POST['interCli'])){
+        $val =$_POST['interactionCli'];
+        if($val=='inscrireCli') {
+            CtlInscrireCli();
+        }
+        if($val=='vendreContrat') {
+
+        }
+        if($val=='ouvrirCompte') {
+
+        }
+        if($val=='modifDecouvert') {
+
+        }
+        if($val=='resilierContrat') {
+
+        }
+        if($val=='resilierCompte') {
+
+        }
+    }
+
 
 
 

@@ -1,6 +1,6 @@
 <?php
-function afficherConseiller(){
-    $contenu=afficherMenuConseiller().'<form id=monForm1 action="site.php" method="post"> 
+function afficherInscrireCli(){
+    $contenu='<form id=monForm2 action="site.php" method="post"> 
     <fieldset><legend>Inscrire un nouveau client</legend>
     <p>
     <label for="nomCli">Nom du Client :</label>
@@ -42,9 +42,34 @@ function afficherConseiller(){
     <input type="submit" value="Inscrire le client" name="inscrireCli">
     <input type="reset" value="Effacer" >
     </p>
-    </fieldset></form>';
+    </fieldset></form>'.afficherMenuConseiller();
     require_once ('gabarit.php');
 
+}
+
+function afficherConseiller(){
+    $contenu='<form id=monForm1 action="site.php" method="post"> 
+    <fieldset><legend>Que voulez-vous faire ?</legend>
+    <p>
+    Menu des Planning :
+    <input type="submit" value="Planning" name="menuPlanning">
+    
+</p>
+<p>
+Interaction avec un client : 
+<select name="interactionCli">
+<option value="inscrireCli" selected>Inscrire un Client</option>
+<option value="vendreContrat">Vendre un contrat</option>
+<option value="ouvrirCompte">Ouvrir des comptes</option>
+<option value="modifDecouvert">Modifier la valeur d&#039;un découvert</option>
+<option value="resilierContrat">Résilier un contrat</option>
+<option value="resilierCompte">Résilier un compte</option>
+</select>
+<input type="submit" value="Sélectionner" name="interCli">
+</p>
+    
+    </fieldset></form>'.afficherMenuConseiller();
+    require_once ('gabarit.php');
 }
 
 function afficherMenuConseiller(){

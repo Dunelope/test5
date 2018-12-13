@@ -131,6 +131,10 @@ function CtlConseiller(){
 
 }
 
+function CtlInscrireCli(){
+    afficherInscrireCli();
+}
+
 
 function CtlErreur($erreur)
 {
