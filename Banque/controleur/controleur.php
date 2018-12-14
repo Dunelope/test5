@@ -148,6 +148,17 @@ function CtlAfficherOuvrirCompte(){
     afficherOuvrirCompte();
 }
 
+function CtlAfficherMenuDecouvert(){
+    afficherMenuChoixClient();
+}
+
+function CtlAfficherMenuResContrat(){
+    afficherMenuChoixClient();
+}
+
+function CtlAfficherMenuResCompte(){
+    afficherMenuChoixClient();
+}
 
 function CtlErreur($erreur)
 {

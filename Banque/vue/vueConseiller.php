@@ -63,7 +63,7 @@ function afficherInscrireCli(){
     </p>
     <p>
     Situation familiale du Client :
-    <select name="situationFCli">
+    <select name="situationCli">
     <option value="celibataire" selected>Célibataire</option>
     <option value="marie">Marié</option>
     <option value="pacse">Pacsé</option>
@@ -133,4 +133,21 @@ function afficherOuvrirCompte(){
     </fieldset></form>'.afficherMenuConseiller();
     require_once ('gabarit.php');
 }
+
+function afficherMenuChoixClient(){
+    $contenu='<form id=Formc5 action="site.php" method="post"> 
+    <fieldset><legend>Choisir un client</legend>
+    <p>
+    Numéro du client :
+    <input type="text" name="numCli2" required>
+    </p>
+    <p>
+    <input type="submit" value="Choisir" name="sendnumCli2" >
+    </p>
+    </fieldset></form>'.afficherMenuConseiller();
+    require_once ('gabarit.php');
+}
+
+
+
 

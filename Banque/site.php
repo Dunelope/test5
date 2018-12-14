@@ -170,21 +170,20 @@ try {
             CtlAfficherOuvrirCompte();
         }
         if($val=='modifDecouvert') {
-
+            CtlAfficherMenuDecouvert();
         }
         if($val=='resilierContrat') {
-
+            CtlAfficherMenuResContrat();
         }
         if($val=='resilierCompte') {
-
+            CtlAfficherMenuResCompte();
         }
     }
 
     /*-------------------------------------------------*/
 
     if(isset($_POST['inscrireClient'])){
-        CtlInscrireCli($_GET['nomCli'],$_GET['prenomCli'],$_POST['dateNCli'],$_POST['adresseCli'],$_POST['numTelCli'],$_POST['emailCli'],$_POST['professionCli'],$_POST['situationFCli']);
-
+        CtlInscrireCli($_POST['nomCli'],$_POST['prenomCli'],$_POST['dateNCli'],$_POST['adresseCli'],$_POST['numTelCli'],$_POST['emailCli'],$_POST['professionCli'],$_POST['situationCli']);
     }
 
 
