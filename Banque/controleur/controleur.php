@@ -113,7 +113,7 @@ function CtlStats($date1,$date2){
     $con=getStatsContrats($date1,$date2);
     $red=getStatsRDV($date1,$date2);
     $nbCli=getNbClients($date2);
-    $montanttot=getmontant($date2);
+    $montanttot=getmontant();
     afficherStats($con,$red,$nbCli,$montanttot);
 }
 /*-------------------------------------------------*/

@@ -12,7 +12,7 @@ function afficherDirecteur() {
 }
 
 function afficherStats($con,$red,$nbCli,$montanttot){
-    $contenu=afficherMenuDirecteur().'<form id=monForm3 action="site.php" method="post"> <fieldset><legend>Statistiques banque</legend><p><label>Nombre Contrats Souscrits (Entre `Date 1` et `Date 2`) : '.$con.'</label><p><label>Nombre de rendez-vous pris (Entre `Date 1` et `Date 2`) : '.$red.'</label></p><p><label>Nombre clients (Avant `Date 2`) : '.$nbCli.' </label></p><p><label>Solde Total ( Avant `Date 2`) : '.$montanttot.'</label></p><p><label>Date 1 : </label><input type="date" name="date1"><label> Date 2 : </label><input type="date" name="date2"><p><input type="submit" value="Selectionner" name="Stats"></p></fieldset></form>';
+    $contenu=afficherMenuDirecteur().'<form id=monForm3 action="site.php" method="post"> <fieldset><legend>Statistiques banque</legend><p><label>Nombre Contrats Souscrits (Entre \'Date 1\' et \'Date 2\') : '.$con.'</label><p><label>Nombre de rendez-vous pris (Entre \'Date 1\' et \'Date 2\') : '.$red.'</label></p><p><label>Nombre clients (Avant \'Date 2\') : '.$nbCli.' </label></p><p><label>Solde Total Actuel : '.$montanttot.'</label></p><p><label>Date 1 : </label><input type="date" name="date1"><label> Date 2 : </label><input type="date" name="date2"><p><input type="submit" value="Selectionner" name="Stats"></p></fieldset></form>';
     require_once ('gabarit.php');
 }
 
