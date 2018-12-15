@@ -202,10 +202,10 @@ function getNbClients($date){
 
 }
 
-function getmontant($date)
+function getmontant()
 {
     $connexion = getConnect();
-    $requete = "Select sum(solde) from compteClient where dateouverture <= '$date'";
+    $requete = "Select sum(solde) from compteClient where dateouverture <= now()";
     $resultat = $connexion->query($requete);
     $resultat->setFetchMode(PDO::FETCH_OBJ);
     $x=null;
