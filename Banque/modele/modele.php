@@ -216,3 +216,47 @@ function getmontant()
 
 }
 
+/*-------------------------------MODELE AGENT------------------------------------------------------------------------*/
+
+function modifClient($idClient,$modAdresse,$modNumtel,$modEmail,$modProfession,$modSituation_familiale){
+    $connexion=getConnect();
+    $requete="UPDATE `Client` SET `ADRESSE`='$modAdresse', `NUMTEL`='$modNumtel', `EMAIL`='$modEmail', `PROFESSION`='$modProfession', `SITUATION_FAMILIALE`='$modSituation_familiale' WHERE idClient='$idClient'";
+    $connexion->query($requete);
+}
+
+function getModif($id){
+    $connexion=getConnect();
+    $requete="Select * from Client where idClient='$id'";
+    $resultat=$connexion->query($requete);
+    $resultat->setFetchMode(PDO::FETCH_OBJ);
+    $tousmodifs=$resultat->fetch();
+    $resultat->closeCursor();
+    return $tousmodifs;
+}
+function getSynthese(){
+    $connexion=getConnect();
+    $requete="Select * from Client";
+    $resultat=$connexion->query($requete);
+    $resultat->setFetchMode(PDO::FETCH_OBJ);
+    $tousclients=$resultat->fetchAll();
+    $resultat->closeCursor();
+    return $tousclients;
+}
+function getOperation(){
+    $connexion=getConnect();
+    $requete="Select * from Client";
+    $resultat=$connexion->query($requete);
+    $resultat->setFetchMode(PDO::FETCH_OBJ);
+    $tousoperations=$resultat->fetchAll();
+    $resultat->closeCursor();
+    return $tousoperations;
+}
+function getRDV(){
+    $connexion=getConnect();
+    $requete="Select * from Client";
+    $resultat=$connexion->query($requete);
+    $resultat->setFetchMode(PDO::FETCH_OBJ);
+    $tousrdv=$resultat->fetchAll();
+    $resultat->closeCursor();
+    return $tousrdv;
+}

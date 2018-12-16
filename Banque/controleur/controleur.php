@@ -123,7 +123,7 @@ function CtlDirecteur(){
 /*-------------------------------------------------*/
 
 function CtlAgent(){
-
+	afficherAgent();
 
 }
 function CtlConseiller(){
@@ -134,4 +134,33 @@ function CtlConseiller(){
 function CtlErreur($erreur)
 {
     afficherErreur($erreur);
+}
+
+
+/*-----------------------------------------------------FONCTION AGENT-------------------------------------*/
+
+function CtlModifierClient($idClient,$adresse,$numTel,$eMail,$profession,$situation_familiale){
+    modifClient($idClient,$adresse,$numTel,$eMail,$profession,$situation_familiale);
+}
+function CtlafficherClient(){
+	afficherClient();
+}
+function CtlModifier($id){
+	$mod=getModif($id);
+    afficherModif($mod);
+}
+
+function CtlSynthese(){
+	$syn=getSynthese();
+    afficherSynthese($syn);
+}
+
+function CtlOperation(){
+	$ope=getOperation();
+    afficherOperation($ope);
+}
+
+function CtlRDV(){
+	$rdv=getRDV();
+    afficherRDV($rdv);
 }

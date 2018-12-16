@@ -152,8 +152,49 @@ try {
     }
 
     /*-------------------------------------------------*/
+    /*---------------------------AGENT----------------------*/
+	
+	if (isset($_POST['retourAgent'])){
+        CtlAgent();
+    }
 
+	 if (isset($_POST['modClient'])){
+		 
+        if (!empty($_POST['idClient'])) { 
+            foreach ($_POST['idClient'] as $valeur) {
+                $idClient = $valeur;				
+                $modifAdresse = $_POST[$idClient][0];
+				$modifNumTel=$_POST[$idClient][1];
+				$modifEmail = $_POST[$idClient][2];
+                $modifProfession=$_POST[$idClient][3];			                
+				$modifSituation_Familiale = $_POST[$idClient][4];
+               
 
+                CtlModifierClient($idClient,$modifAdresse,$modifNumTel,$modifEmail,$modifProfession,$modifSituation_Familiale);
+            }
+        }
+        CtlModifier($idClient);
+    }
+
+	if (isset($_POST['operaAgent'])) {
+        $val = $_POST['opeAgent'];
+        if ($val == 'c1') {
+            //CtlModifier();
+			CtlafficherClient();
+        } elseif ($val == 'c2') {
+            CtlSynthese();
+        } elseif ($val == 'c3') {
+            CtlOperation();
+        } elseif ($val == 'c4') {
+            CtlRDV();
+        } 
+	}
+	
+    if (isset($_POST['RechercherClient'])) {
+		$val=$_POST['SelectClient'];
+		
+		CtlModifier($val);
+	}
 
 
 
