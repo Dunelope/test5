@@ -183,13 +183,40 @@ try {
     /*-------------------------------------------------*/
 
     if(isset($_POST['inscrireClient'])){
-        CtlInscrireCli($_POST['nomCli'],$_POST['prenomCli'],$_POST['dateNCli'],$_POST['adresseCli'],$_POST['numTelCli'],$_POST['emailCli'],$_POST['professionCli'],$_POST['situationCli']);
+        CtlInscrireCli($_POST['idCon'],$_POST['nomCli'],$_POST['prenomCli'],$_POST['dateNCli'],$_POST['adresseCli'],$_POST['numTelCli'],$_POST['emailCli'],$_POST['professionCli'],$_POST['situationCli']);
     }
 
+    if(isset($_POST['vendreContrat'])) {
+        CtlVendreContrat($_POST['numCli'],$_POST['contratAVendre'],$_POST['tarif']);
+    }
 
+    if(isset($_POST['ouvrirCompte'])){
+        CtlOuvrirCompte($_POST['numCli'],$_POST['compteAOuvrir'],$_POST['soldeContrat'],$_POST['montantDecouvert']);
+    }
 
+    if(isset($_POST['sendnumCli2'])){
+        CtlAfficherDecouvert($_POST['numCli2']);
 
+    }
+    if(isset($_POST['sendnumCli3'])){
+        CtlAfficherDecouvert($_POST['numCli3']);
 
+    }
+    if(isset($_POST['sendnumCli4'])){
+        CtlAfficherDecouvert($_POST['numCli4']);
+
+    }
+
+    if(isset($_POST['modifdec'])){
+        foreach($_POST[''] as $n){
+            CtlModifDecouvert($n->NOMCOMPTE,$n->MONTANTDECOUVERT);
+        }
+
+    }
+
+    if(isset($_POST['sendnumCli3'])){
+
+    }
 
 
     afficherLog();

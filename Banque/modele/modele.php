@@ -216,11 +216,56 @@ function getmontant()
 
 }
 
-function addClient($nom,$prenom,$datN,$adresse,$numT,$email,$profession,$situation){
+function addClient($id,$nom,$prenom,$datN,$adresse,$numT,$email,$profession,$situation){
     $connexion = getConnect();
-    $requete = "INSERT INTO Client VALUES ($nom,$prenom,$datN,$adresse,$numT,$email,$profession,$situation) ";
+    $requete = "INSERT INTO Client VALUES (DEFAULT,'$id','$nom','$prenom','$datN','$adresse','$numT','$email','$profession','$situation') ";
     $connexion->query($requete);
 }
 
+function vendreContrat($id,$contrat,$tarif){
+    $connexion=getConnect();
+    $requete = "INSERT INTO ContratClient VALUES('$id','$contrat',DATE(NOW()),'$tarif')";
+    $connexion->query($requete);
+}
 
+function ouvrirCompte($id,$compte,$solde,$decouvert){
+    $connexion=getConnect();
+    $requete = "INSERT INTO CompteClient VALUES('$id','$compte',DATE(NOW()),'$solde','$decouvert')";
+    $connexion->query($requete);
+}
 
+function choixClientDecouvert($id){
+    $connexion=getConnect();
+    $requete= " SELECT * FROM `compteclient` WHERE idclient='$id'";
+    $resultat=$connexion->query($requete);
+    $resultat->setFetchMode(PDO::FETCH_OBJ);
+    $tscomptes=$resultat->fetchAll();
+    $resultat->closeCursor();
+    return $tscomptes;
+}
+
+function modifDecouvert($compte,$valeur){
+    $connexion=getConnect();
+    $requete= "UPDATE compteclient SET MONTANTDECOUVERT='$valeur' WHERE NOMCOMPTE='$compte'";
+    $connexion->query($requete);
+}
+
+function choixClientResContrat($id){
+    $connexion=getConnect();
+    $requete= " SELECT * FROM `compteclient` WHERE idclient='$id'";
+    $resultat=$connexion->query($requete);
+    $resultat->setFetchMode(PDO::FETCH_OBJ);
+    $tscomptes=$resultat->fetchAll();
+    $resultat->closeCursor();
+    return $tscomptes;
+    }
+
+    function choixClientResCompte($id){
+        $connexion = getConnect();
+        $requete = " SELECT * FROM `compteclient` WHERE idclient='$id'";
+        $resultat = $connexion->query($requete);
+        $resultat->setFetchMode(PDO::FETCH_OBJ);
+        $tscomptes = $resultat->fetchAll();
+        $resultat->closeCursor();
+        return $tscomptes;
+    }

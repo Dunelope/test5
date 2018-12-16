@@ -18,7 +18,7 @@ Interaction avec un client :
 <select name="interactionCli">
 <option value="inscrireCli" selected>Inscrire un Client</option>
 <option value="vendreContrat">Vendre un contrat</option>
-<option value="ouvrirCompte">Ouvrir des comptes</option>
+<option value="ouvrirCompte">Ouvrir un compte</option>
 <option value="modifDecouvert">Modifier la valeur d&#039;un découvert</option>
 <option value="resilierContrat">Résilier un contrat</option>
 <option value="resilierCompte">Résilier un compte</option>
@@ -28,11 +28,16 @@ Interaction avec un client :
     
     </fieldset></form>'.afficherMenuConseiller();
     require_once ('gabarit.php');
+
 }
 
 function afficherInscrireCli(){
     $contenu='<form id=Formc2 action="site.php" method="post"> 
     <fieldset><legend>Inscrire un nouveau client</legend>
+    <p>
+    <label for="idCon">ID du Conseiller :</label>
+    <input type="text" name="idCon" id="idCon" required/>
+    </p>
     <p>
     <label for="nomCli">Nom du Client :</label>
     <input type="text" name="nomCli" id="nomCli" required/>
@@ -62,7 +67,7 @@ function afficherInscrireCli(){
     <input type="text" name="professionCli" id="professionCli" required/>
     </p>
     <p>
-    Situation familiale du Client :
+    <label for="situationCli">Situation familiale du Client :</label>
     <select name="situationCli">
     <option value="celibataire" selected>Célibataire</option>
     <option value="marie">Marié</option>
@@ -91,6 +96,10 @@ function afficherVendreContrat(){
     <option value="credit">Crédit</option>
     <option value="assuranceVie">Assurance Vie</option>
     </select>
+    </p>
+    <p>
+    <label for="tarif">Tarif Mensuel :</label>
+    <input type="text" name="tarif" id="tarif" required/>
     </p>
     <p>
     <input type="submit" value="Vendre le contrat" name="vendreContrat">
@@ -124,7 +133,7 @@ function afficherOuvrirCompte(){
     </p>
     <p>
     Montant du découvert :
-    <input type="text" name="montantdecouvert" required>
+    <input type="text" name="montantDecouvert" required>
     </p>
     <p>
     <input type="submit" value="Ouvrir le compte" name="ouvrirCompte">
@@ -134,7 +143,7 @@ function afficherOuvrirCompte(){
     require_once ('gabarit.php');
 }
 
-function afficherMenuChoixClient(){
+function afficherMenuDecouvert(){
     $contenu='<form id=Formc5 action="site.php" method="post"> 
     <fieldset><legend>Choisir un client</legend>
     <p>
@@ -148,6 +157,47 @@ function afficherMenuChoixClient(){
     require_once ('gabarit.php');
 }
 
+function afficherMenuResContrat(){
+    $contenu='<form id=Formc6 action="site.php" method="post"> 
+    <fieldset><legend>Choisir un client</legend>
+    <p>
+    Numéro du client :
+    <input type="text" name="numCli3" required>
+    </p>
+    <p>
+    <input type="submit" value="Choisir" name="sendnumCli3" >
+    </p>
+    </fieldset></form>'.afficherMenuConseiller();
+    require_once ('gabarit.php');
+}
+
+function afficherMenuResCompte(){
+    $contenu='<form id=Formc7 action="site.php" method="post"> 
+    <fieldset><legend>Choisir un client</legend>
+    <p>
+    Numéro du client :
+    <input type="text" name="numCli4" required>
+    </p>
+    <p>
+    <input type="submit" value="Choisir" name="sendnumCli4" >
+    </p>
+    </fieldset></form>'.afficherMenuConseiller();
+    require_once ('gabarit.php');
+}
+
+function afficherDecouvert($dec){
+    $d='';
+
+    foreach ($dec as $decouvert){
+        $nomSE=preg_replace('/\s+/', '', $decouvert->NOMCOMPTE);
+        $d=$d.'<p>'. $decouvert->NOMCOMPTE .' : <input type="text" name="'.$nomSE.'" value="' . $decouvert->MONTANTDECOUVERT .'" required/> </p>';
+    }
+    $contenu='<form id=Formc6 action="site.php" method="post"><fieldset><legend>Modifier les découverts</legend><p>'. $d .'</p><p><input type="submit" name="modifdec" value="Modifier"></p></fieldset></form>'.afficherMenuConseiller();
+    require_once ('gabarit.php');
+
+}
+
+//function afficherResContrat($)
 
 
 
