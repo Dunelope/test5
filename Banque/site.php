@@ -197,24 +197,21 @@ try {
     if(isset($_POST['sendnumCli2'])){
         CtlAfficherDecouvert($_POST['numCli2']);
 
+
     }
     if(isset($_POST['sendnumCli3'])){
-        CtlAfficherDecouvert($_POST['numCli3']);
+        CtlAfficherResContrat($_POST['numCli3']);
 
     }
     if(isset($_POST['sendnumCli4'])){
-        CtlAfficherDecouvert($_POST['numCli4']);
+        CtlAfficherResCompte($_POST['numCli4']);
 
     }
 
     if(isset($_POST['modifdec'])){
-        foreach($_POST[''] as $n){
-            CtlModifDecouvert($n->NOMCOMPTE,$n->MONTANTDECOUVERT);
+        foreach($_POST['decoux'] as $n){
+            CtlModifDecouvert($n,$n);
         }
-
-    }
-
-    if(isset($_POST['sendnumCli3'])){
 
     }
 

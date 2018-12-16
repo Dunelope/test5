@@ -165,6 +165,7 @@ function CtlAfficherMenuDecouvert(){
 function CtlAfficherDecouvert($id){
     $x=choixClientDecouvert($id);
     afficherDecouvert($x);
+    return $x;
 }
 
 
@@ -179,6 +180,11 @@ function CtlAfficherMenuResContrat(){
 
 function CtlAfficherMenuResCompte(){
     afficherMenuResCompte();
+}
+
+function CtlAfficherResContrat($id){
+    $x=choixClientResContrat($id);
+    afficherResContrat($x);
 }
 
 function CtlErreur($erreur)

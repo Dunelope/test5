@@ -236,7 +236,7 @@ function ouvrirCompte($id,$compte,$solde,$decouvert){
 
 function choixClientDecouvert($id){
     $connexion=getConnect();
-    $requete= " SELECT * FROM `compteclient` WHERE idclient='$id'";
+    $requete= " SELECT NOMCOMPTE,MONTANTDECOUVERT FROM `compteclient` WHERE idclient='$id'";
     $resultat=$connexion->query($requete);
     $resultat->setFetchMode(PDO::FETCH_OBJ);
     $tscomptes=$resultat->fetchAll();
@@ -252,7 +252,7 @@ function modifDecouvert($compte,$valeur){
 
 function choixClientResContrat($id){
     $connexion=getConnect();
-    $requete= " SELECT * FROM `compteclient` WHERE idclient='$id'";
+    $requete= " SELECT NOMCONTRAT FROM `contratclient` WHERE idclient='$id'";
     $resultat=$connexion->query($requete);
     $resultat->setFetchMode(PDO::FETCH_OBJ);
     $tscomptes=$resultat->fetchAll();
@@ -262,7 +262,7 @@ function choixClientResContrat($id){
 
     function choixClientResCompte($id){
         $connexion = getConnect();
-        $requete = " SELECT * FROM `compteclient` WHERE idclient='$id'";
+        $requete = " SELECT NOMCOMPTE FROM `compteclient` WHERE idclient='$id'";
         $resultat = $connexion->query($requete);
         $resultat->setFetchMode(PDO::FETCH_OBJ);
         $tscomptes = $resultat->fetchAll();

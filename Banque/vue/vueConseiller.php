@@ -190,14 +190,23 @@ function afficherDecouvert($dec){
 
     foreach ($dec as $decouvert){
         $nomSE=preg_replace('/\s+/', '', $decouvert->NOMCOMPTE);
-        $d=$d.'<p>'. $decouvert->NOMCOMPTE .' : <input type="text" name="'.$nomSE.'" value="' . $decouvert->MONTANTDECOUVERT .'" required/> </p>';
+        $d=$d.'<p>'. $decouvert->NOMCOMPTE .'<input type="text" name="decoux[]" value="' . $decouvert->MONTANTDECOUVERT .'" required/> </p>';
     }
     $contenu='<form id=Formc6 action="site.php" method="post"><fieldset><legend>Modifier les découverts</legend><p>'. $d .'</p><p><input type="submit" name="modifdec" value="Modifier"></p></fieldset></form>'.afficherMenuConseiller();
     require_once ('gabarit.php');
 
 }
 
-//function afficherResContrat($)
+function afficherResContrat($contrat){
+    $d='';
+
+    foreach($contrat as $r){
+
+        $d=$d.'<p><input type="checkbox" name="checkcontrat" value="'.$r->NOMCONTRAT.'">'.$r->NOMCONTRAT.'</p>';
+    }
+    $contenu='<form id=Formc7 action="site.php" method="post"><fieldset><legend>Résilier un contrat</legend>'.$d.'<p><input type="submit" name="rescontrat" value="Résilier"></p></fieldset></form>'.afficherMenuConseiller();
+    require_once ('gabarit.php');
+}
 
 
 
