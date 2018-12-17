@@ -123,7 +123,7 @@ function CtlDirecteur(){
 /*-------------------------------------------------*/
 
 function CtlAgent(){
-
+	afficherAgent();
 
 }
 function CtlConseiller(){
@@ -190,4 +190,47 @@ function CtlAfficherResContrat($id){
 function CtlErreur($erreur)
 {
     afficherErreur($erreur);
+}
+
+
+/*-----------------------------------------------------FONCTION AGENT-------------------------------------*/
+
+function CtlModifierClient($idClient,$adresse,$numTel,$eMail,$profession,$situation_familiale){
+    modifClient($idClient,$adresse,$numTel,$eMail,$profession,$situation_familiale);
+}
+function CtlafficherClient(){
+	afficherClient();
+}
+function CtlModifier($id){
+	$mod=getModif($id);
+    afficherModif($mod);
+}
+
+function CtlafficherClientSynthese(){
+	afficherClientSynthese();
+}
+
+function CtlSynthese($id){	
+	$syn=getSynthese($id);
+	$mod=getModif($id);
+	$con=getConseiller($id);	
+    afficherSynthese($syn,$mod,$con);
+}
+
+function CtlOperation(){
+	$ope=getOperation();
+    afficherOperation($ope);
+}
+
+function CtlRDV(){
+	$rdv=getRDV();
+    afficherRDV($rdv);
+}
+function CtlAfficherIDClient(){
+	afficherClientRechercheID();
+}
+
+function CtlTrouverIDClient($nom,$dateN){
+	$cli=getIDcli($nom,$dateN);
+	afficherIDCli($cli);
 }
