@@ -22,8 +22,7 @@ function afficherClient(){
 
 function afficherModif($mod){
 	$c='';
-	  /*$adresse,$numtel,$email,$profession,$situation_familiale*/
-		$c=$c.'<p><input type="checkbox" name="idClient[]" value="' . $mod->IDCLIENT .'">'.$mod->NOMCLI.'  Adresse : <input name="'. $mod->IDCLIENT  .'[]" type="text" value="' . $mod->ADRESSE .'" />  Numéro : <input name="'. $mod->IDCLIENT  .'[]" type="text" value="' . $mod->NUMTEL .'" />  eMail : <input name="'. $mod->IDCLIENT  .'[]" type="text" value="' . $mod->EMAIL .'" />  Profession : <input name="'. $mod->IDCLIENT  .'[]" type="text" value="' . $mod->PROFESSION .'" />  Situation Familiale : <input name="'. $mod->IDCLIENT  .'[]" type="text" value="' . $mod->SITUATION_FAMILIALE .'" /></p>';
+	$c=$c.'<p><input type="checkbox" name="idClient[]" value="' . $mod->IDCLIENT .'">'.$mod->NOMCLI.'  Adresse : <input name="'. $mod->IDCLIENT  .'[]" type="text" value="' . $mod->ADRESSE .'" />  Numéro : <input name="'. $mod->IDCLIENT  .'[]" type="text" value="' . $mod->NUMTEL .'" />  eMail : <input name="'. $mod->IDCLIENT  .'[]" type="text" value="' . $mod->EMAIL .'" />  Profession : <input name="'. $mod->IDCLIENT  .'[]" type="text" value="' . $mod->PROFESSION .'" />  Situation Familiale : <input name="'. $mod->IDCLIENT  .'[]" type="text" value="' . $mod->SITUATION_FAMILIALE .'" /></p>';
 	
 	$contenu=afficherMenuAgent().'<form id="formModifs" action="site.php" method="post"><fieldset><legend>Recherche client </legend>'.$c.'</p> <p><input type="submit" value="Modifier Client" name="modClient"/></p></fieldset></form>';
 	require_once ('gabarit.php');
@@ -40,12 +39,12 @@ function afficherClientSynthese(){
 function afficherSynthese($synthese,$mod,$con){
 	$c='';
 	$co='';	
-	$c=$c.'<p><label>Nom du client : <input name="'. $mod->IDCLIENT  .'[]" type="text" value="' . $mod->NOMCLI .'" /></label></p><p><label>Adresse : <input name="'. $mod->IDCLIENT  .'[]" type="text" value="' . $mod->ADRESSE .'" /> </label></p><p><label> Numéro : <input name="'. $mod->IDCLIENT  .'[]" type="text" value="' . $mod->NUMTEL .'" /></label></p><p><label>eMail : <input name="'. $mod->IDCLIENT  .'[]" type="text" value="' . $mod->EMAIL .'" /></label></p><p><label>Profession : <input name="'. $mod->IDCLIENT  .'[]" type="text" value="' . $mod->PROFESSION .'" /></label></p><p><label>Situation Familiale : <input name="'. $mod->IDCLIENT  .'[]" type="text" value="' . $mod->SITUATION_FAMILIALE .'" /></label></p>';
+	$c=$c.'<p><label>Nom du client : <input name="'. $mod->IDCLIENT  .'[]" type="text" value="' . $mod->NOMCLI .'" readonly="readonly" /></label></p><p><label>Adresse : <input name="'. $mod->IDCLIENT  .'[]" type="text" value="' . $mod->ADRESSE .'" readonly="readonly" /> </label></p><p><label> Numéro : <input name="'. $mod->IDCLIENT  .'[]" type="text" value="' . $mod->NUMTEL .'" readonly="readonly" /></label></p><p><label>eMail : <input name="'. $mod->IDCLIENT  .'[]" type="text" value="' . $mod->EMAIL .'" readonly="readonly" /></label></p><p><label>Profession : <input name="'. $mod->IDCLIENT  .'[]" type="text" value="' . $mod->PROFESSION .'" readonly="readonly"/></label></p><p><label>Situation Familiale : <input name="'. $mod->IDCLIENT  .'[]" type="text" value="' . $mod->SITUATION_FAMILIALE .'" readonly="readonly"/></label></p>';
 	
-	$contenu='<p><fieldset><legend>Liste informations client</legend>'.$c.'<p>Nom du conseiller : <input name"'. $con->IDEMPLOYE .'[]" type="text" value="' . $con->NOMEMPLOYE .'" /></p></fieldset></p>';
+	$contenu='<p><fieldset><legend>Liste informations client</legend>'.$c.'<p>Nom du conseiller : <input name"'. $con->IDEMPLOYE .'[]" type="text" value="' . $con->NOMEMPLOYE .'" readonly="readonly"/></p></fieldset></p>';
 		
 	foreach ($synthese as $syn){
-		$co=$co.'<p>Nom du compte : <input name="'. $syn->IDCLIENT  .'[]" type="text" value="' . $syn->NOMCOMPTE .'" />  Date ouverture : <input name="'. $syn->IDCLIENT  .'[]" type="text" value="' . $syn->DATEOUVERTURE .'" />  Solde : <input name="'. $syn->IDCLIENT  .'[]" type="text" value="' . $syn->SOLDE .'" />  Montante du decouvert autorisé : <input name="'. $syn->IDCLIENT  .'[]" type="text" value="' . $syn->MONTANTDECOUVERT .'"/></p>';
+		$co=$co.'<p>Nom du compte : <input name="'. $syn->IDCLIENT  .'[]" type="text" value="' . $syn->NOMCOMPTE .'" readonly="readonly" />  Date ouverture : <input name="'. $syn->IDCLIENT  .'[]" type="text" value="' . $syn->DATEOUVERTURE .'" readonly="readonly"/>  Solde : <input name="'. $syn->IDCLIENT  .'[]" type="text" value="' . $syn->SOLDE .'" readonly="readonly"/>  Montante du decouvert autorisé : <input name="'. $syn->IDCLIENT  .'[]" type="text" value="' . $syn->MONTANTDECOUVERT .'" readonly="readonly"/></p>';
 		}
 	$contenu=afficherMenuAgent().'<fieldset><legend>Synthese client </legend>'.$contenu.'<p><fieldset><legend>Liste des comptes du client</legend>'.$co.'</fieldset></p></fieldset>';
 	require_once ('gabarit.php');
