@@ -158,7 +158,7 @@ try {
         CtlAgent();
     }
 
-	 if (isset($_POST['modClient'])){
+	if (isset($_POST['modClient'])){
 		 
         if (!empty($_POST['idClient'])) { 
             foreach ($_POST['idClient'] as $valeur) {
@@ -182,22 +182,34 @@ try {
             //CtlModifier();
 			CtlafficherClient();
         } elseif ($val == 'c2') {
-            CtlSynthese();
+            CtlafficherClientSynthese();
         } elseif ($val == 'c3') {
             CtlOperation();
         } elseif ($val == 'c4') {
             CtlRDV();
-        } 
+        } elseif ($val == 'c5') {
+            CtlAfficherIDClient();
+		}
+		
 	}
 	
-    if (isset($_POST['RechercherClient'])) {
-		$val=$_POST['SelectClient'];
-		
+    if (isset($_POST['RechercherClientModif'])) {
+		$val=$_POST['SelectClientModif'];
 		CtlModifier($val);
 	}
-
-
-
+	
+	 if (isset($_POST['RechercherClientSynthese'])) {
+		$val=$_POST['SelectClientSynthese'];
+		CtlSynthese($val);
+	}
+	
+	 if (isset($_POST['RechercherClientID'])) {
+		$nom=$_POST['SelectClientNom'];
+		$dateN=$_POST['SelectClientDateN'];
+		CtlTrouverIDClient($nom,$dateN);
+	}
+	
+	
 
 
     afficherLog();

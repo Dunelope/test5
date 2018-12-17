@@ -150,9 +150,15 @@ function CtlModifier($id){
     afficherModif($mod);
 }
 
-function CtlSynthese(){
-	$syn=getSynthese();
-    afficherSynthese($syn);
+function CtlafficherClientSynthese(){
+	afficherClientSynthese();
+}
+
+function CtlSynthese($id){	
+	$syn=getSynthese($id);
+	$mod=getModif($id);
+	$con=getConseiller($id);	
+    afficherSynthese($syn,$mod,$con);
 }
 
 function CtlOperation(){
@@ -163,4 +169,12 @@ function CtlOperation(){
 function CtlRDV(){
 	$rdv=getRDV();
     afficherRDV($rdv);
+}
+function CtlAfficherIDClient(){
+	afficherClientRechercheID();
+}
+
+function CtlTrouverIDClient($nom,$dateN){
+	$cli=getIDcli($nom,$dateN);
+	afficherIDCli($cli);
 }

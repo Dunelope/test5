@@ -233,15 +233,28 @@ function getModif($id){
     $resultat->closeCursor();
     return $tousmodifs;
 }
-function getSynthese(){
+function getSynthese($id){
     $connexion=getConnect();
-    $requete="Select * from Client";
+    $requete="Select * from CompteClient where idClient='$id'";
     $resultat=$connexion->query($requete);
     $resultat->setFetchMode(PDO::FETCH_OBJ);
     $tousclients=$resultat->fetchAll();
     $resultat->closeCursor();
     return $tousclients;
 }
+
+
+function getConseiller($id){
+    $connexion=getConnect();
+    $requete="Select * from Employe natural join Client where idClient='$id'";
+    $resultat=$connexion->query($requete);
+    $resultat->setFetchMode(PDO::FETCH_OBJ);
+    $tousconseiller=$resultat->fetch();
+    $resultat->closeCursor();
+    return $tousconseiller;
+}
+
+
 function getOperation(){
     $connexion=getConnect();
     $requete="Select * from Client";
@@ -259,4 +272,14 @@ function getRDV(){
     $tousrdv=$resultat->fetchAll();
     $resultat->closeCursor();
     return $tousrdv;
+}
+
+function getIDcli($nom,$dateN) {
+	$connexion=getConnect();
+    $requete="Select * from Client where nomCli='$nom' and dateNaissCli='$dateN'";
+    $resultat=$connexion->query($requete);
+    $resultat->setFetchMode(PDO::FETCH_OBJ);
+    $idclient=$resultat->fetch();
+    $resultat->closeCursor();
+    return $idclient;
 }
