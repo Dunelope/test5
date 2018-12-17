@@ -214,8 +214,9 @@ function CtlafficherClientSynthese(){
 function CtlSynthese($id){	
 	$syn=getSynthese($id);
 	$mod=getModif($id);
-	$con=getConseiller($id);	
-    afficherSynthese($syn,$mod,$con);
+	$con=getConseiller($id);
+	$cont=getContratClient($id);
+    afficherSynthese($syn,$mod,$con,$cont);
 }
 
 function CtlOperation(){
