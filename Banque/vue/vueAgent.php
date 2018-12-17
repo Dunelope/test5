@@ -36,9 +36,10 @@ function afficherClientSynthese(){
 }
 
 
-function afficherSynthese($synthese,$mod,$con){
+function afficherSynthese($synthese,$mod,$con,$contrat){
 	$c='';
 	$co='';	
+	$contrats='';	
 	$c=$c.'<p><label>Nom du client : <input name="'. $mod->IDCLIENT  .'[]" type="text" value="' . $mod->NOMCLI .'" readonly="readonly" /></label></p><p><label>Adresse : <input name="'. $mod->IDCLIENT  .'[]" type="text" value="' . $mod->ADRESSE .'" readonly="readonly" /> </label></p><p><label> Numéro : <input name="'. $mod->IDCLIENT  .'[]" type="text" value="' . $mod->NUMTEL .'" readonly="readonly" /></label></p><p><label>eMail : <input name="'. $mod->IDCLIENT  .'[]" type="text" value="' . $mod->EMAIL .'" readonly="readonly" /></label></p><p><label>Profession : <input name="'. $mod->IDCLIENT  .'[]" type="text" value="' . $mod->PROFESSION .'" readonly="readonly"/></label></p><p><label>Situation Familiale : <input name="'. $mod->IDCLIENT  .'[]" type="text" value="' . $mod->SITUATION_FAMILIALE .'" readonly="readonly"/></label></p>';
 	
 	$contenu='<p><fieldset><legend>Liste informations client</legend>'.$c.'<p>Nom du conseiller : <input name"'. $con->IDEMPLOYE .'[]" type="text" value="' . $con->NOMEMPLOYE .'" readonly="readonly"/></p></fieldset></p>';
@@ -46,7 +47,10 @@ function afficherSynthese($synthese,$mod,$con){
 	foreach ($synthese as $syn){
 		$co=$co.'<p>Nom du compte : <input name="'. $syn->IDCLIENT  .'[]" type="text" value="' . $syn->NOMCOMPTE .'" readonly="readonly" />  Date ouverture : <input name="'. $syn->IDCLIENT  .'[]" type="text" value="' . $syn->DATEOUVERTURE .'" readonly="readonly"/>  Solde : <input name="'. $syn->IDCLIENT  .'[]" type="text" value="' . $syn->SOLDE .'" readonly="readonly"/>  Montante du decouvert autorisé : <input name="'. $syn->IDCLIENT  .'[]" type="text" value="' . $syn->MONTANTDECOUVERT .'" readonly="readonly"/></p>';
 		}
-	$contenu=afficherMenuAgent().'<fieldset><legend>Synthese client </legend>'.$contenu.'<p><fieldset><legend>Liste des comptes du client</legend>'.$co.'</fieldset></p></fieldset>';
+	foreach ($contrat as $ctr){
+		$contrats=$contrats.'<p>Nom du contrat : <input name="'. $ctr->IDCLIENT  .'[]" type="text" value="' . $ctr->NOMCONTRAT .'" readonly="readonly" />  Date ouverture : <input name="'. $syn->IDCLIENT  .'[]" type="text" value="' . $ctr->DATEOUVERTURECONTRAT .'" readonly="readonly"/>  Tarif mensuel : <input name="'. $ctr->IDCLIENT  .'[]" type="text" value="' . $ctr->TARIFMENSUEL .'" readonly="readonly"/></p>';
+		}
+	$contenu=afficherMenuAgent().'<fieldset><legend>Synthese client </legend>'.$contenu.'<p><fieldset><legend>Liste des comptes du client</legend>'.$co.'</fieldset></p><p><fieldset><legend>Liste des contrat du client</legend>'.$contrats.'</fieldset></p></fieldset>';
 	require_once ('gabarit.php');
 }
 

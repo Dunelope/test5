@@ -254,6 +254,16 @@ function getConseiller($id){
     return $tousconseiller;
 }
 
+function getContratClient($id){
+    $connexion=getConnect();
+    $requete="Select * from contratClient where idClient='$id'";
+    $resultat=$connexion->query($requete);
+    $resultat->setFetchMode(PDO::FETCH_OBJ);
+    $contratscli=$resultat->fetchAll();
+    $resultat->closeCursor();
+    return $contratscli;
+}
+
 
 function getOperation(){
     $connexion=getConnect();
