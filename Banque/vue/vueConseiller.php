@@ -83,7 +83,11 @@ function afficherInscrireCli(){
 
 }
 
-function afficherVendreContrat(){
+function afficherVendreContrat($contrat){
+    $x='';
+    foreach ($contrat as $c){
+        $x=$x.'<option value="'.$c.'">'.$c.'</option>';
+    }
     $contenu='<form id=Formc3 action="site.php" method="post"> 
     <fieldset><legend>Vendre un contrat</legend>
     <p>
@@ -93,8 +97,7 @@ function afficherVendreContrat(){
     <p>
     Type de contrat : 
     <select name="contratAVendre">
-    <option value="credit">Crédit</option>
-    <option value="assuranceVie">Assurance Vie</option>
+    '.$x.'
     </select>
     </p>
     <p>
@@ -109,7 +112,11 @@ function afficherVendreContrat(){
     require_once ('gabarit.php');
 }
 
-function afficherOuvrirCompte(){
+function afficherOuvrirCompte($compte){
+    $x='';
+    foreach ($compte as $c){
+        $x=$x.'<option value="'.$c.'">'.$c.'</option>';
+    }
     $contenu='<form id=Formc4 action="site.php" method="post"> 
     <fieldset><legend>Ouvrir un compte</legend>
     <p>
@@ -119,12 +126,7 @@ function afficherOuvrirCompte(){
     <p>
     Type de compte : 
     <select name="compteAOuvrir">
-    <option value="cel">CEL</option>
-    <option value="ldds">LDDS</option>
-    <option value="livretA">Livret A</option>
-    <option value="livretJeune">Livret Jeune</option>
-    <option value="pel">PEL</option>
-    <option value="perp">PERP</option>
+    '.$x.'
     </select>
     </p>
     <p>
@@ -143,7 +145,11 @@ function afficherOuvrirCompte(){
     require_once ('gabarit.php');
 }
 
-function afficherMenuDecouvert(){
+function afficherMenuDecouvert($compte){
+    $x='';
+    foreach ($compte as $c){
+        $x=$x.'<option value="'.$c.'">'.$c.'</option>';
+    }
     $contenu='<form id=Formc5 action="site.php" method="post"> 
     <fieldset><legend>Choisir un client</legend>
     <p>
@@ -151,8 +157,16 @@ function afficherMenuDecouvert(){
     <input type="text" name="numCli2" required>
     </p>
     <p>
+    Type de compte : 
+    <select name="compteAOuvrir">
+    '.$x.'
+    </select>
+    </p>
+    <p>
+    <p>
     <input type="submit" value="Choisir" name="sendnumCli2" >
     </p>
+    
     </fieldset></form>'.afficherMenuConseiller();
     require_once ('gabarit.php');
 }

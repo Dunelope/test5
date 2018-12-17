@@ -141,7 +141,7 @@ function CtlInscrireCli($id,$nom,$prenom,$datN,$adresse,$numT,$email,$profession
 }
 
 function CtlAfficherVendreContrat(){
-    afficherVendreContrat();
+    afficherVendreContrat(listeContrat());
 }
 
 function CtlVendreContrat($id,$compte,$tarif){
@@ -150,7 +150,7 @@ function CtlVendreContrat($id,$compte,$tarif){
 }
 
 function CtlAfficherOuvrirCompte(){
-    afficherOuvrirCompte();
+    afficherOuvrirCompte(listeCompte());
 }
 
 function CtlOuvrirCompte($id,$compte,$solde,$decouvert){
@@ -159,13 +159,7 @@ function CtlOuvrirCompte($id,$compte,$solde,$decouvert){
 }
 
 function CtlAfficherMenuDecouvert(){
-    afficherMenuDecouvert();
-}
-
-function CtlAfficherDecouvert($id){
-    $x=choixClientDecouvert($id);
-    afficherDecouvert($x);
-    return $x;
+    afficherMenuDecouvert(listeCompte());
 }
 
 
@@ -182,10 +176,7 @@ function CtlAfficherMenuResCompte(){
     afficherMenuResCompte();
 }
 
-function CtlAfficherResContrat($id){
-    $x=choixClientResContrat($id);
-    afficherResContrat($x);
-}
+
 
 function CtlErreur($erreur)
 {
