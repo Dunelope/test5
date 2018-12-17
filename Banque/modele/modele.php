@@ -255,10 +255,20 @@ function ouvrirCompte($id,$compte,$solde,$decouvert){
 }
 
 
-function modifDecouvert($compte,$valeur){
+function modifDecouvert($id,$compte,$valeur){
     $connexion=getConnect();
-    $requete= "UPDATE compteclient SET MONTANTDECOUVERT='$valeur' WHERE NOMCOMPTE='$compte'";
+    $requete= "UPDATE compteclient SET MONTANTDECOUVERT='$valeur' WHERE NOMCOMPTE='$compte'AND IDCLIENT='$id'";
     $connexion->query($requete);
 }
 
+function resContrat($id,$contrat){
+    $connexion=getConnect();
+    $requete="DELETE FROM contratclient WHERE idclient='$id' and NOMCONTRAT='$contrat'";
+    $connexion->query($requete);
+}
 
+function resCompte($id,$compte){
+    $connexion=getConnect();
+    $requete="DELETE FROM compteclient WHERE idclient='$id' and NOMCOMPTE='$compte'";
+    $connexion->query($requete);
+}

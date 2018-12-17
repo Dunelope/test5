@@ -156,8 +156,6 @@ try {
         CtlConseiller();
     }
 
-    /*-------------------------------------------------*/
-
     if(isset($_POST['interCli'])){
         $val =$_POST['interactionCli'];
         if($val=='inscrireCli') {
@@ -180,7 +178,6 @@ try {
         }
     }
 
-    /*-------------------------------------------------*/
 
     if(isset($_POST['inscrireClient'])){
         CtlInscrireCli($_POST['idCon'],$_POST['nomCli'],$_POST['prenomCli'],$_POST['dateNCli'],$_POST['adresseCli'],$_POST['numTelCli'],$_POST['emailCli'],$_POST['professionCli'],$_POST['situationCli']);
@@ -194,8 +191,15 @@ try {
         CtlOuvrirCompte($_POST['numCli'],$_POST['compteAOuvrir'],$_POST['soldeContrat'],$_POST['montantDecouvert']);
     }
 
-    if(isset($_POST['sendnumCli2'])){
-        CtlAfficherDecouvert($_POST['numCli2']);
+    if(isset($_POST['modifdec'])) {
+        CtlModifDecouvert($_POST['numClient'], $_POST['compte'], $_POST['montantDecouvert']);
+
+    }
+
+    if(isset($_POST['rescontrat'])){
+        CtlResCompte($_POST['numCli'],$_POST['compteares']);
+    }
+
 
     /*---------------------------AGENT----------------------*/
 
@@ -215,20 +219,13 @@ try {
 				$modifSituation_Familiale = $_POST[$idClient][4];
 
     }
-    if(isset($_POST['sendnumCli3'])){
-        CtlAfficherResContrat($_POST['numCli3']);
 
-    }
-    if(isset($_POST['sendnumCli4'])){
-        CtlAfficherResCompte($_POST['numCli4']);
-
-    }
 
                 CtlModifierClient($idClient,$modifAdresse,$modifNumTel,$modifEmail,$modifProfession,$modifSituation_Familiale);
             }
         }
         CtlModifier($idClient);
-    }
+
     if(isset($_POST['modifdec'])){
         foreach($_POST['decoux'] as $n){
             CtlModifDecouvert($n,$n);

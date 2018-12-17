@@ -151,49 +151,73 @@ function afficherMenuDecouvert($compte){
         $x=$x.'<option value="'.$c.'">'.$c.'</option>';
     }
     $contenu='<form id=Formc5 action="site.php" method="post"> 
-    <fieldset><legend>Choisir un client</legend>
+    <fieldset><legend>Modifier le découvert</legend>
     <p>
     Numéro du client :
-    <input type="text" name="numCli2" required>
+    <input type="text" name="numClient" required>
     </p>
     <p>
     Type de compte : 
-    <select name="compteAOuvrir">
+    <select name="compte">
     '.$x.'
     </select>
     </p>
     <p>
+    Nouveau découvert :
+    <input type="text" name="montantDecouvert" required>
+    </p>
     <p>
-    <input type="submit" value="Choisir" name="sendnumCli2" >
+    <p>
+    <input type="submit" value="Modifier" name="modifdec" >
     </p>
     
     </fieldset></form>'.afficherMenuConseiller();
     require_once ('gabarit.php');
 }
 
-function afficherMenuResContrat(){
+function afficherMenuResContrat($contrat){
+    $x='';
+    foreach ($contrat as $c){
+        $x=$x.'<option value="'.$c.'">'.$c.'</option>';
+    }
     $contenu='<form id=Formc6 action="site.php" method="post"> 
-    <fieldset><legend>Choisir un client</legend>
+    <fieldset><legend>Résilier un contrat</legend>
     <p>
     Numéro du client :
-    <input type="text" name="numCli3" required>
+    <input type="text" name="numCli" required>
     </p>
     <p>
-    <input type="submit" value="Choisir" name="sendnumCli3" >
+    Type de contrat : 
+    <select name="contratares">
+    '.$x.'
+    </select>
+    </p>
+    <p>
+    <input type="submit" value="Résilier" name="rescontrat" >
     </p>
     </fieldset></form>'.afficherMenuConseiller();
     require_once ('gabarit.php');
 }
 
-function afficherMenuResCompte(){
+function afficherMenuResCompte($compte){
+    $x='';
+    foreach ($compte as $c){
+        $x=$x.'<option value="'.$c.'">'.$c.'</option>';
+    }
     $contenu='<form id=Formc7 action="site.php" method="post"> 
     <fieldset><legend>Choisir un client</legend>
     <p>
     Numéro du client :
-    <input type="text" name="numCli4" required>
+    <input type="text" name="numCli" required>
     </p>
     <p>
-    <input type="submit" value="Choisir" name="sendnumCli4" >
+    Type de compte : 
+    <select name="compteares">
+    '.$x.'
+    </select>
+    </p>
+    <p>
+    <input type="submit" value="Résilier" name="rescontrat" >
     </p>
     </fieldset></form>'.afficherMenuConseiller();
     require_once ('gabarit.php');

@@ -163,19 +163,29 @@ function CtlAfficherMenuDecouvert(){
 }
 
 
-function CtlModifDecouvert($compte,$valeur){
-    modifDecouvert($compte,$valeur);
+function CtlModifDecouvert($id,$compte,$valeur){
+    modifDecouvert($id,$compte,$valeur);
     afficherConseiller();
 }
 
 function CtlAfficherMenuResContrat(){
-    afficherMenuResContrat();
+    afficherMenuResContrat(listeContrat());
 }
+
+function CtlResContrat($id,$contrat){
+    resContrat($id,$contrat);
+    afficherConseiller();
+}
+
 
 function CtlAfficherMenuResCompte(){
-    afficherMenuResCompte();
+    afficherMenuResCompte(listeCompte());
 }
 
+function CtlResCompte($id,$compte){
+    resCompte($id,$compte);
+    afficherConseiller();
+}
 
 
 function CtlErreur($erreur)
