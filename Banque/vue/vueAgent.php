@@ -12,11 +12,13 @@ function afficherLogAgent(){
     require_once('gabarit.php');
 }
 
+
 function afficherClient(){
 	
 	$contenu=afficherMenuAgent().'<form id="monForm1" action="site.php" method="post"><fieldset><legend>Modification Informations Client</legend><p>Entrez identifiant du client recherché : <input type="text"  name="SelectClientModif"> <input type="submit" name="RechercherClientModif" value="Rechercher ce Client" /></fieldset></form>';
 	require_once('gabarit.php');
 }
+
 
 function afficherModif($mod){
 	$c='';
@@ -27,7 +29,6 @@ function afficherModif($mod){
 	require_once ('gabarit.php');
 }
 
-/*  */
 
 function afficherClientSynthese(){
     
@@ -51,13 +52,12 @@ function afficherSynthese($synthese,$mod,$con){
 }
 
 
-
-
 function afficherOperation($login){
     $contenu =afficherMenuAgent();
     
 	require_once ('gabarit.php');
 }
+
 
 function afficherRDV($login){
     $contenu =afficherMenuAgent();
@@ -71,11 +71,13 @@ function afficherMenuAgent(){
     return $contenu;
 }
 
+
 function afficherClientRechercheID(){
     
 	$contenu=afficherMenuAgent().'<form id="monForm3" action="site.php" method="post"><fieldset><legend>Recherce identifiant client</legend><p>Entrez nom du client recherché : <input type="text"  name="SelectClientNom"> Date de naissance du client recherché : <input type="date"  name="SelectClientDateN"> <input type="submit" name="RechercherClientID" value="Afficher id client" /></fieldset></form>';
 	require_once('gabarit.php');
 }
+
 
 function afficherIDCli($cli) {
 	 $contenu =afficherMenuAgent().'<p><fieldset><legend>Recherche identifiant client</legend><p>Identifiant du client : <input name="IDCLIENT" type="text" value="' . $cli->IDCLIENT .'" /></p></legend></p';
@@ -87,5 +89,4 @@ function afficherIDCli($cli) {
 function afficherErreurAgent($erreur){
     $contenu='<p>'.$erreur.'</p> <p><a href="site.php"/>Revenir au site </p>';
     require_once ('gabarit.php');
-
 }
