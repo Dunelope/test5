@@ -128,8 +128,7 @@ function CtlAgent(){
 }
 
 
-function CtlErreur($erreur)
-{
+function CtlErreur($erreur){
     afficherErreur($erreur);
 }
 
@@ -243,8 +242,8 @@ function CtlOuvrirCompte($id,$compte,$solde,$decouvert){
     afficherConseiller();
 }
 
-function CtlAfficherMenuDecouvert(){
-    afficherMenuDecouvert(listeCompte());
+function CtlAfficherMenuDecouvert($id,$compte){
+    afficherMenuDecouvert($id,$compte);
 }
 
 
@@ -253,8 +252,8 @@ function CtlModifDecouvert($id,$compte,$valeur){
     afficherConseiller();
 }
 
-function CtlAfficherMenuResContrat(){
-    afficherMenuResContrat(listeContrat());
+function CtlAfficherMenuResContrat($id,$contrat){
+    afficherMenuResContrat($id,$contrat);
 }
 
 function CtlResContrat($id,$contrat){
@@ -263,11 +262,36 @@ function CtlResContrat($id,$contrat){
 }
 
 
-function CtlAfficherMenuResCompte(){
-    afficherMenuResCompte(listeCompte());
+function CtlAfficherMenuResCompte($id,$compte){
+    afficherMenuResCompte($id,$compte);
 }
 
 function CtlResCompte($id,$compte){
     resCompte($id,$compte);
     afficherConseiller();
+}
+
+function CtlAfficherChoixClient(){
+    afficherChoixClient();
+}
+
+function CtlAfficherChoixClient2(){
+    afficherChoixClient2();
+}
+
+function CtlAfficherChoixClient3(){
+    afficherChoixClient3();
+}
+
+function CtlCercheContrat($id){
+    $x=chercheContrat($id);
+    return $x;
+}
+
+function CtlChercheCompte($id){
+    return chercheCompte($id);
+}
+
+function CtlChercheContrat($id){
+    return chercheContrat($id);
 }

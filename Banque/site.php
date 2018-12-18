@@ -246,13 +246,16 @@ try {
             CtlAfficherOuvrirCompte();
         }
         if($val=='modifDecouvert') {
-            CtlAfficherMenuDecouvert();
+            CtlAfficherChoixClient();
+            //CtlAfficherMenuDecouvert();
         }
         if($val=='resilierContrat') {
-            CtlAfficherMenuResContrat();
+            CtlAfficherChoixClient2();
+            //CtlAfficherMenuResContrat();
         }
         if($val=='resilierCompte') {
-            CtlAfficherMenuResCompte();
+            CtlAfficherChoixClient3();
+            //CtlAfficherMenuResCompte();
         }
     }
 
@@ -281,7 +284,26 @@ try {
     if(isset($_POST['rescompte'])){
         CtlResCompte($_POST['numCli'],$_POST['compteares']);
     }
-	
+
+    if(isset($_POST['choixcli'])){
+        $cli=$_POST['choixClient'];
+        $x=CtlChercheCompte($cli);
+        CtlAfficherMenuDecouvert($cli,$x);
+    }
+
+    if(isset($_POST['choixcli2'])){
+        $cli=$_POST['choixClient2'];
+        $x=CtlChercheContrat($cli);
+        CtlAfficherMenuResContrat($cli,$x);
+    }
+
+    if(isset($_POST['choixcli3'])){
+        $cli=$_POST['choixClient3'];
+        $x=CtlChercheCompte($cli);
+        CtlAfficherMenuResCompte($cli,$x);
+    }
+
+
 	
 
 

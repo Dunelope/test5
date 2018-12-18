@@ -145,7 +145,7 @@ function afficherOuvrirCompte($compte){
     require_once ('gabarit.php');
 }
 
-function afficherMenuDecouvert($compte){
+function afficherMenuDecouvert($id,$compte){
     $x='';
     foreach ($compte as $c){
         $x=$x.'<option value="'.$c->NOMCOMPTE.'">'.$c->NOMCOMPTE.'</option>';
@@ -154,7 +154,7 @@ function afficherMenuDecouvert($compte){
     <fieldset><legend>Modifier le découvert</legend>
     <p>
     Numéro du client :
-    <input type="text" name="numClient" required>
+    <input type="text" name="numClient" value="'.$id.'" required readonly>
     </p>
     <p>
     Type de compte : 
@@ -175,7 +175,7 @@ function afficherMenuDecouvert($compte){
     require_once ('gabarit.php');
 }
 
-function afficherMenuResContrat($contrat){
+function afficherMenuResContrat($id,$contrat){
     $x='';
     foreach ($contrat as $c){
         $x=$x.'<option value="'.$c->NOMCONTRAT.'">'.$c->NOMCONTRAT.'</option>';
@@ -184,7 +184,7 @@ function afficherMenuResContrat($contrat){
     <fieldset><legend>Résilier un contrat</legend>
     <p>
     Numéro du client :
-    <input type="text" name="numCli" required>
+    <input type="text" name="numCli" value="'.$id.'" readonly>
     </p>
     <p>
     Type de contrat : 
@@ -199,7 +199,7 @@ function afficherMenuResContrat($contrat){
     require_once ('gabarit.php');
 }
 
-function afficherMenuResCompte($compte){
+function afficherMenuResCompte($id,$compte){
     $x='';
     foreach ($compte as $c){
         $x=$x.'<option value="'.$c->NOMCOMPTE.'">'.$c->NOMCOMPTE.'</option>';
@@ -208,7 +208,7 @@ function afficherMenuResCompte($compte){
     <fieldset><legend>Choisir un client</legend>
     <p>
     Numéro du client :
-    <input type="text" name="numCli" required>
+    <input type="text" name="numCli" value="'.$id.'" readonly>
     </p>
     <p>
     Type de compte : 
@@ -243,4 +243,20 @@ function afficherResContrat($contrat){
     }
     $contenu='<form id=Formc7 action="site.php" method="post"><fieldset><legend>Résilier un contrat</legend>'.$d.'<p><input type="submit" name="rescontrat" value="Résilier"></p></fieldset></form>'.afficherMenuConseiller();
     require_once ('gabarit.php');
+}
+
+function afficherChoixClient(){
+
+    $contenu=afficherMenuConseiller().'<form id="monFormc8" action="site.php" method="post"><fieldset><legend>Choisir un client</legend><p>Identifiant du client : <input type="text"  name="choixClient" required></p><p><input type="submit" value="Choisir" name="choixcli" /></fieldset></form>';
+    require_once('gabarit.php');
+}
+function afficherChoixClient2(){
+
+    $contenu=afficherMenuConseiller().'<form id="monFormc9" action="site.php" method="post"><fieldset><legend>Choisir un client</legend><p>Entrez identifiant du client : <input type="text"  name="choixClient2" required></p><p><input type="submit" name="choixcli2" value="Choisir" /></fieldset></form>';
+    require_once('gabarit.php');
+}
+function afficherChoixClient3(){
+
+    $contenu=afficherMenuConseiller().'<form id="monFormc10" action="site.php" method="post"><fieldset><legend>Choisir un client</legend><p>Entrez identifiant du client : <input type="text"  name="choixClient3" required></p><p><input type="submit" name="choixcli3" value="Choisir" /></fieldset></form>';
+    require_once('gabarit.php');
 }

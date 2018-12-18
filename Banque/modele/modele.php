@@ -380,7 +380,6 @@ function modifDecouvert($id,$compte,$valeur){
     $requete= "UPDATE compteclient SET MONTANTDECOUVERT='$valeur' WHERE NOMCOMPTE='$compte'AND IDCLIENT='$id'";
     $connexion->query($requete);
 }
-
 function resContrat($id,$contrat){
     $connexion=getConnect();
     $requete="DELETE FROM contratclient WHERE idclient='$id' and NOMCONTRAT='$contrat'";
@@ -391,4 +390,24 @@ function resCompte($id,$compte){
     $connexion=getConnect();
     $requete="DELETE FROM compteclient WHERE idclient='$id' and NOMCOMPTE='$compte'";
     $connexion->query($requete);
+}
+
+function chercheCompte($id){
+    $connexion=getConnect();
+    $requete = "SELECT * FROM compteclient WHERE idclient='$id'";
+    $resultat=$connexion->query($requete);
+    $resultat->setFetchMode(PDO::FETCH_OBJ);
+    $c=$resultat->fetchAll();
+    $resultat->closeCursor();
+    return $c;
+}
+
+function chercheContrat ($id){
+    $connexion=getConnect();
+    $requete = "SELECT * FROM contratclient WHERE idclient='$id'";
+    $resultat=$connexion->query($requete);
+    $resultat->setFetchMode(PDO::FETCH_OBJ);
+    $c=$resultat->fetchAll();
+    $resultat->closeCursor();
+    return $c;
 }
