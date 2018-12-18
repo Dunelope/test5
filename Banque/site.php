@@ -152,6 +152,85 @@ try {
     }
 
     /*-------------------------------------------------*/
+    /*---------------------------AGENT----------------------*/
+	
+	if (isset($_POST['retourAgent'])){
+        CtlAgent();
+    }
+
+	if (isset($_POST['modClient'])){
+		 
+        if (!empty($_POST['idClient'])) { 
+            foreach ($_POST['idClient'] as $valeur) {
+                $idClient = $valeur;				
+                $modifAdresse = $_POST[$idClient][0];
+				$modifNumTel=$_POST[$idClient][1];
+				$modifEmail = $_POST[$idClient][2];
+                $modifProfession=$_POST[$idClient][3];			                
+				$modifSituation_Familiale = $_POST[$idClient][4];
+               
+
+                CtlModifierClient($idClient,$modifAdresse,$modifNumTel,$modifEmail,$modifProfession,$modifSituation_Familiale);
+            }
+        }
+        CtlModifier($idClient);
+    }
+
+	if (isset($_POST['operaAgent'])) {
+        $val = $_POST['opeAgent'];
+        if ($val == 'c1') {
+            //CtlModifier();
+			CtlafficherClient();
+        } elseif ($val == 'c2') {
+            CtlafficherClientSynthese();
+        } elseif ($val == 'c3') {
+            CtlafficherOperation();
+        } elseif ($val == 'c4') {
+            CtlRDV();
+        } elseif ($val == 'c5') {
+            CtlAfficherIDClient();
+		}
+		
+	}
+	
+    if (isset($_POST['RechercherClientModif'])) {
+		$val=$_POST['SelectClientModif'];
+		CtlModifier($val);
+	}
+	
+	if (isset($_POST['RechercherClientSynthese'])) {
+		$val=$_POST['SelectClientSynthese'];
+		CtlSynthese($val);
+	}
+	
+	if (isset($_POST['RechercherClientOperation'])) {
+		$val=$_POST['SelectClientOperation'];
+		CtlOperationClient($val);
+	}
+	
+	if (isset($_POST['DepotClient'])) {
+	    $montant=$_POST['montantOpe'];
+	    $nomcompte=$_POST['opeClient'];
+	    $id=$_POST['idduClient'];
+		CtlOperation($id,$nomcompte,$montant,'Crediter');
+	}
+	
+	if (isset($_POST['RetraitClient'])) {
+        $montantEntree=$_POST['montantOpe'];
+        $nomcompte=$_POST['opeClient'];
+        $montanttotal=-$montantEntree;
+        $id=$_POST['idduClient'];
+		CtlOperation($id,$nomcompte,$montanttotal,'Debiter');
+	}
+		
+	
+	 if (isset($_POST['RechercherClientID'])) {
+		$nom=$_POST['SelectClientNom'];
+		$dateN=$_POST['SelectClientDateN'];
+		CtlTrouverIDClient($nom,$dateN);
+	}
+
+	/*-----------------------CONSEILLER----------------------------------*/
     if(isset($_POST['retourC'])){
         CtlConseiller();
     }
@@ -199,74 +278,8 @@ try {
     if(isset($_POST['rescontrat'])){
         CtlResCompte($_POST['numCli'],$_POST['compteares']);
     }
-
-
-    /*---------------------------AGENT----------------------*/
-
-	if (isset($_POST['retourAgent'])){
-        CtlAgent();
-    }
-
-	if (isset($_POST['modClient'])){
-
-        if (!empty($_POST['idClient'])) {
-            foreach ($_POST['idClient'] as $valeur) {
-                $idClient = $valeur;
-                $modifAdresse = $_POST[$idClient][0];
-				$modifNumTel=$_POST[$idClient][1];
-				$modifEmail = $_POST[$idClient][2];
-                $modifProfession=$_POST[$idClient][3];
-				$modifSituation_Familiale = $_POST[$idClient][4];
-
-    }
-
-
-                CtlModifierClient($idClient,$modifAdresse,$modifNumTel,$modifEmail,$modifProfession,$modifSituation_Familiale);
-            }
-        }
-        CtlModifier($idClient);
-
-    if(isset($_POST['modifdec'])){
-        foreach($_POST['decoux'] as $n){
-            CtlModifDecouvert($n,$n);
-        }
-
-    }
-
-	if (isset($_POST['operaAgent'])) {
-        $val = $_POST['opeAgent'];
-        if ($val == 'c1') {
-            //CtlModifier();
-			CtlafficherClient();
-        } elseif ($val == 'c2') {
-            CtlafficherClientSynthese();
-        } elseif ($val == 'c3') {
-            CtlOperation();
-        } elseif ($val == 'c4') {
-            CtlRDV();
-        } elseif ($val == 'c5') {
-            CtlAfficherIDClient();
-		}
-
-	}
-
-    if (isset($_POST['RechercherClientModif'])) {
-		$val=$_POST['SelectClientModif'];
-		CtlModifier($val);
-	}
-
-	 if (isset($_POST['RechercherClientSynthese'])) {
-		$val=$_POST['SelectClientSynthese'];
-		CtlSynthese($val);
-	}
-
-	 if (isset($_POST['RechercherClientID'])) {
-		$nom=$_POST['SelectClientNom'];
-		$dateN=$_POST['SelectClientDateN'];
-		CtlTrouverIDClient($nom,$dateN);
-	}
-
-
+	
+	
 
 
     afficherLog();

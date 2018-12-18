@@ -184,10 +184,7 @@ function getStatsRDV($date1,$date2){
     return $x;
 
 }
-/*
-  SELECT COUNT(*) from client where IDCLIENT IN(SELECT idclient FROM client NATURAL JOIN contratclientWHERE dateOuvertureContrat <= '$date'UNIONSELECT idclient FROM client NATURAL JOIN compteclientWHERE dateouverture <= '$date')
- */
-//    $requete="Select Count(*) from contratClient where dateouvertureContrat <= '$date'";
+
 function getNbClients($date){
     $connexion=getConnect();
         //$requete="Select Count(*) from contratClient where dateouvertureContrat <= '$date'";
@@ -215,6 +212,110 @@ function getmontant()
     return $x;
 
 }
+
+/*-------------------------------MODELE AGENT------------------------------------------------------------------------*/
+
+function modifClient($idClient,$modAdresse,$modNumtel,$modEmail,$modProfession,$modSituation_familiale){
+    $connexion=getConnect();
+    $requete="UPDATE `Client` SET `ADRESSE`='$modAdresse', `NUMTEL`='$modNumtel', `EMAIL`='$modEmail', `PROFESSION`='$modProfession', `SITUATION_FAMILIALE`='$modSituation_familiale' WHERE idClient='$idClient'";
+    $connexion->query($requete);
+}
+
+function modifSolde($idClient,$nomCompte,$modSolde){
+	$connexion=getConnect();
+    $requete="UPDATE `CompteClient` SET `SOLDE`='$modSolde' WHERE idClient='$idClient' and nomCompte='$nomCompte'";
+    $connexion->query($requete);
+}
+
+function ajouterOperation($idClient,$nomCompte,$nomOperation,$montant){
+    $connexion=getConnect();
+    $requete="INSERT INTO `operation` (`IDCLIENT`, `NOMCOMPTE`, `NOMOPERATION`, `MONTANT`) values ('$idClient','$nomCompte','$nomOperation','$montant')";
+    $connexion->query($requete);
+}
+
+
+function getSolde($id,$nomCompte){
+	$connexion=getConnect();
+    $requete="Select * from compteClient where idClient='$id' and nomCompte='$nomCompte'";
+    $resultat=$connexion->query($requete);
+    $resultat->setFetchMode(PDO::FETCH_OBJ);
+    $solde=$resultat->fetch();
+    $resultat->closeCursor();
+    return $solde;
+}
+
+function getModif($id){
+    $connexion=getConnect();
+    $requete="Select * from Client where idClient='$id'";
+    $resultat=$connexion->query($requete);
+    $resultat->setFetchMode(PDO::FETCH_OBJ);
+    $tousmodifs=$resultat->fetch();
+    $resultat->closeCursor();
+    return $tousmodifs;
+}
+function getSynthese($id){
+    $connexion=getConnect();
+    $requete="Select * from CompteClient where idClient='$id'";
+    $resultat=$connexion->query($requete);
+    $resultat->setFetchMode(PDO::FETCH_OBJ);
+    $tousclients=$resultat->fetchAll();
+    $resultat->closeCursor();
+    return $tousclients;
+}
+
+
+function getConseiller($id){
+    $connexion=getConnect();
+    $requete="Select * from Employe natural join Client where idClient='$id'";
+    $resultat=$connexion->query($requete);
+    $resultat->setFetchMode(PDO::FETCH_OBJ);
+    $tousconseiller=$resultat->fetch();
+    $resultat->closeCursor();
+    return $tousconseiller;
+}
+
+function getContratClient($id){
+    $connexion=getConnect();
+    $requete="Select * from contratClient where idClient='$id'";
+    $resultat=$connexion->query($requete);
+    $resultat->setFetchMode(PDO::FETCH_OBJ);
+    $contratscli=$resultat->fetchAll();
+    $resultat->closeCursor();
+    return $contratscli;
+}
+
+
+function getOperation($id){
+    $connexion=getConnect();
+    $requete="Select * from compteClient where idClient='$id'";
+    $resultat=$connexion->query($requete);
+    $resultat->setFetchMode(PDO::FETCH_OBJ);
+    $tousoperations=$resultat->fetchAll();
+    $resultat->closeCursor();
+    return $tousoperations;
+}
+
+function getRDV(){
+    $connexion=getConnect();
+    $requete="Select * from Client";
+    $resultat=$connexion->query($requete);
+    $resultat->setFetchMode(PDO::FETCH_OBJ);
+    $tousrdv=$resultat->fetchAll();
+    $resultat->closeCursor();
+    return $tousrdv;
+}
+
+function getIDcli($nom,$dateN) {
+	$connexion=getConnect();
+    $requete="Select * from Client where nomCli='$nom' and dateNaissCli='$dateN'";
+    $resultat=$connexion->query($requete);
+    $resultat->setFetchMode(PDO::FETCH_OBJ);
+    $idclient=$resultat->fetch();
+    $resultat->closeCursor();
+    return $idclient;
+}
+
+/*------------------------------------------CONSEILLER-------------------------------------------*/
 
 function addClient($id,$nom,$prenom,$datN,$adresse,$numT,$email,$profession,$situation){
     $connexion = getConnect();
@@ -254,15 +355,7 @@ function ouvrirCompte($id,$compte,$solde,$decouvert){
     $connexion->query($requete);
 }
 
-function getContratClient($id){
-    $connexion=getConnect();
-    $requete="Select * from contratClient where idClient='$id'";
-    $resultat=$connexion->query($requete);
-    $resultat->setFetchMode(PDO::FETCH_OBJ);
-    $contratscli=$resultat->fetchAll();
-    $resultat->closeCursor();
-    return $contratscli;
-}
+
 
 
 function modifDecouvert($id,$compte,$valeur){

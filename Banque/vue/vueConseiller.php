@@ -245,6 +245,3 @@ function afficherResContrat($contrat){
     $contenu='<form id=Formc7 action="site.php" method="post"><fieldset><legend>Résilier un contrat</legend>'.$d.'<p><input type="submit" name="rescontrat" value="Résilier"></p></fieldset></form>'.afficherMenuConseiller();
     require_once ('gabarit.php');
 }
-
-
-

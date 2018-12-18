@@ -126,6 +126,91 @@ function CtlAgent(){
 	afficherAgent();
 
 }
+
+
+function CtlErreur($erreur)
+{
+    afficherErreur($erreur);
+}
+
+
+/*-----------------------------------------------------FONCTION AGENT-------------------------------------*/
+
+function CtlModifierClient($idClient,$adresse,$numTel,$eMail,$profession,$situation_familiale){
+    modifClient($idClient,$adresse,$numTel,$eMail,$profession,$situation_familiale);
+}
+function CtlafficherClient(){
+	afficherClient();
+}
+function CtlModifier($id){
+	$mod=getModif($id);
+    afficherModif($mod);
+}
+
+function CtlafficherClientSynthese(){
+	afficherClientSynthese();
+}
+
+function CtlSynthese($id){	
+	$syn=getSynthese($id);
+	$mod=getModif($id);
+	$con=getConseiller($id);
+	$cont=getContratClient($id);
+    afficherSynthese($syn,$mod,$con,$cont);
+}
+
+function CtlAfficherOperation(){	
+    afficherClientOperation();
+}
+
+function CtlOperationClient($id){
+	$ope=getOperation($id);
+	afficherOperation($ope,$id);
+}
+
+function CtlOperation($idClient,$nomCompte,$montant,$nomOperation){
+    $faireOpe=true;
+	if ($nomOperation=="Debiter") {
+        $faireOpe = CtlOperationPossible($idClient, $nomCompte, $montant);
+    }
+    if ($faireOpe) {
+        $soldeDuCompte = getSolde($idClient, $nomCompte)->SOLDE;
+        $nouveauSolde = $soldeDuCompte + $montant;
+        modifSolde($idClient, $nomCompte, $nouveauSolde);
+        ajouterOperation($idClient, $nomCompte, $nomOperation, $montant);
+    }
+    else
+        echo '<p>Operation Impossible, decouvert dépassé</p>';
+
+    CtlOperationClient($idClient);
+}
+
+function CtlOperationPossible($idClient,$nomCompte,$montantSouhaitantEtreRetirer){
+    $getsolde=getSolde($idClient,$nomCompte);
+    $montantDecouvert=-$getsolde->MONTANTDECOUVERT;
+    $soldeActuel=$getsolde->SOLDE;
+    $soldeApresRetrait=$soldeActuel+$montantSouhaitantEtreRetirer;
+    if ($soldeApresRetrait<$montantDecouvert)
+        return false;
+    return true;
+}
+	
+	
+
+function CtlRDV(){
+	$rdv=getRDV();
+    afficherRDV($rdv);
+}
+function CtlAfficherIDClient(){
+	afficherClientRechercheID();
+}
+
+function CtlTrouverIDClient($nom,$dateN){
+	$cli=getIDcli($nom,$dateN);
+	afficherIDCli($cli);
+}
+/*-----------------------------------------------------FONCTION CONSEILLER-------------------------------------*/
+
 function CtlConseiller(){
     afficherConseiller();
 
@@ -185,54 +270,4 @@ function CtlAfficherMenuResCompte(){
 function CtlResCompte($id,$compte){
     resCompte($id,$compte);
     afficherConseiller();
-}
-
-
-function CtlErreur($erreur)
-{
-    afficherErreur($erreur);
-}
-
-
-/*-----------------------------------------------------FONCTION AGENT-------------------------------------*/
-
-function CtlModifierClient($idClient,$adresse,$numTel,$eMail,$profession,$situation_familiale){
-    modifClient($idClient,$adresse,$numTel,$eMail,$profession,$situation_familiale);
-}
-function CtlafficherClient(){
-	afficherClient();
-}
-function CtlModifier($id){
-	$mod=getModif($id);
-    afficherModif($mod);
-}
-
-function CtlafficherClientSynthese(){
-	afficherClientSynthese();
-}
-
-function CtlSynthese($id){	
-	$syn=getSynthese($id);
-	$mod=getModif($id);
-	$con=getConseiller($id);
-	$cont=getContratClient($id);
-    afficherSynthese($syn,$mod,$con,$cont);
-}
-
-function CtlOperation(){
-	$ope=getOperation();
-    afficherOperation($ope);
-}
-
-function CtlRDV(){
-	$rdv=getRDV();
-    afficherRDV($rdv);
-}
-function CtlAfficherIDClient(){
-	afficherClientRechercheID();
-}
-
-function CtlTrouverIDClient($nom,$dateN){
-	$cli=getIDcli($nom,$dateN);
-	afficherIDCli($cli);
 }

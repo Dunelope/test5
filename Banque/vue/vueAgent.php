@@ -22,9 +22,9 @@ function afficherClient(){
 
 function afficherModif($mod){
 	$c='';
-	$c=$c.'<p><input type="checkbox" name="idClient[]" value="' . $mod->IDCLIENT .'">'.$mod->NOMCLI.'  Adresse : <input name="'. $mod->IDCLIENT  .'[]" type="text" value="' . $mod->ADRESSE .'" />  Numéro : <input name="'. $mod->IDCLIENT  .'[]" type="text" value="' . $mod->NUMTEL .'" />  eMail : <input name="'. $mod->IDCLIENT  .'[]" type="text" value="' . $mod->EMAIL .'" />  Profession : <input name="'. $mod->IDCLIENT  .'[]" type="text" value="' . $mod->PROFESSION .'" />  Situation Familiale : <input name="'. $mod->IDCLIENT  .'[]" type="text" value="' . $mod->SITUATION_FAMILIALE .'" /></p>';
+	$c=$c.'<p><input type="checkbox" checked name="idClient[]" value="' . $mod->IDCLIENT .'">'.$mod->NOMCLI.'  Adresse : <input name="'. $mod->IDCLIENT  .'[]" type="text" value="' . $mod->ADRESSE .'" />  Numéro : <input name="'. $mod->IDCLIENT  .'[]" type="text" value="' . $mod->NUMTEL .'" />  eMail : <input name="'. $mod->IDCLIENT  .'[]" type="text" value="' . $mod->EMAIL .'" />  Profession : <input name="'. $mod->IDCLIENT  .'[]" type="text" value="' . $mod->PROFESSION .'" />  Situation Familiale : <input name="'. $mod->IDCLIENT  .'[]" type="text" value="' . $mod->SITUATION_FAMILIALE .'" /></p>';
 	
-	$contenu=afficherMenuAgent().'<form id="formModifs" action="site.php" method="post"><fieldset><legend>Recherche client </legend>'.$c.'</p> <p><input type="submit" value="Modifier Client" name="modClient"/></p></fieldset></form>';
+	$contenu=afficherMenuAgent().'<form id="formModifs" action="site.php" method="post"><fieldset><legend>Recherche client </legend>'.$c.'<p><input type="submit" value="Modifier Client" name="modClient"/></p></fieldset></form>';
 	require_once ('gabarit.php');
 }
 
@@ -40,24 +40,36 @@ function afficherSynthese($synthese,$mod,$con,$contrat){
 	$c='';
 	$co='';	
 	$contrats='';	
-	$c=$c.'<p><label>Nom du client : <input name="'. $mod->IDCLIENT  .'[]" type="text" value="' . $mod->NOMCLI .'" readonly="readonly" /></label></p><p><label>Adresse : <input name="'. $mod->IDCLIENT  .'[]" type="text" value="' . $mod->ADRESSE .'" readonly="readonly" /> </label></p><p><label> Numéro : <input name="'. $mod->IDCLIENT  .'[]" type="text" value="' . $mod->NUMTEL .'" readonly="readonly" /></label></p><p><label>eMail : <input name="'. $mod->IDCLIENT  .'[]" type="text" value="' . $mod->EMAIL .'" readonly="readonly" /></label></p><p><label>Profession : <input name="'. $mod->IDCLIENT  .'[]" type="text" value="' . $mod->PROFESSION .'" readonly="readonly"/></label></p><p><label>Situation Familiale : <input name="'. $mod->IDCLIENT  .'[]" type="text" value="' . $mod->SITUATION_FAMILIALE .'" readonly="readonly"/></label></p>';
+	$c=$c.'<p><label>Nom du client : <input name="'. $mod->NOMCLI  .'[]" type="text" value="' . $mod->NOMCLI .'" readonly="readonly" /></label></p><p><label>Adresse : <input name="'. $mod->NOMCLI  .'[]" type="text" value="' . $mod->ADRESSE .'" readonly="readonly" /> </label></p><p><label> Numéro : <input name="'. $mod->NOMCLI  .'[]" type="text" value="' . $mod->NUMTEL .'" readonly="readonly" /></label></p><p><label>eMail : <input name="'. $mod->NOMCLI  .'[]" type="text" value="' . $mod->EMAIL .'" readonly="readonly" /></label></p><p><label>Profession : <input name="'. $mod->NOMCLI  .'[]" type="text" value="' . $mod->PROFESSION .'" readonly="readonly"/></label></p><p><label>Situation Familiale : <input name="'. $mod->NOMCLI  .'[]" type="text" value="' . $mod->SITUATION_FAMILIALE .'" readonly="readonly"/></label></p>';
 	
-	$contenu='<p><fieldset><legend>Liste informations client</legend>'.$c.'<p>Nom du conseiller : <input name"'. $con->IDEMPLOYE .'[]" type="text" value="' . $con->NOMEMPLOYE .'" readonly="readonly"/></p></fieldset></p>';
+	$contenu='<p><fieldset><legend>Liste informations client</legend>'.$c.'<p>Nom du conseiller : <input name="'. $con->NOMEMPLOYE .'[]" type="text" value="' . $con->NOMEMPLOYE .'" readonly="readonly"/></p></fieldset>';
 		
 	foreach ($synthese as $syn){
-		$co=$co.'<p>Nom du compte : <input name="'. $syn->IDCLIENT  .'[]" type="text" value="' . $syn->NOMCOMPTE .'" readonly="readonly" />  Date ouverture : <input name="'. $syn->IDCLIENT  .'[]" type="text" value="' . $syn->DATEOUVERTURE .'" readonly="readonly"/>  Solde : <input name="'. $syn->IDCLIENT  .'[]" type="text" value="' . $syn->SOLDE .'" readonly="readonly"/>  Montante du decouvert autorisé : <input name="'. $syn->IDCLIENT  .'[]" type="text" value="' . $syn->MONTANTDECOUVERT .'" readonly="readonly"/></p>';
-		}
+		$co=$co.'<p>Nom du compte : <input name="'. $syn->NOMCOMPTE  .'[]" type="text" value="' . $syn->NOMCOMPTE .'" readonly="readonly" />  Date ouverture : <input name="'. $syn->NOMCOMPTE  .'[]" type="text" value="' . $syn->DATEOUVERTURE .'" readonly="readonly"/>  Solde : <input name="'. $syn->NOMCOMPTE  .'[]" type="text" value="' . $syn->SOLDE .'" readonly="readonly"/>  Montant du decouvert autorisé : <input name="'. $syn->NOMCOMPTE  .'[]" type="text" value="' . $syn->MONTANTDECOUVERT .'" readonly="readonly"/></p>';
+	}
 	foreach ($contrat as $ctr){
-		$contrats=$contrats.'<p>Nom du contrat : <input name="'. $ctr->IDCLIENT  .'[]" type="text" value="' . $ctr->NOMCONTRAT .'" readonly="readonly" />  Date ouverture : <input name="'. $syn->IDCLIENT  .'[]" type="text" value="' . $ctr->DATEOUVERTURECONTRAT .'" readonly="readonly"/>  Tarif mensuel : <input name="'. $ctr->IDCLIENT  .'[]" type="text" value="' . $ctr->TARIFMENSUEL .'" readonly="readonly"/></p>';
-		}
-	$contenu=afficherMenuAgent().'<fieldset><legend>Synthese client </legend>'.$contenu.'<p><fieldset><legend>Liste des comptes du client</legend>'.$co.'</fieldset></p><p><fieldset><legend>Liste des contrat du client</legend>'.$contrats.'</fieldset></p></fieldset>';
+		$contrats=$contrats.'<p>Nom du contrat : <input name="'. $ctr->NOMCONTRAT  .'[]" type="text" value="' . $ctr->NOMCONTRAT .'" readonly="readonly" />  Date ouverture : <input name="'. $ctr->NOMCONTRAT  .'[]" type="text" value="' . $ctr->DATEOUVERTURECONTRAT .'" readonly="readonly"/>  Tarif mensuel : <input name="'. $ctr->NOMCONTRAT  .'[]" type="text" value="' . $ctr->TARIFMENSUEL .'" readonly="readonly"/></p>';
+	}
+	$contenu=afficherMenuAgent().'<fieldset><legend>Synthese client </legend>'.$contenu.'<p><fieldset><legend>Liste des comptes du client</legend>'.$co.'</fieldset><p><fieldset><legend>Liste des contrat du client</legend>'.$contrats.'</fieldset></fieldset>';
 	require_once ('gabarit.php');
 }
 
 
-function afficherOperation($login){
-    $contenu =afficherMenuAgent();
-    
+function afficherClientOperation(){
+	
+    $contenu=afficherMenuAgent().'<form id="monForm2" action="site.php" method="post"><fieldset><legend>Opération sur un compte</legend><p>Entrez identifiant du client : <input type="text"  name="SelectClientOperation"> <input type="submit" name="RechercherClientOperation" value="Afficher les comptes" /></fieldset></form>';
+	require_once('gabarit.php');
+}
+
+function afficherOperation($operation,$idClient){
+	$c='';
+	/* $contenu=afficherMenuAgent().'<form id=monForm2 action="site.php" method="post"> <fieldset><legend>Selection opperation</legend><p><select name="opeAgent"><option value="c1">Modifier informations client</option><option value="c2">Synthese client</option><option value="c3">Opération sur le compte</option><option value="c4">Rendez-vous</option><option value="c5">Retrouver identifiant client</option></select><input type="submit" value="Selectionner" name="operaAgent"></p></fieldset></form>';
+     */
+	
+	foreach ($operation as $ope){
+		$c=$c.'<option value="'.$ope->NOMCOMPTE.'">'.$ope->NOMCOMPTE.'</option>';
+	}
+	$contenu=afficherMenuAgent().'<form id="formOpe" action="site.php" method="post"><fieldset><legend>Opération sur un compte </legend><p><label>Id du Client </label><input type="text" name="idduClient" value="'.$idClient.'" readonly="readonly"></p><p>Nom du compte : <select name="opeClient">'.$c.'</select></p> <p>Montant opération : <input type="text" name="montantOpe"/></p><p><input type="submit" value="Dépot" name="DepotClient"/><input type="submit" value="Retrait" name="RetraitClient"/></p></fieldset></form>';
 	require_once ('gabarit.php');
 }
 
