@@ -5,6 +5,7 @@ function afficherMenuConseiller(){
     return $contenu;
 }
 
+//trtrrt
 function afficherConseiller(){
     $contenu='<form id=Formc1 action="site.php" method="post"> 
     <fieldset><legend>Que voulez-vous faire ?</legend>
