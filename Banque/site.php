@@ -209,24 +209,18 @@ try {
 	}
 	
 	if (isset($_POST['DepotClient'])) {
-		/*$modifSolde=$_POST['montantOpe'];
-		$compte=$_POST['opeClient'];
-		$id= ???
-		*/
-		$id='1';
-		$compte='CEL';
-		$modifSolde='12345';
-		
-		CtlOperation($id,$compte,$modifSolde);
+	    $montant=$_POST['montantOpe'];
+	    $nomcompte=$_POST['opeClient'];
+	    $id=$_POST['idduClient'];
+		CtlOperation($id,$nomcompte,$montant,'Crediter');
 	}
 	
 	if (isset($_POST['RetraitClient'])) {
-		$modifSolde=$_POST['montantOpe'];
-		$modifSolde=-$val;
-		$compte=$_POST['opeClient'];
-		$id='1';
-		
-		CtlOperation($id,$compte,$modifSolde);
+        $montantEntree=$_POST['montantOpe'];
+        $nomcompte=$_POST['opeClient'];
+        $montanttotal=-$montantEntree;
+        $id=$_POST['idduClient'];
+		CtlOperation($id,$nomcompte,$montanttotal,'Debiter');
 	}
 		
 	

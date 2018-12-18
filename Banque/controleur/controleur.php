@@ -168,13 +168,34 @@ function CtlAfficherOperation(){
 
 function CtlOperationClient($id){
 	$ope=getOperation($id);
-	afficherOperation($ope);
+	afficherOperation($ope,$id);
 }
 
-function CtlOperation($idClient,$nomCompte,$solde){
-	$soldeT=getSolde($idClient,$nomCompte);
-	$soldeT=$soldeT+$solde;
-	modifSolde($idClient,$nomCompte,$soldeT);
+function CtlOperation($idClient,$nomCompte,$montant,$nomOperation){
+    $faireOpe=true;
+	if ($nomOperation=="Debiter") {
+        $faireOpe = CtlOperationPossible($idClient, $nomCompte, $montant);
+    }
+    if ($faireOpe) {
+        $soldeDuCompte = getSolde($idClient, $nomCompte)->SOLDE;
+        $nouveauSolde = $soldeDuCompte + $montant;
+        modifSolde($idClient, $nomCompte, $nouveauSolde);
+        ajouterOperation($idClient, $nomCompte, $nomOperation, $montant);
+    }
+    else
+        echo '<p>Operation Impossible, decouvert dépassé</p>';
+
+    CtlOperationClient($idClient);
+}
+
+function CtlOperationPossible($idClient,$nomCompte,$montantSouhaitantEtreRetirer){
+    $getsolde=getSolde($idClient,$nomCompte);
+    $montantDecouvert=-$getsolde->MONTANTDECOUVERT;
+    $soldeActuel=$getsolde->SOLDE;
+    $soldeApresRetrait=$soldeActuel+$montantSouhaitantEtreRetirer;
+    if ($soldeApresRetrait<$montantDecouvert)
+        return false;
+    return true;
 }
 	
 	

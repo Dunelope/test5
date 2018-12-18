@@ -184,10 +184,7 @@ function getStatsRDV($date1,$date2){
     return $x;
 
 }
-/*
-  SELECT COUNT(*) from client where IDCLIENT IN(SELECT idclient FROM client NATURAL JOIN contratclientWHERE dateOuvertureContrat <= '$date'UNIONSELECT idclient FROM client NATURAL JOIN compteclientWHERE dateouverture <= '$date')
- */
-//    $requete="Select Count(*) from contratClient where dateouvertureContrat <= '$date'";
+
 function getNbClients($date){
     $connexion=getConnect();
         //$requete="Select Count(*) from contratClient where dateouvertureContrat <= '$date'";
@@ -229,6 +226,13 @@ function modifSolde($idClient,$nomCompte,$modSolde){
     $requete="UPDATE `CompteClient` SET `SOLDE`='$modSolde' WHERE idClient='$idClient' and nomCompte='$nomCompte'";
     $connexion->query($requete);
 }
+
+function ajouterOperation($idClient,$nomCompte,$nomOperation,$montant){
+    $connexion=getConnect();
+    $requete="INSERT INTO `operation` (`IDCLIENT`, `NOMCOMPTE`, `NOMOPERATION`, `MONTANT`) values ('$idClient','$nomCompte','$nomOperation','$montant')";
+    $connexion->query($requete);
+}
+
 
 function getSolde($id,$nomCompte){
 	$connexion=getConnect();
