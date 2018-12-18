@@ -162,10 +162,22 @@ function CtlSynthese($id){
     afficherSynthese($syn,$mod,$con,$cont);
 }
 
-function CtlOperation(){
-	$ope=getOperation();
-    afficherOperation($ope);
+function CtlAfficherOperation(){	
+    afficherClientOperation();
 }
+
+function CtlOperationClient($id){
+	$ope=getOperation($id);
+	afficherOperation($ope);
+}
+
+function CtlOperation($idClient,$nomCompte,$solde){
+	$soldeT=getSolde($idClient,$nomCompte);
+	$soldeT=$soldeT+$solde;
+	modifSolde($idClient,$nomCompte,$soldeF);
+}
+	
+	
 
 function CtlRDV(){
 	$rdv=getRDV();

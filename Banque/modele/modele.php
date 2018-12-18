@@ -224,6 +224,22 @@ function modifClient($idClient,$modAdresse,$modNumtel,$modEmail,$modProfession,$
     $connexion->query($requete);
 }
 
+function modifSolde($idClient,$nomCompte,$modSolde){
+	$connexion=getConnect();
+    $requete="UPDATE `CompteClient` SET `SOLDE`='$modSolde' WHERE idClient='$idClient' and nomCompte='$nomCompte'";
+    $connexion->query($requete);
+}
+
+function getSolde($id,$nomCompte){
+	$connexion=getConnect();
+    $requete="Select * from compteClient where idClient='$id' and nomCompte='$nomCompte'";
+    $resultat=$connexion->query($requete);
+    $resultat->setFetchMode(PDO::FETCH_OBJ);
+    $solde=$resultat->fetch();
+    $resultat->closeCursor();
+    return $solde;
+}
+
 function getModif($id){
     $connexion=getConnect();
     $requete="Select * from Client where idClient='$id'";
@@ -265,15 +281,16 @@ function getContratClient($id){
 }
 
 
-function getOperation(){
+function getOperation($id){
     $connexion=getConnect();
-    $requete="Select * from Client";
+    $requete="Select * from compteClient where idClient='$id'";
     $resultat=$connexion->query($requete);
     $resultat->setFetchMode(PDO::FETCH_OBJ);
     $tousoperations=$resultat->fetchAll();
     $resultat->closeCursor();
     return $tousoperations;
 }
+
 function getRDV(){
     $connexion=getConnect();
     $requete="Select * from Client";

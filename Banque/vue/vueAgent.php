@@ -46,18 +46,30 @@ function afficherSynthese($synthese,$mod,$con,$contrat){
 		
 	foreach ($synthese as $syn){
 		$co=$co.'<p>Nom du compte : <input name="'. $syn->IDCLIENT  .'[]" type="text" value="' . $syn->NOMCOMPTE .'" readonly="readonly" />  Date ouverture : <input name="'. $syn->IDCLIENT  .'[]" type="text" value="' . $syn->DATEOUVERTURE .'" readonly="readonly"/>  Solde : <input name="'. $syn->IDCLIENT  .'[]" type="text" value="' . $syn->SOLDE .'" readonly="readonly"/>  Montante du decouvert autorisé : <input name="'. $syn->IDCLIENT  .'[]" type="text" value="' . $syn->MONTANTDECOUVERT .'" readonly="readonly"/></p>';
-		}
+	}
 	foreach ($contrat as $ctr){
 		$contrats=$contrats.'<p>Nom du contrat : <input name="'. $ctr->IDCLIENT  .'[]" type="text" value="' . $ctr->NOMCONTRAT .'" readonly="readonly" />  Date ouverture : <input name="'. $syn->IDCLIENT  .'[]" type="text" value="' . $ctr->DATEOUVERTURECONTRAT .'" readonly="readonly"/>  Tarif mensuel : <input name="'. $ctr->IDCLIENT  .'[]" type="text" value="' . $ctr->TARIFMENSUEL .'" readonly="readonly"/></p>';
-		}
+	}
 	$contenu=afficherMenuAgent().'<fieldset><legend>Synthese client </legend>'.$contenu.'<p><fieldset><legend>Liste des comptes du client</legend>'.$co.'</fieldset></p><p><fieldset><legend>Liste des contrat du client</legend>'.$contrats.'</fieldset></p></fieldset>';
 	require_once ('gabarit.php');
 }
 
 
-function afficherOperation($login){
-    $contenu =afficherMenuAgent();
-    
+function afficherClientOperation(){
+	
+    $contenu=afficherMenuAgent().'<form id="monForm2" action="site.php" method="post"><fieldset><legend>Opération sur un compte</legend><p>Entrez identifiant du client : <input type="text"  name="SelectClientOperation"> <input type="submit" name="RechercherClientOperation" value="Afficher les comptes" /></fieldset></form>';
+	require_once('gabarit.php');
+}
+
+function afficherOperation($operation){
+	$c='';
+	/* $contenu=afficherMenuAgent().'<form id=monForm2 action="site.php" method="post"> <fieldset><legend>Selection opperation</legend><p><select name="opeAgent"><option value="c1">Modifier informations client</option><option value="c2">Synthese client</option><option value="c3">Opération sur le compte</option><option value="c4">Rendez-vous</option><option value="c5">Retrouver identifiant client</option></select><input type="submit" value="Selectionner" name="operaAgent"></p></fieldset></form>';
+     */
+	
+	foreach ($operation as $ope){
+		$c=$c.'<option value="'.$ope->SOLDE.'[]">'.$ope->NOMCOMPTE.'</option>';
+	}
+	$contenu=afficherMenuAgent().'<form id="formOpe" action="site.php" method="post"><fieldset><legend>Opération sur un compte </legend>Nom du compte : <select name=opeClient">'.$c.'</select></p> <p>Montant opération : <input type="text" name"montantOpe"/></p><p><input type="submit" value="Dépot" name="DepotClient"/><input type="submit" value="Retrait" name="RetraitClient"/></p></fieldset></form>';
 	require_once ('gabarit.php');
 }
 

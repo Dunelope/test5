@@ -184,7 +184,7 @@ try {
         } elseif ($val == 'c2') {
             CtlafficherClientSynthese();
         } elseif ($val == 'c3') {
-            CtlOperation();
+            CtlafficherOperation();
         } elseif ($val == 'c4') {
             CtlRDV();
         } elseif ($val == 'c5') {
@@ -198,10 +198,37 @@ try {
 		CtlModifier($val);
 	}
 	
-	 if (isset($_POST['RechercherClientSynthese'])) {
+	if (isset($_POST['RechercherClientSynthese'])) {
 		$val=$_POST['SelectClientSynthese'];
 		CtlSynthese($val);
 	}
+	
+	if (isset($_POST['RechercherClientOperation'])) {
+		$val=$_POST['SelectClientOperation'];
+		CtlOperationClient($val);
+	}
+	
+	if (isset($_POST['DepotClient'])) {
+		/*$modifSolde=$_POST['montantOpe'];
+		$compte=$_POST['opeClient'];
+		$id= ???
+		*/
+		$id='1';
+		$compte='CEL';
+		$modifSolde='12345';
+		
+		CtlOperation($id,$compte,$modifSolde);
+	}
+	
+	if (isset($_POST['RetraitClient'])) {
+		$modifSolde=$_POST['montantOpe'];
+		$modifSolde=-$val;
+		$compte=$_POST['opeClient'];
+		$id='1';
+		
+		CtlOperation($id,$compte,$modifSolde);
+	}
+		
 	
 	 if (isset($_POST['RechercherClientID'])) {
 		$nom=$_POST['SelectClientNom'];
