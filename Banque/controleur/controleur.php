@@ -174,7 +174,7 @@ function CtlOperationClient($id){
 function CtlOperation($idClient,$nomCompte,$solde){
 	$soldeT=getSolde($idClient,$nomCompte);
 	$soldeT=$soldeT+$solde;
-	modifSolde($idClient,$nomCompte,$soldeF);
+	modifSolde($idClient,$nomCompte,$soldeT);
 }
 	
 	
