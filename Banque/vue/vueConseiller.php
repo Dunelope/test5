@@ -19,7 +19,7 @@ Interaction avec un client :
 <option value="inscrireCli" selected>Inscrire un Client</option>
 <option value="vendreContrat">Vendre un contrat</option>
 <option value="ouvrirCompte">Ouvrir un compte</option>
-<option value="modifDecouvert">Modifier la valeur d&#039;un découvert</option>
+<option value="modifDecouvert">Modifier la valeur d\'un découvert</option>
 <option value="resilierContrat">Résilier un contrat</option>
 <option value="resilierCompte">Résilier un compte</option>
 </select>
@@ -86,7 +86,7 @@ function afficherInscrireCli(){
 function afficherVendreContrat($contrat){
     $x='';
     foreach ($contrat as $c){
-        $x=$x.'<option value="'.$c.'">'.$c.'</option>';
+        $x=$x.'<option value="'.$c->NOMCONTRAT.'">'.$c->NOMCONTRAT.'</option>';
     }
     $contenu='<form id=Formc3 action="site.php" method="post"> 
     <fieldset><legend>Vendre un contrat</legend>
@@ -115,7 +115,7 @@ function afficherVendreContrat($contrat){
 function afficherOuvrirCompte($compte){
     $x='';
     foreach ($compte as $c){
-        $x=$x.'<option value="'.$c.'">'.$c.'</option>';
+        $x=$x.'<option value="'.$c->NOMCOMPTE.'">'.$c->NOMCOMPTE.'</option>';
     }
     $contenu='<form id=Formc4 action="site.php" method="post"> 
     <fieldset><legend>Ouvrir un compte</legend>
@@ -148,7 +148,7 @@ function afficherOuvrirCompte($compte){
 function afficherMenuDecouvert($compte){
     $x='';
     foreach ($compte as $c){
-        $x=$x.'<option value="'.$c.'">'.$c.'</option>';
+        $x=$x.'<option value="'.$c->NOMCOMPTE.'">'.$c->NOMCOMPTE.'</option>';
     }
     $contenu='<form id=Formc5 action="site.php" method="post"> 
     <fieldset><legend>Modifier le découvert</legend>
@@ -178,7 +178,7 @@ function afficherMenuDecouvert($compte){
 function afficherMenuResContrat($contrat){
     $x='';
     foreach ($contrat as $c){
-        $x=$x.'<option value="'.$c.'">'.$c.'</option>';
+        $x=$x.'<option value="'.$c->NOMCONTRAT.'">'.$c->NOMCONTRAT.'</option>';
     }
     $contenu='<form id=Formc6 action="site.php" method="post"> 
     <fieldset><legend>Résilier un contrat</legend>
@@ -202,7 +202,7 @@ function afficherMenuResContrat($contrat){
 function afficherMenuResCompte($compte){
     $x='';
     foreach ($compte as $c){
-        $x=$x.'<option value="'.$c.'">'.$c.'</option>';
+        $x=$x.'<option value="'.$c->NOMCOMPTE.'">'.$c->NOMCOMPTE.'</option>';
     }
     $contenu='<form id=Formc7 action="site.php" method="post"> 
     <fieldset><legend>Choisir un client</legend>
@@ -217,7 +217,7 @@ function afficherMenuResCompte($compte){
     </select>
     </p>
     <p>
-    <input type="submit" value="Résilier" name="rescontrat" >
+    <input type="submit" value="Résilier" name="rescompte" >
     </p>
     </fieldset></form>'.afficherMenuConseiller();
     require_once ('gabarit.php');
@@ -227,7 +227,6 @@ function afficherDecouvert($dec){
     $d='';
 
     foreach ($dec as $decouvert){
-        $nomSE=preg_replace('/\s+/', '', $decouvert->NOMCOMPTE);
         $d=$d.'<p>'. $decouvert->NOMCOMPTE .'<input type="text" name="decoux[]" value="' . $decouvert->MONTANTDECOUVERT .'" required/> </p>';
     }
     $contenu='<form id=Formc6 action="site.php" method="post"><fieldset><legend>Modifier les découverts</legend><p>'. $d .'</p><p><input type="submit" name="modifdec" value="Modifier"></p></fieldset></form>'.afficherMenuConseiller();

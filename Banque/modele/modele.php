@@ -325,38 +325,55 @@ function addClient($id,$nom,$prenom,$datN,$adresse,$numT,$email,$profession,$sit
 
 function listeContrat(){
     $connexion=getConnect();
-    $requete="Select Nomcontrat from Contrat";
+    $requete="Select * from Contrat";
     $resultat=$connexion->query($requete);
     $resultat->setFetchMode(PDO::FETCH_OBJ);
-    $c=$resultat->fetch();
+    $c=$resultat->fetchAll();
     $resultat->closeCursor();
     return $c;
 }
 
 function vendreContrat($id,$contrat,$tarif){
     $connexion=getConnect();
+    $test = "SELECT * FROM ContratClient WHERE idclient='$id'";
+    $condi=$connexion->query($test);
+    $condi->setFetchMode(PDO::FETCH_OBJ);
+    $list=$condi->fetchAll();
+    $condi->closeCursor();
+    foreach ($list as $x){
+        if($x->NOMCONTRAT == $contrat){
+            return NULL;
+        }
+    }
     $requete = "INSERT INTO ContratClient VALUES('$id','$contrat',DATE(NOW()),'$tarif')";
     $connexion->query($requete);
 }
 
 function listeCompte(){
     $connexion=getConnect();
-    $requete="Select Nomcompte from Compte";
+    $requete="Select * from Compte";
     $resultat=$connexion->query($requete);
     $resultat->setFetchMode(PDO::FETCH_OBJ);
-    $c=$resultat->fetch();
+    $c=$resultat->fetchAll();
     $resultat->closeCursor();
     return $c;
 }
 
 function ouvrirCompte($id,$compte,$solde,$decouvert){
     $connexion=getConnect();
+    $test = "SELECT * FROM CompteClient WHERE idclient='$id'";
+    $condi=$connexion->query($test);
+    $condi->setFetchMode(PDO::FETCH_OBJ);
+    $list=$condi->fetchAll();
+    $condi->closeCursor();
+    foreach ($list as $x){
+        if($x->NOMCOMPTE == $compte){
+            return NULL;
+        }
+    }
     $requete = "INSERT INTO CompteClient VALUES('$id','$compte',DATE(NOW()),'$solde','$decouvert')";
     $connexion->query($requete);
 }
-
-
-
 
 function modifDecouvert($id,$compte,$valeur){
     $connexion=getConnect();

@@ -275,6 +275,10 @@ try {
     }
 
     if(isset($_POST['rescontrat'])){
+        CtlResContrat($_POST['numCli'],$_POST['contratares']);
+    }
+
+    if(isset($_POST['rescompte'])){
         CtlResCompte($_POST['numCli'],$_POST['compteares']);
     }
 	
@@ -286,4 +290,3 @@ try {
     $msg = $e->getMessage(); 
     CtlErreur($msg);
 }
-//test
