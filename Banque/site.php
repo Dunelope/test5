@@ -229,6 +229,55 @@ try {
 		$dateN=$_POST['SelectClientDateN'];
 		CtlTrouverIDClient($nom,$dateN);
 	}
+
+	/*-----------------------CONSEILLER----------------------------------*/
+    if(isset($_POST['retourC'])){
+        CtlConseiller();
+    }
+
+    if(isset($_POST['interCli'])){
+        $val =$_POST['interactionCli'];
+        if($val=='inscrireCli') {
+            CtlAfficherInscrireCli();
+        }
+        if($val=='vendreContrat'){
+            CtlAfficherVendreContrat();
+        }
+        if($val=='ouvrirCompte') {
+            CtlAfficherOuvrirCompte();
+        }
+        if($val=='modifDecouvert') {
+            CtlAfficherMenuDecouvert();
+        }
+        if($val=='resilierContrat') {
+            CtlAfficherMenuResContrat();
+        }
+        if($val=='resilierCompte') {
+            CtlAfficherMenuResCompte();
+        }
+    }
+
+
+    if(isset($_POST['inscrireClient'])){
+        CtlInscrireCli($_POST['idCon'],$_POST['nomCli'],$_POST['prenomCli'],$_POST['dateNCli'],$_POST['adresseCli'],$_POST['numTelCli'],$_POST['emailCli'],$_POST['professionCli'],$_POST['situationCli']);
+    }
+
+    if(isset($_POST['vendreContrat'])) {
+        CtlVendreContrat($_POST['numCli'],$_POST['contratAVendre'],$_POST['tarif']);
+    }
+
+    if(isset($_POST['ouvrirCompte'])){
+        CtlOuvrirCompte($_POST['numCli'],$_POST['compteAOuvrir'],$_POST['soldeContrat'],$_POST['montantDecouvert']);
+    }
+
+    if(isset($_POST['modifdec'])) {
+        CtlModifDecouvert($_POST['numClient'], $_POST['compte'], $_POST['montantDecouvert']);
+
+    }
+
+    if(isset($_POST['rescontrat'])){
+        CtlResCompte($_POST['numCli'],$_POST['compteares']);
+    }
 	
 	
 

@@ -126,9 +126,6 @@ function CtlAgent(){
 	afficherAgent();
 
 }
-function CtlConseiller(){
-
-}
 
 
 function CtlErreur($erreur)
@@ -211,4 +208,66 @@ function CtlAfficherIDClient(){
 function CtlTrouverIDClient($nom,$dateN){
 	$cli=getIDcli($nom,$dateN);
 	afficherIDCli($cli);
+}
+/*-----------------------------------------------------FONCTION CONSEILLER-------------------------------------*/
+
+function CtlConseiller(){
+    afficherConseiller();
+
+}
+
+function CtlAfficherInscrireCli(){
+    afficherInscrireCli();
+}
+
+function CtlInscrireCli($id,$nom,$prenom,$datN,$adresse,$numT,$email,$profession,$situation){
+    addClient($id,$nom,$prenom,$datN,$adresse,$numT,$email,$profession,$situation);
+    afficherConseiller();
+}
+
+function CtlAfficherVendreContrat(){
+    afficherVendreContrat(listeContrat());
+}
+
+function CtlVendreContrat($id,$compte,$tarif){
+    vendreContrat($id,$compte,$tarif);
+    afficherConseiller();
+}
+
+function CtlAfficherOuvrirCompte(){
+    afficherOuvrirCompte(listeCompte());
+}
+
+function CtlOuvrirCompte($id,$compte,$solde,$decouvert){
+    ouvrirCompte($id,$compte,$solde,$decouvert);
+    afficherConseiller();
+}
+
+function CtlAfficherMenuDecouvert(){
+    afficherMenuDecouvert(listeCompte());
+}
+
+
+function CtlModifDecouvert($id,$compte,$valeur){
+    modifDecouvert($id,$compte,$valeur);
+    afficherConseiller();
+}
+
+function CtlAfficherMenuResContrat(){
+    afficherMenuResContrat(listeContrat());
+}
+
+function CtlResContrat($id,$contrat){
+    resContrat($id,$contrat);
+    afficherConseiller();
+}
+
+
+function CtlAfficherMenuResCompte(){
+    afficherMenuResCompte(listeCompte());
+}
+
+function CtlResCompte($id,$compte){
+    resCompte($id,$compte);
+    afficherConseiller();
 }

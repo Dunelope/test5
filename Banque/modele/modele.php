@@ -314,3 +314,64 @@ function getIDcli($nom,$dateN) {
     $resultat->closeCursor();
     return $idclient;
 }
+
+/*------------------------------------------CONSEILLER-------------------------------------------*/
+
+function addClient($id,$nom,$prenom,$datN,$adresse,$numT,$email,$profession,$situation){
+    $connexion = getConnect();
+    $requete = "INSERT INTO Client VALUES (DEFAULT,'$id','$nom','$prenom','$datN','$adresse','$numT','$email','$profession','$situation') ";
+    $connexion->query($requete);
+}
+
+function listeContrat(){
+    $connexion=getConnect();
+    $requete="Select Nomcontrat from Contrat";
+    $resultat=$connexion->query($requete);
+    $resultat->setFetchMode(PDO::FETCH_OBJ);
+    $c=$resultat->fetch();
+    $resultat->closeCursor();
+    return $c;
+}
+
+function vendreContrat($id,$contrat,$tarif){
+    $connexion=getConnect();
+    $requete = "INSERT INTO ContratClient VALUES('$id','$contrat',DATE(NOW()),'$tarif')";
+    $connexion->query($requete);
+}
+
+function listeCompte(){
+    $connexion=getConnect();
+    $requete="Select Nomcompte from Compte";
+    $resultat=$connexion->query($requete);
+    $resultat->setFetchMode(PDO::FETCH_OBJ);
+    $c=$resultat->fetch();
+    $resultat->closeCursor();
+    return $c;
+}
+
+function ouvrirCompte($id,$compte,$solde,$decouvert){
+    $connexion=getConnect();
+    $requete = "INSERT INTO CompteClient VALUES('$id','$compte',DATE(NOW()),'$solde','$decouvert')";
+    $connexion->query($requete);
+}
+
+
+
+
+function modifDecouvert($id,$compte,$valeur){
+    $connexion=getConnect();
+    $requete= "UPDATE compteclient SET MONTANTDECOUVERT='$valeur' WHERE NOMCOMPTE='$compte'AND IDCLIENT='$id'";
+    $connexion->query($requete);
+}
+
+function resContrat($id,$contrat){
+    $connexion=getConnect();
+    $requete="DELETE FROM contratclient WHERE idclient='$id' and NOMCONTRAT='$contrat'";
+    $connexion->query($requete);
+}
+
+function resCompte($id,$compte){
+    $connexion=getConnect();
+    $requete="DELETE FROM compteclient WHERE idclient='$id' and NOMCOMPTE='$compte'";
+    $connexion->query($requete);
+}
