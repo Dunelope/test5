@@ -193,21 +193,27 @@ function CtlOperationPossible($idClient,$nomCompte,$montantSouhaitantEtreRetirer
         return false;
     return true;
 }
-	
-	
 
-function CtlRDV(){
-	$rdv=getRDV();
-    afficherRDV($rdv);
-}
 function CtlAfficherIDClient(){
-	afficherClientRechercheID();
+    afficherClientRechercheID();
 }
 
 function CtlTrouverIDClient($nom,$dateN){
-	$cli=getIDcli($nom,$dateN);
-	afficherIDCli($cli);
+    $cli=getIDcli($nom,$dateN);
+    afficherIDCli($cli);
 }
+//---------------------------------------------------------------------------------------------------------------------
+function CtldemanderIdCliRDV(){
+    afficherdemandeIdrdv();
+}
+
+function CtlCalendrierRDV($idClient,$dateSemaine){
+    $idConseiller=trouverConseillerDeClient($idClient)->idemploye;
+    $rdvDuConseiller=getrdvEmploye($idConseiller);
+    $motif=getMotif();
+    afficherCalendrier($idClient,$dateSemaine,$rdvDuConseiller,$motif);
+}
+
 /*-----------------------------------------------------FONCTION CONSEILLER-------------------------------------*/
 
 function CtlConseiller(){

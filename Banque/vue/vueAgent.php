@@ -74,30 +74,111 @@ function afficherOperation($operation,$idClient){
 }
 
 
-function afficherRDV($login){
-    $contenu =afficherMenuAgent();
-    
-	require_once ('gabarit.php');
+function afficherClientRechercheID(){
+
+    $contenu=afficherMenuAgent().'<form id="monForm3" action="site.php" method="post"><fieldset><legend>Recherce identifiant client</legend><p>Entrez nom du client recherché : <input type="text"  name="SelectClientNom"> Date de naissance du client recherché : <input type="date"  name="SelectClientDateN"> <input type="submit" name="RechercherClientID" value="Afficher id client" /></fieldset></form>';
+    require_once('gabarit.php');
 }
+
+function afficherIDCli($cli) {
+    $contenu =afficherMenuAgent().'<p><fieldset><legend>Recherche identifiant client</legend><p>Identifiant du client : <input name="IDCLIENT" type="text" value="' . $cli->IDCLIENT .'" /></p></legend></p';
+
+    require_once ('gabarit.php');
+}
+
 
 
 function afficherMenuAgent(){
     $contenu='<form id="formMenu" method="post" action="site.php"><nav><ul><li><input type="submit" value="Aller à la selection des operation" name="retourAgent"></li><li><input type="submit" value="Deconnexion" name="Deco"></li></ul></nav></form>';
     return $contenu;
 }
-
-
-function afficherClientRechercheID(){
+//--------------------------------------------------------------------
+function afficherdemandeIdrdv(){
+    $contenu =afficherMenuAgent().
+        '<form id="formRdv" action="site.php" method="post"><fieldset><legend>Planning</legend><label>Entrez l\'id d\'un client</label><input type="text" name="idCli"><input type="submit" name="afficherSemaine" value="Rechercher"></fieldset>';
     
-	$contenu=afficherMenuAgent().'<form id="monForm3" action="site.php" method="post"><fieldset><legend>Recherce identifiant client</legend><p>Entrez nom du client recherché : <input type="text"  name="SelectClientNom"> Date de naissance du client recherché : <input type="date"  name="SelectClientDateN"> <input type="submit" name="RechercherClientID" value="Afficher id client" /></fieldset></form>';
-	require_once('gabarit.php');
+	require_once ('gabarit.php');
 }
 
 
-function afficherIDCli($cli) {
-	 $contenu =afficherMenuAgent().'<p><fieldset><legend>Recherche identifiant client</legend><p>Identifiant du client : <input name="IDCLIENT" type="text" value="' . $cli->IDCLIENT .'" /></p></legend></p';
-    
-	require_once ('gabarit.php');
+
+
+function afficherCalendrier($idcli,$dateSemaine,$rdvemploye,$motif){
+    $tab= array();
+    foreach ($rdvemploye as $rdv){
+        array_push($tab,$rdv);
+    }
+    $datetest=$tab[0]->DATERDV;
+    echo $datetest;
+    array_shift($tab);
+    $datetest=$tab[0]->DATERDV;
+    echo $datetest;
+    array_shift($tab);
+
+    if (empty($tab))
+        echo 'vide';
+    else
+        echo 'pas vide';
+
+
+    $x=new DateTime($dateSemaine);
+    $jourd=$x->format("w");// numéro du $x actuel 0 dimanche, 6 samedi
+    $nom_moisd = $x->format("F"); // nom du mois $x  DECEMBER
+    $anneed= $x->format("Y"); // année  de $x 2018
+    $num_weekd = $x->format("W"); // numéro de la semaine $x 51
+
+    $dateDebSemaineFrd = date("d/m/Y",mktime(0,0,0,$x->format("n"),($x->format("d"))-$jourd+1,$x->format("y")));
+    $dateFinSemaineFrd = date("d/m/Y",mktime(0,0,0,$x->format("n"),($x->format("d"))-$jourd+7,$x->format("y")));
+
+    switch($nom_moisd) {
+        case 'January' : $nom_moisd = 'Janvier'; break;
+        case 'February' : $nom_moisd = 'Février'; break;
+        case 'March' : $nom_moisd = 'Mars'; break;
+        case 'April' : $nom_moisd = 'Avril'; break;
+        case 'May' : $nom_moisd = 'Mai'; break;
+        case 'June' : $nom_moisd = 'Juin'; break;
+        case 'July' : $nom_moisd = 'Juillet'; break;
+        case 'August' : $nom_moisd = 'Août'; break;
+        case 'September' : $nom_moisd = 'Septembre'; break;
+        case 'October' : $nom_moisd = 'Otober'; break;
+        case 'November' : $nom_moisd = 'Novembre'; break;
+        case 'December' : $nom_moisd = 'Décembre'; break;
+    }
+    $jourTexte = array(1=>'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche');
+    $plageH = array('',1=>'08:00','09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00');
+
+    $contenu=afficherMenuAgent().'<form action="site.php" method="post"><p><label>Id du client</label><input type="text" name="idCli" value="'.$idcli.'" readonly="readonly"></p><label>Selectionnez une date </label><input name="nouvelledate" type="date"><input type="submit" name="changerDate" value="aller à"><p> Semaine '.$num_weekd.' </p>';
+    $contenu = $contenu . '<p> du '.$dateDebSemaineFrd.' au '.$dateFinSemaineFrd.'</p>';
+    $contenu = $contenu . '<h2>'.$nom_moisd.' '.$anneed.'</h2>';
+    $contenu = $contenu . '<table border="1">';
+    $er=0;
+    for ($h = 0; $h <= 11; $h++) {
+        $contenu = $contenu . '<tr><th>' . $plageH[$h] . '</th>';
+        for ($j = 1; $j < 8; $j++) {
+            if ($h == 0) {
+                if ($j == 0)
+                    $contenu = $contenu . '<th>' . $jourTexte[$j] . '</th>';
+                else
+                    $contenu = $contenu . '<th>' . $jourTexte[$j] . ' ' . date("d", mktime(0, 0, 0, $x->format("n"), ($x->format("d")) - $jourd + $j, $x->format("y"))) . '</th>';
+            } else {
+                $er++;
+                if ($er % 6 != 1)
+                    $contenu = $contenu . '<td align="center"><input type="radio" name="dateTimeBouttonRadio" value="' . date("Y-m-d H:i", mktime($h + 7, 0, 0, $x->format("n"), ($x->format("d")) - $jourd + $j, $x->format("y"))) . '"></td>';
+                else
+                    $contenu = $contenu . '<td align="center" style="background-color: red; color : black">Pas dispo</td>';
+            }
+        }
+        $contenu = $contenu . '</tr>';
+    }
+    $contenu=$contenu.'</table>';
+    $optionsMotifs='';
+    foreach ($motif as $m){
+        $optionsMotifs=$optionsMotifs.'<option value="'.$m->NOMMOTIF.'">'.$m->NOMMOTIF.'</option>';
+    }
+    $contenu=$contenu.'<label>Selectionnez le motf </label><select name="coixmotif">'.$optionsMotifs.'</select><input type="submit" name="selectRDV" value="Valider"></form>';
+
+            require_once ('gabarit.php');
+
 }
 	
 

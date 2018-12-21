@@ -294,7 +294,7 @@ function getOperation($id){
     $resultat->closeCursor();
     return $tousoperations;
 }
-
+/*
 function getRDV(){
     $connexion=getConnect();
     $requete="Select * from Client";
@@ -303,7 +303,7 @@ function getRDV(){
     $tousrdv=$resultat->fetchAll();
     $resultat->closeCursor();
     return $tousrdv;
-}
+}*/
 
 function getIDcli($nom,$dateN) {
 	$connexion=getConnect();
@@ -314,6 +314,31 @@ function getIDcli($nom,$dateN) {
     $resultat->closeCursor();
     return $idclient;
 }
+
+
+
+
+function trouverConseillerDeClient($idClient){
+    $connexion=getConnect();
+    $requete="Select idemploye from client where idclient='$idClient'";
+    $resultat=$connexion->query($requete);
+    $resultat->setFetchMode(pdo::FETCH_OBJ);
+    $employe=$resultat->fetch();
+    $resultat->closeCursor();
+    return $employe;
+}
+
+function getrdvEmploye($idemploye){
+    $connexion=getConnect();
+    $requete="Select DATERDV from rendez_vous where idemploye='$idemploye' order by daterdv";
+    $resultat=$connexion->query($requete);
+    $resultat->setFetchMode(pdo::FETCH_OBJ);
+    $rdvEmploye=$resultat->fetchAll();
+    $resultat->closeCursor();
+    return $rdvEmploye;
+}
+
+
 
 /*------------------------------------------CONSEILLER-------------------------------------------*/
 

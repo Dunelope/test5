@@ -185,7 +185,7 @@ try {
         } elseif ($val == 'c3') {
             CtlafficherOperation();
         } elseif ($val == 'c4') {
-            CtlRDV();
+            CtldemanderIdCliRDV();
         } elseif ($val == 'c5') {
             CtlAfficherIDClient();
 		}
@@ -222,12 +222,24 @@ try {
 		CtlOperation($id,$nomcompte,$montanttotal,'Debiter');
 	}
 		
-	
+	//---------------------------------------------------------
 	 if (isset($_POST['RechercherClientID'])) {
 		$nom=$_POST['SelectClientNom'];
 		$dateN=$_POST['SelectClientDateN'];
 		CtlTrouverIDClient($nom,$dateN);
 	}
+
+	if(isset($_POST['afficherSemaine'])) {
+        $dateactuelle=date("Y-m-d H:i");
+        $idClient=($_POST['idCli']);
+        CtlCalendrierRDV($idClient,$dateactuelle);
+    }
+
+    if(isset($_POST['changerDate'])) {
+        $daterdv=$_POST['nouvelledate'];
+        $idClient=($_POST['idCli']);
+        CtlCalendrierRDV($idClient,$daterdv);
+    }
 
 	/*-----------------------CONSEILLER----------------------------------*/
     if(isset($_POST['retourC'])){
