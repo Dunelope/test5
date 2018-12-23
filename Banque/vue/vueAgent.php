@@ -113,6 +113,8 @@ function afficherCalendrier($idcli,$dateSemaine,$rdvemploye,$motif){
     $nom_moisd = $x->format("F"); // nom du mois $x  DECEMBER
     $anneed= $x->format("Y"); // année  de $x 2018
     $num_weekd = $x->format("W"); // numéro de la semaine $x 51
+    if ($jourd==0)
+        $num_weekd++;
 
     $dateDebSemaineFrd = date("d/m/Y",mktime(0,0,0,$x->format("n"),($x->format("d"))-$jourd+1,$x->format("y")));
     $dateFinSemaineFrd = date("d/m/Y",mktime(0,0,0,$x->format("n"),($x->format("d"))-$jourd+7,$x->format("y")));
