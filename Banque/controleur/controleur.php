@@ -209,9 +209,24 @@ function CtldemanderIdCliRDV(){
 
 function CtlCalendrierRDV($idClient,$dateSemaine){
     $idConseiller=trouverConseillerDeClient($idClient)->idemploye;
-    $rdvDuConseiller=getrdvEmploye($idConseiller);
+    $x=new DateTime($dateSemaine);
+    $jourd=$x->format("w");// numéro du $x actuel 0 dimanche, 6 samedi
+    $dateDebSemaineFrd = date("Y-m-d",mktime(0,0,0,$x->format("n"),($x->format("d"))-$jourd+1,$x->format("y")));
+    $dateFinSemaineFrd = date("Y-m-d",mktime(0,0,0,$x->format("n"),($x->format("d"))-$jourd+7,$x->format("y")));
+    $rdvDuConseiller=getrdvEmploye($idConseiller,$dateDebSemaineFrd,$dateFinSemaineFrd);
     $motif=getMotif();
     afficherCalendrier($idClient,$dateSemaine,$rdvDuConseiller,$motif);
+}
+
+function CtlListePieces($motif){
+    $listePieces=getListePieces($motif);
+    afficherPiecesAApporter($listePieces->LISTEPIECES);
+}
+
+function CtlEnregisterRdv($date,$motif,$idClient){
+    $idMotif =getidMotif($motif);
+    $idEmploye=trouverConseillerDeClient($idClient);
+    enregisterRdv($date,$idMotif->IDMOTIF,$idClient,$idEmploye->idemploye);
 }
 
 /*-----------------------------------------------------FONCTION CONSEILLER-------------------------------------*/

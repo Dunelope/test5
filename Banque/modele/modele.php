@@ -305,6 +305,7 @@ function getRDV(){
     return $tousrdv;
 }*/
 
+
 function getIDcli($nom,$dateN) {
 	$connexion=getConnect();
     $requete="Select * from Client where nomCli='$nom' and dateNaissCli='$dateN'";
@@ -328,14 +329,41 @@ function trouverConseillerDeClient($idClient){
     return $employe;
 }
 
-function getrdvEmploye($idemploye){
+function getrdvEmploye($idemploye,$datedebutSemaine,$dateFinSemaine){
+
     $connexion=getConnect();
-    $requete="Select DATERDV from rendez_vous where idemploye='$idemploye' order by daterdv";
+    $requete="Select DATERDV from rendez_vous where idemploye='$idemploye' and daterdv between '$datedebutSemaine' and '$dateFinSemaine' order by TIME(daterdv),daterdv asc";
     $resultat=$connexion->query($requete);
     $resultat->setFetchMode(pdo::FETCH_OBJ);
     $rdvEmploye=$resultat->fetchAll();
     $resultat->closeCursor();
     return $rdvEmploye;
+}
+
+function getListePieces($nomMotif){
+    $connexion=getConnect();
+    $requete="Select LISTEPIECES from motifs where NOMMOTIF='$nomMotif'";
+    $resultat=$connexion->query($requete);
+    $resultat->setFetchMode(pdo::FETCH_OBJ);
+    $listeMotifs=$resultat->fetch();
+    $resultat->closeCursor();
+    return $listeMotifs;
+}
+
+function enregisterRdv($daterdv,$idMotif,$idClient,$idEmploye){ // format Y-m-d H:i
+    $connexion=getConnect();
+    $requete="INSERT INTO `rendez_vous` (`IDMOTIF`, `IDCLIENT`, `IDEMPLOYE`, `DATERDV`) values ('$idMotif','$idClient','$idEmploye','$daterdv')";
+    $connexion->query($requete);
+}
+
+function getidMotif($nomMotif){
+        $connexion=getConnect();
+        $requete="Select IDMOTIF from motifs where NOMMOTIF='$nomMotif'";
+        $resultat=$connexion->query($requete);
+        $resultat->setFetchMode(pdo::FETCH_OBJ);
+        $idMotifs=$resultat->fetch();
+        $resultat->closeCursor();
+        return $idMotifs;
 }
 
 
