@@ -261,6 +261,26 @@ try {
     if(isset($_POST['retourC'])){
         CtlConseiller();
     }
+	
+	if (isset($_POST['menuPlanning'])){
+		CtlListeConseiller();
+	
+	}
+	
+	if (isset($_POST['ChoixConseiller'])){
+		$idConseiller=$_POST['choixListeConseiller'];
+		$dateactuelle=date("Y-m-d H:i");
+        $dateTest=new DateTime($dateactuelle);
+        $jourd=$dateTest->format("w");// numéro du $x actuel 0 dimanche, 6 samedi
+        $nom_moisd = $dateTest->format("F"); // nom du mois $x  DECEMBER
+        $anneed= $dateTest->format("Y"); // année  de $x 2018
+        $num_weekd = $dateTest->format("W"); // numéro de la semaine $x 51
+
+        $dateDebSemaineFrd = date("d/m/Y",mktime(0,0,0,$dateTest->format("n"),($dateTest->format("d"))-$jourd+1,$dateTest->format("y")));
+       
+        CtlCalendrierRDVEmploye($idConseiller,$dateactuelle);
+    }
+	
 
     if(isset($_POST['interCli'])){
         $val =$_POST['interactionCli'];

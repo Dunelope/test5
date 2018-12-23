@@ -260,3 +260,90 @@ function afficherChoixClient3(){
     $contenu=afficherMenuConseiller().'<form id="monFormc10" action="site.php" method="post"><fieldset><legend>Choisir un client</legend><p>Entrez identifiant du client : <input type="text"  name="choixClient3" required></p><p><input type="submit" name="choixcli3" value="Choisir" /></fieldset></form>';
     require_once('gabarit.php');
 }
+
+function afficherChoixConseiller($employe){
+	$c='';
+	
+	foreach ($employe as $emp){
+        $c=$c.'<option value="'.$emp->IDEMPLOYE.'">'.$emp->NOMEMPLOYE.'</option>';
+    }
+    $contenu='<form id=Formc1 action="site.php" method="post"> 
+    <fieldset><legend>Afficher Planning : </legend>
+<p>
+Choix de l\'employer :  
+<select name="choixListeConseiller">'.$c.'
+</select>
+<input type="submit" value="Afficher Planning" name="ChoixConseiller">
+</p>
+    
+    </fieldset></form>'.afficherMenuConseiller();
+    require_once ('gabarit.php');
+
+}
+	
+
+function afficherCalendrierConseiller($idEmploye,$dateSemaine,$rdvemploye,$motif){
+    $tab= array();
+    foreach ($rdvemploye as $rdv){
+        array_push($tab,$rdv);
+    }
+    $x=new DateTime($dateSemaine);
+    $jourd=$x->format("w");// numéro du $x actuel 0 dimanche, 6 samedi
+    $nom_moisd = $x->format("F"); // nom du mois $x  DECEMBER
+    $anneed= $x->format("Y"); // année  de $x 2018
+    $num_weekd = $x->format("W"); // numéro de la semaine $x 51
+
+    $dateDebSemaineFrd = date("d/m/Y",mktime(0,0,0,$x->format("n"),($x->format("d"))-$jourd+1,$x->format("y")));
+    $dateFinSemaineFrd = date("d/m/Y",mktime(0,0,0,$x->format("n"),($x->format("d"))-$jourd+7,$x->format("y")));
+
+    switch($nom_moisd) {
+        case 'January' : $nom_moisd = 'Janvier'; break;
+        case 'February' : $nom_moisd = 'Février'; break;
+        case 'March' : $nom_moisd = 'Mars'; break;
+        case 'April' : $nom_moisd = 'Avril'; break;
+        case 'May' : $nom_moisd = 'Mai'; break;
+        case 'June' : $nom_moisd = 'Juin'; break;
+        case 'July' : $nom_moisd = 'Juillet'; break;
+        case 'August' : $nom_moisd = 'Août'; break;
+        case 'September' : $nom_moisd = 'Septembre'; break;
+        case 'October' : $nom_moisd = 'Otober'; break;
+        case 'November' : $nom_moisd = 'Novembre'; break;
+        case 'December' : $nom_moisd = 'Décembre'; break;
+    }
+    $jourTexte = array(1=>'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi');
+    $plageH = array('',1=>'08:00','09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00');
+
+    $contenu=afficherMenuConseiller().'<form action="site.php" method="post"><p><label>Id du conseiller</label><input type="text" name="idCli" value="'.$idEmploye.'" readonly="readonly"></p><label>Selectionnez une date </label><input name="nouvelledate" type="date"><input type="submit" name="changerDate" value="aller à"><p> Semaine '.$num_weekd.' </p>';
+    $contenu = $contenu . '<p> du '.$dateDebSemaineFrd.' au '.$dateFinSemaineFrd.'</p>';
+    $contenu = $contenu . '<h2>'.$nom_moisd.' '.$anneed.'</h2>';
+    $contenu = $contenu . '<table border="1">';
+    for ($h = 0; $h <= 11; $h++) {
+        $contenu = $contenu . '<tr><th>' . $plageH[$h] . '</th>';
+        for ($j = 1; $j < 7; $j++) {
+            if (!empty($tab)) {
+                $datetest = new DateTime($tab[0]->DATERDV);
+                $jour = $datetest->format("d");
+                $heure = $datetest->format("G:i");
+            }
+            if ($h == 0) {
+                $contenu = $contenu . '<th>' . $jourTexte[$j] . ' ' . date("d", mktime(0, 0, 0, $x->format("n"), ($x->format("d")) - $jourd + $j, $x->format("y"))) . '</th>';
+            } else {
+                if (!empty($tab) && $jour==date("d", mktime(0, 0, 0, $x->format("n"), ($x->format("d")) - $jourd + $j, $x->format("y"))) && $heure==($h+7) ) {
+                    $contenu = $contenu . '<td align="center" style="background-color: red; color : black">Details RDV <input type="radio"></td>';
+                    array_shift($tab);
+                }else
+                    $contenu = $contenu . '<td align="center"><input type="radio"  checked name="dateTimeBouttonRadio" value="' . date("Y-m-d H:i", mktime($h + 7, 0, 0, $x->format("n"), ($x->format("d")) - $jourd + $j, $x->format("y"))) . '"></td>';
+            }
+        }
+        $contenu = $contenu . '</tr>';
+    }
+    $contenu=$contenu.'</table>';
+    $optionsMotifs='';
+    foreach ($motif as $m){
+        $optionsMotifs=$optionsMotifs.'<option value="'.$m->NOMMOTIF.'">'.$m->NOMMOTIF.'</option>';
+    }
+    $contenu=$contenu.'<label>Selectionnez le motf </label><select name="choixmotif" >'.$optionsMotifs.'</select><input type="submit" name="prendreRDV" value="Valider"></form>';
+
+    require_once ('gabarit.php');
+
+}

@@ -464,3 +464,14 @@ function chercheContrat ($id){
     $resultat->closeCursor();
     return $c;
 }
+
+function getConseillerRDV(){
+	$connexion=getConnect();
+    $requete = "SELECT * FROM employe WHERE TYPEEMPLOYE='Conseiller'";
+    $resultat=$connexion->query($requete);
+    $resultat->setFetchMode(PDO::FETCH_OBJ);
+    $conseiller=$resultat->fetchAll();
+    $resultat->closeCursor();
+    return $conseiller;
+}
+	

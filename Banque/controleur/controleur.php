@@ -316,3 +316,19 @@ function CtlChercheCompte($id){
 function CtlChercheContrat($id){
     return chercheContrat($id);
 }
+
+function CtlListeConseiller(){
+	$cons=getConseillerRDV();
+	afficherChoixConseiller($cons);
+}
+
+function CtlCalendrierRDVEmploye($idConseiller,$dateSemaine){
+    
+    $x=new DateTime($dateSemaine);
+    $jourd=$x->format("w");// numéro du $x actuel 0 dimanche, 6 samedi
+    $dateDebSemaineFrd = date("Y-m-d",mktime(0,0,0,$x->format("n"),($x->format("d"))-$jourd+1,$x->format("y")));
+    $dateFinSemaineFrd = date("Y-m-d",mktime(0,0,0,$x->format("n"),($x->format("d"))-$jourd+7,$x->format("y")));
+    $rdvDuConseiller=getrdvEmploye($idConseiller,$dateDebSemaineFrd,$dateFinSemaineFrd);
+    $motif=getMotif();
+    afficherCalendrierConseiller($idConseiller,$dateSemaine,$rdvDuConseiller,$motif);
+}
