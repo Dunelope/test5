@@ -109,12 +109,14 @@ function afficherCalendrier($idcli,$dateSemaine,$rdvemploye,$motif){
         array_push($tab,$rdv);
     }
     $x=new DateTime($dateSemaine);
+    $y=$x;
     $jourd=$x->format("w");// numéro du $x actuel 0 dimanche, 6 samedi
+    if ($jourd==0)
+        $y=new DateTime(date("Y-m-d H:i" ,mktime(0,0,0,$x->format("n"),$x->format("d")+1,$x->format("y"))));
     $nom_moisd = $x->format("F"); // nom du mois $x  DECEMBER
     $anneed= $x->format("Y"); // année  de $x 2018
-    $num_weekd = $x->format("W"); // numéro de la semaine $x 51
-    if ($jourd==0)
-        $num_weekd++;
+    $num_weekd = $y->format("W"); // numéro de la semaine $x 51
+
 
     $dateDebSemaineFrd = date("d/m/Y",mktime(0,0,0,$x->format("n"),($x->format("d"))-$jourd+1,$x->format("y")));
     $dateFinSemaineFrd = date("d/m/Y",mktime(0,0,0,$x->format("n"),($x->format("d"))-$jourd+7,$x->format("y")));
