@@ -474,4 +474,15 @@ function getConseillerRDV(){
     $resultat->closeCursor();
     return $conseiller;
 }
+
+function estNewClient($idClient){
+    $connexion=getConnect();
+    $requete="select client.IDCLIENT from client left JOIN contratclient USING (IDCLIENT) LEFT JOIN compteclient USING(IDCLIENT) where contratclient.IDCLIENT is null AND compteclient.IDCLIENT is null AND client.idClient='$idClient'";
+    $resultat=$connexion->query($requete);
+    $resultat->setFetchMode(PDO::FETCH_OBJ);
+    $idClientTrouve=$resultat->fetchAll();
+    $resultat->closeCursor();
+    return $idClientTrouve;
+
+}
 	

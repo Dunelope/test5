@@ -332,3 +332,13 @@ function CtlCalendrierRDVEmploye($idConseiller,$dateSemaine){
     $motif=getMotif();
     afficherCalendrierConseiller($idConseiller,$dateSemaine,$rdvDuConseiller,$motif);
 }
+
+function CtlestNouveauClient($idClient){
+    $x=estNewClient($idClient);
+    if ($x==null){
+        return false;
+    }
+    return true;
+}
+
+
