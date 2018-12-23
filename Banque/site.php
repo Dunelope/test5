@@ -267,6 +267,12 @@ try {
 	
 	}
 	
+	if(isset($_POST['changerDateConseiller'])) {
+        $daterdv=$_POST['nouvelledateConseiller'];
+        $idClient=($_POST['idEmploye']);
+        CtlCalendrierRDVEmploye($idClient,$daterdv);
+    }
+	
 	if (isset($_POST['ChoixConseiller'])){
 		$idConseiller=$_POST['choixListeConseiller'];
 		$dateactuelle=date("Y-m-d H:i");
@@ -279,6 +285,13 @@ try {
         $dateDebSemaineFrd = date("d/m/Y",mktime(0,0,0,$dateTest->format("n"),($dateTest->format("d"))-$jourd+1,$dateTest->format("y")));
        
         CtlCalendrierRDVEmploye($idConseiller,$dateactuelle);
+    }
+	
+	if (isset($_POST['rendreIndispo'])){
+        $dateRdv=$_POST['dateTimeBouttonRadio'];
+		$idEmploye=$_POST['idEmploye'];
+        
+        CtlEnregisterIndispo($dateRdv,$idEmploye);
     }
 	
 

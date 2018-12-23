@@ -329,9 +329,13 @@ function CtlCalendrierRDVEmploye($idConseiller,$dateSemaine){
     $dateDebSemaineFrd = date("Y-m-d",mktime(0,0,0,$x->format("n"),($x->format("d"))-$jourd+1,$x->format("y")));
     $dateFinSemaineFrd = date("Y-m-d",mktime(0,0,0,$x->format("n"),($x->format("d"))-$jourd+7,$x->format("y")));
     $rdvDuConseiller=getrdvEmploye($idConseiller,$dateDebSemaineFrd,$dateFinSemaineFrd);
-    $motif=getMotif();
-    afficherCalendrierConseiller($idConseiller,$dateSemaine,$rdvDuConseiller,$motif);
+    afficherCalendrierConseiller($idConseiller,$dateSemaine,$rdvDuConseiller);
 }
+
+function CtlEnregisterIndispo($date,$idEmploye){
+	enregisterIndispo($date,$idEmploye);
+}
+
 
 function CtlestNouveauClient($idClient){
     $x=estNewClient($idClient);
@@ -340,5 +344,3 @@ function CtlestNouveauClient($idClient){
     }
     return true;
 }
-
-

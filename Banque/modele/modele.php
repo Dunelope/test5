@@ -294,16 +294,6 @@ function getOperation($id){
     $resultat->closeCursor();
     return $tousoperations;
 }
-/*
-function getRDV(){
-    $connexion=getConnect();
-    $requete="Select * from Client";
-    $resultat=$connexion->query($requete);
-    $resultat->setFetchMode(PDO::FETCH_OBJ);
-    $tousrdv=$resultat->fetchAll();
-    $resultat->closeCursor();
-    return $tousrdv;
-}*/
 
 
 function getIDcli($nom,$dateN) {
@@ -315,9 +305,6 @@ function getIDcli($nom,$dateN) {
     $resultat->closeCursor();
     return $idclient;
 }
-
-
-
 
 function trouverConseillerDeClient($idClient){
     $connexion=getConnect();
@@ -475,6 +462,12 @@ function getConseillerRDV(){
     return $conseiller;
 }
 
+function enregisterIndispo($daterdv,$idEmploye){ // format Y-m-d H:i
+    $connexion=getConnect();
+    $requete="INSERT INTO `rendez_vous` (`IDEMPLOYE`, `DATERDV`) values ('$idEmploye','$daterdv')";
+    $connexion->query($requete);
+}
+
 function estNewClient($idClient){
     $connexion=getConnect();
     $requete="select client.IDCLIENT from client left JOIN contratclient USING (IDCLIENT) LEFT JOIN compteclient USING(IDCLIENT) where contratclient.IDCLIENT is null AND compteclient.IDCLIENT is null AND client.idClient='$idClient'";
@@ -485,4 +478,3 @@ function estNewClient($idClient){
     return $idClientTrouve;
 
 }
-	

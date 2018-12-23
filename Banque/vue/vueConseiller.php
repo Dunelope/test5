@@ -282,7 +282,7 @@ Choix de l\'employer :
 }
 	
 
-function afficherCalendrierConseiller($idEmploye,$dateSemaine,$rdvemploye,$motif){
+function afficherCalendrierConseiller($idEmploye,$dateSemaine,$rdvemploye){
     $tab= array();
     foreach ($rdvemploye as $rdv){
         array_push($tab,$rdv);
@@ -313,7 +313,7 @@ function afficherCalendrierConseiller($idEmploye,$dateSemaine,$rdvemploye,$motif
     $jourTexte = array(1=>'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi');
     $plageH = array('',1=>'08:00','09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00');
 
-    $contenu=afficherMenuConseiller().'<form action="site.php" method="post"><p><label>Id du conseiller</label><input type="text" name="idCli" value="'.$idEmploye.'" readonly="readonly"></p><label>Selectionnez une date </label><input name="nouvelledate" type="date"><input type="submit" name="changerDate" value="aller à"><p> Semaine '.$num_weekd.' </p>';
+    $contenu=afficherMenuConseiller().'<form action="site.php" method="post"><p><label>Id du conseiller</label><input type="text" name="idEmploye" value="'.$idEmploye.'" readonly="readonly"></p><label>Selectionnez une date </label><input name="nouvelledateConseiller" type="date"><input type="submit" name="changerDateConseiller" value="aller à"><p> Semaine '.$num_weekd.' </p>';
     $contenu = $contenu . '<p> du '.$dateDebSemaineFrd.' au '.$dateFinSemaineFrd.'</p>';
     $contenu = $contenu . '<h2>'.$nom_moisd.' '.$anneed.'</h2>';
     $contenu = $contenu . '<table border="1">';
@@ -329,7 +329,7 @@ function afficherCalendrierConseiller($idEmploye,$dateSemaine,$rdvemploye,$motif
                 $contenu = $contenu . '<th>' . $jourTexte[$j] . ' ' . date("d", mktime(0, 0, 0, $x->format("n"), ($x->format("d")) - $jourd + $j, $x->format("y"))) . '</th>';
             } else {
                 if (!empty($tab) && $jour==date("d", mktime(0, 0, 0, $x->format("n"), ($x->format("d")) - $jourd + $j, $x->format("y"))) && $heure==($h+7) ) {
-                    $contenu = $contenu . '<td align="center" style="background-color: red; color : black">Details RDV <input type="radio"></td>';
+                    $contenu = $contenu . '<td align="center" style="background-color: red; color : black">Details RDV <input type="radio" checked name="detailRDVButtonRadio"></td>';
                     array_shift($tab);
                 }else
                     $contenu = $contenu . '<td align="center"><input type="radio"  checked name="dateTimeBouttonRadio" value="' . date("Y-m-d H:i", mktime($h + 7, 0, 0, $x->format("n"), ($x->format("d")) - $jourd + $j, $x->format("y"))) . '"></td>';
@@ -338,12 +338,10 @@ function afficherCalendrierConseiller($idEmploye,$dateSemaine,$rdvemploye,$motif
         $contenu = $contenu . '</tr>';
     }
     $contenu=$contenu.'</table>';
-    $optionsMotifs='';
-    foreach ($motif as $m){
-        $optionsMotifs=$optionsMotifs.'<option value="'.$m->NOMMOTIF.'">'.$m->NOMMOTIF.'</option>';
-    }
-    $contenu=$contenu.'<label>Selectionnez le motf </label><select name="choixmotif" >'.$optionsMotifs.'</select><input type="submit" name="prendreRDV" value="Valider"></form>';
+	
+	$contenu=$contenu.'<label>Rendre plage indisponible : </label></select><input type="submit" name="rendreIndispo" value="Valider"></form>';
 
+   
     require_once ('gabarit.php');
 
 }
