@@ -134,7 +134,7 @@ function afficherCalendrier($idcli,$dateSemaine,$rdvemploye,$motif){
     $jourTexte = array(1=>'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi');
     $plageH = array('',1=>'08:00','09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00');
 
-    $contenu=afficherMenuAgent().'<form action="site.php" method="post"><p><label>Id du client</label><input type="text" name="idCli" value="'.$idcli.'" readonly="readonly"></p><label>Selectionnez une date </label><input name="nouvelledate" type="date"><input type="submit" name="changerDate" value="aller à"><p> Semaine '.$num_weekd.' </p></form>';
+    $contenu=afficherMenuAgent().'<form action="site.php" method="post"><p><label>Id du client</label><input type="text" name="idCli" value="'.$idcli.'" readonly="readonly"></p><label>Selectionnez une date </label><input name="nouvelledate" type="date"><input type="submit" name="changerDate" value="aller à"><p> Semaine '.$num_weekd.' </p>';
     $contenu = $contenu . '<p> du '.$dateDebSemaineFrd.' au '.$dateFinSemaineFrd.'</p>';
     $contenu = $contenu . '<h2>'.$nom_moisd.' '.$anneed.'</h2>';
     $contenu = $contenu . '<table border="1">';
