@@ -345,11 +345,11 @@ function CtlSyntheseRDV($dateRDV){
 	$mod=getModif($id);
 	$con=getConseiller($id);
 	$cont=getContratClient($id);
-    afficherDetailsRDV($syn,$mod,$con,$cont,$mot);
+    afficherDetailsRDV($syn,$mod,$con,$cont,$mot,$id);
 }
 
 function CtlIDClientEstNull($idEmploye,$tab){
-    $x=IDClientEstNull($idEmploye,$tab[0]->DATERDV);
+    $x=IDClientEstNull($idEmploye,$tab->DATERDV);
     if ($x==null){
         return true;
     }

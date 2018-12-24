@@ -358,12 +358,12 @@ function afficherCalendrierConseiller($idEmploye,$dateSemaine,$rdvemploye){
 }
 
 
-function afficherDetailsRDV($synthese,$mod,$con,$contrat,$mot){
+function afficherDetailsRDV($synthese,$mod,$con,$contrat,$mot,$idClient){
     $c='';
     $co='';
     $contrats='';
 	
-	if (CtlestNouveauClient($idClient)){
+	if (!CtlestNouveauClient($idClient)){
 		
 		$c=$c.'<p><label>Nom du client : <input name="'. $mod->NOMCLI  .'[]" type="text" value="' . $mod->NOMCLI .'" readonly="readonly" /></label></p><p><label>Adresse : <input name="'. $mod->NOMCLI  .'[]" type="text" value="' . $mod->ADRESSE .'" readonly="readonly" /> </label></p><p><label> Numéro : <input name="'. $mod->NOMCLI  .'[]" type="text" value="' . $mod->NUMTEL .'" readonly="readonly" /></label></p><p><label>eMail : <input name="'. $mod->NOMCLI  .'[]" type="text" value="' . $mod->EMAIL .'" readonly="readonly" /></label></p><p><label>Profession : <input name="'. $mod->NOMCLI  .'[]" type="text" value="' . $mod->PROFESSION .'" readonly="readonly"/></label></p><p><label>Situation Familiale : <input name="'. $mod->NOMCLI  .'[]" type="text" value="' . $mod->SITUATION_FAMILIALE .'" readonly="readonly"/></label></p>';
 
