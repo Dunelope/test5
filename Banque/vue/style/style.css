@@ -1,0 +1,71 @@
+body,html {
+	height : 100%;
+	width : 100%;
+	margin : 0%;
+	padding : 0%;
+}
+
+body {
+	text-align : center;
+}
+
+
+body {
+	background-color: #d9d9d9;
+}
+
+fieldset {
+	background-color: #669999;
+}
+
+table {
+	display : inline-block;
+	vertical-align : middle;
+	background-color : white;
+	
+}
+
+legend {
+	font-size : 35px;
+	font-family : comic sans ms;
+}
+
+caption {
+	
+	background : #2ECEC6;
+	padding : 90px;
+	font-size : 40px;
+	color : white;
+}
+
+ul {
+	margin-top:0px;
+	background-color : #999999;
+}
+
+td {
+	width : 120px;
+	height : 20px;
+	vertical-align : center;
+	padding : 10px;
+	background-color : #fcfcfc;	
+}
+
+th {
+	height : 40px;
+	width : 40px;
+	background-color:#669999;
+}
+
+td.requete {
+	background-color : #2ECEC6;
+	color : white;
+	border-radius : 50px;
+	
+}
+
+td.tdErreur {
+	vertical-align : center;
+	background-color : red;
+}
+
