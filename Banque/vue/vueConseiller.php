@@ -379,10 +379,10 @@ function afficherDetailsRDV($synthese,$mod,$con,$contrat,$mot,$idClient){
 		$motif='<p><label>Motif du RDV :  <input name"'.$mot->IDMOTIF .'[]" type="text" value="' . $mot->NOMMOTIF .'" readonly="readonly" /></label></p><p><label>Pieces à ramener au RDV :  <input name"'.$mot->IDMOTIF .'[]" type="text" value="' . $mot->LISTEPIECES .'" readonly="readonly" /></label></p>';
 	
 	
-		$contenu=afficherMenuAgent().'<fieldset><legend>Synthese client </legend>'.$contenu.'<p><fieldset><legend>Liste des comptes du client</legend>'.$co.'</fieldset><p><fieldset><legend>Liste des contrat du client</legend>'.$contrats.'</fieldset></fieldset><fieldset><legend>Details du RDV</legend>'.$motif.'</fieldset></fieldset>';
+		$contenu=afficherMenuConseiller().'<fieldset><legend>Synthese client </legend>'.$contenu.'<p><fieldset><legend>Liste des comptes du client</legend>'.$co.'</fieldset><p><fieldset><legend>Liste des contrat du client</legend>'.$contrats.'</fieldset></fieldset><fieldset><legend>Details du RDV</legend>'.$motif.'</fieldset></fieldset>';
     }
 	else {
-		$contenu=afficherMenuAgent().'<p>Ce client est un nouveau client</p>';
+		$contenu=afficherMenuConseiller().'<p>Ce client est un nouveau client</p>';
 	}
 	
 	require_once ('gabarit.php');
