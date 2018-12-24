@@ -294,6 +294,11 @@ try {
         CtlEnregisterIndispo($dateRdv,$idEmploye);
     }
 	
+	if (isset($_POST['afficherDetailsRDV'])){
+		$val=$_POST['detailRDVButtonRadio'];
+		CtlSyntheseRDV($val);
+	}
+	
 
     if(isset($_POST['interCli'])){
         $val =$_POST['interactionCli'];
@@ -335,8 +340,7 @@ try {
 
     if(isset($_POST['modifdec'])) {
         CtlModifDecouvert($_POST['numClient'], $_POST['compte'], $_POST['montantDecouvert']);
-
-    }
+	}
 
     if(isset($_POST['rescontrat'])){
         CtlResContrat($_POST['numCli'],$_POST['contratares']);

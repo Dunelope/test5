@@ -167,7 +167,7 @@ function afficherCalendrier($idcli,$dateSemaine,$rdvemploye,$motif){
     foreach ($motif as $m){
         $optionsMotifs=$optionsMotifs.'<option value="'.$m->NOMMOTIF.'">'.$m->NOMMOTIF.'</option>';
     }
-    $contenu=$contenu.'<label>Selectionnez le motf </label><select name="choixmotif" >'.$optionsMotifs.'</select><input type="submit" name="prendreRDV" value="Valider"></form>';
+    $contenu=$contenu.'<p><label>Selectionnez le motif :  </label><select name="choixmotif" >'.$optionsMotifs.'</select><input type="submit" name="prendreRDV" value="Valider"></p></form>';
 
     require_once ('gabarit.php');
 

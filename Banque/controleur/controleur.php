@@ -329,6 +329,7 @@ function CtlCalendrierRDVEmploye($idConseiller,$dateSemaine){
     $dateDebSemaineFrd = date("Y-m-d",mktime(0,0,0,$x->format("n"),($x->format("d"))-$jourd+1,$x->format("y")));
     $dateFinSemaineFrd = date("Y-m-d",mktime(0,0,0,$x->format("n"),($x->format("d"))-$jourd+7,$x->format("y")));
     $rdvDuConseiller=getrdvEmploye($idConseiller,$dateDebSemaineFrd,$dateFinSemaineFrd);
+	
     afficherCalendrierConseiller($idConseiller,$dateSemaine,$rdvDuConseiller);
 }
 
@@ -336,6 +337,24 @@ function CtlEnregisterIndispo($date,$idEmploye){
 	enregisterIndispo($date,$idEmploye);
 }
 
+function CtlSyntheseRDV($dateRDV){
+	$id=getClientRDV($dateRDV)->IDCLIENT;
+	$idmot=getClientRDV($dateRDV)->IDMOTIF;
+	$mot=getMotifRDV($idmot);
+	$syn=getSynthese($id);
+	$mod=getModif($id);
+	$con=getConseiller($id);
+	$cont=getContratClient($id);
+    afficherDetailsRDV($syn,$mod,$con,$cont,$mot);
+}
+
+function CtlIDClientEstNull($idEmploye,$tab){
+    $x=IDClientEstNull($idEmploye,$tab[0]->DATERDV);
+    if ($x==null){
+        return true;
+    }
+    return false;
+}
 
 function CtlestNouveauClient($idClient){
     $x=estNewClient($idClient);

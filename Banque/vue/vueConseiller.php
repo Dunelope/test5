@@ -1,7 +1,7 @@
 <?php
 
 function afficherMenuConseiller(){
-    $contenu='<form id="formMenu" method="post" action="site.php"><input type="submit" value="Retour Menu" name="retourC"><input type="submit" value="Deconnexion" name="Deco"></form>';
+    $contenu='<form id="formMenu" method="post" action="site.php"><ul><li><input type="submit" value="Retour Menu" name="retourC"></li><li><input type="submit" value="Deconnexion" name="Deco"></li></ul></form>';
     return $contenu;
 }
 
@@ -330,21 +330,62 @@ function afficherCalendrierConseiller($idEmploye,$dateSemaine,$rdvemploye){
             }
             if ($h == 0) {
                 $contenu = $contenu . '<th>' . $jourTexte[$j] . ' ' . date("d", mktime(0, 0, 0, $x->format("n"), ($x->format("d")) - $jourd + $j, $x->format("y"))) . '</th>';
-            } else {
-                if (!empty($tab) && $jour==date("d", mktime(0, 0, 0, $x->format("n"), ($x->format("d")) - $jourd + $j, $x->format("y"))) && $heure==($h+7) ) {
-                    $contenu = $contenu . '<td align="center" style="background-color: red; color : black">Details RDV <input type="radio" checked name="detailRDVButtonRadio"></td>';
-                    array_shift($tab);
-                }else
-                    $contenu = $contenu . '<td align="center"><input type="radio"  checked name="dateTimeBouttonRadio" value="' . date("Y-m-d H:i", mktime($h + 7, 0, 0, $x->format("n"), ($x->format("d")) - $jourd + $j, $x->format("y"))) . '"></td>';
             }
-        }
+			else {
+                if (!empty($tab) && $jour==date("d", mktime(0, 0, 0, $x->format("n"), ($x->format("d")) - $jourd + $j, $x->format("y"))) && $heure==($h+7) ) {
+                    $contenu = $contenu . '<td align="center" style="background-color: red; color : black">Details RDV <input type="radio" checked name="detailRDVButtonRadio" value="' . date("Y-m-d H:i", mktime($h + 7, 0, 0, $x->format("n"), ($x->format("d")) - $jourd + $j, $x->format("y"))) . '"></td>';
+                    array_shift($tab);
+				}
+			
+                else { 
+					$contenu = $contenu . '<td align="center"><input type="radio"  checked name="dateTimeBouttonRadio" value="' . date("Y-m-d H:i", mktime($h + 7, 0, 0, $x->format("n"), ($x->format("d")) - $jourd + $j, $x->format("y"))) . '"></td>';
+				}
+				
+				/*if (!empty($tab) && CtlIDClientEstNull($idEmploye,$tab) && $jour==date("d", mktime(0, 0, 0, $x->format("n"), ($x->format("d")) - $jourd + $j, $x->format("y"))) && $heure==($h+7) ) {
+					$contenu = $contenu . '<td align="center" style="background-color: red; color : black">Occupé </td>';
+					array_shift($tab);
+					
+				}*/
+			}
+		}
         $contenu = $contenu . '</tr>';
     }
     $contenu=$contenu.'</table>';
 	
-	$contenu=$contenu.'<label>Rendre plage indisponible : </label></select><input type="submit" name="rendreIndispo" value="Valider"></form>';
-
-   
+	$contenu=$contenu.'<p><label>Rendre plage indisponible : </label></select><input type="submit" name="rendreIndispo" value="Valider"></p><p><label>Afficher les détails :  </label></select><input type="submit" name="afficherDetailsRDV" value="Afficher"></p></form>';
     require_once ('gabarit.php');
 
 }
+
+
+function afficherDetailsRDV($synthese,$mod,$con,$contrat,$mot){
+    $c='';
+    $co='';
+    $contrats='';
+	
+	if (CtlestNouveauClient($idClient)){
+		
+		$c=$c.'<p><label>Nom du client : <input name="'. $mod->NOMCLI  .'[]" type="text" value="' . $mod->NOMCLI .'" readonly="readonly" /></label></p><p><label>Adresse : <input name="'. $mod->NOMCLI  .'[]" type="text" value="' . $mod->ADRESSE .'" readonly="readonly" /> </label></p><p><label> Numéro : <input name="'. $mod->NOMCLI  .'[]" type="text" value="' . $mod->NUMTEL .'" readonly="readonly" /></label></p><p><label>eMail : <input name="'. $mod->NOMCLI  .'[]" type="text" value="' . $mod->EMAIL .'" readonly="readonly" /></label></p><p><label>Profession : <input name="'. $mod->NOMCLI  .'[]" type="text" value="' . $mod->PROFESSION .'" readonly="readonly"/></label></p><p><label>Situation Familiale : <input name="'. $mod->NOMCLI  .'[]" type="text" value="' . $mod->SITUATION_FAMILIALE .'" readonly="readonly"/></label></p>';
+
+		$contenu='<p><fieldset><legend>Liste informations client</legend>'.$c.'<p>Nom du conseiller : <input name="'. $con->NOMEMPLOYE .'[]" type="text" value="' . $con->NOMEMPLOYE .'" readonly="readonly"/></p></fieldset>';
+
+		foreach ($synthese as $syn){
+			$co=$co.'<p>Nom du compte : <input name="'. $syn->NOMCOMPTE  .'[]" type="text" value="' . $syn->NOMCOMPTE .'" readonly="readonly" />  Date ouverture : <input name="'. $syn->NOMCOMPTE  .'[]" type="text" value="' . $syn->DATEOUVERTURE .'" readonly="readonly"/>  Solde : <input name="'. $syn->NOMCOMPTE  .'[]" type="text" value="' . $syn->SOLDE .'" readonly="readonly"/>  Montant du decouvert autorisé : <input name="'. $syn->NOMCOMPTE  .'[]" type="text" value="' . $syn->MONTANTDECOUVERT .'" readonly="readonly"/></p>';
+		}
+		foreach ($contrat as $ctr){
+			$contrats=$contrats.'<p>Nom du contrat : <input name="'. $ctr->NOMCONTRAT  .'[]" type="text" value="' . $ctr->NOMCONTRAT .'" readonly="readonly" />  Date ouverture : <input name="'. $ctr->NOMCONTRAT  .'[]" type="text" value="' . $ctr->DATEOUVERTURECONTRAT .'" readonly="readonly"/>  Tarif mensuel : <input name="'. $ctr->NOMCONTRAT  .'[]" type="text" value="' . $ctr->TARIFMENSUEL .'" readonly="readonly"/></p>';
+		}
+		$motif='';
+		$motif='<p><label>Motif du RDV :  <input name"'.$mot->IDMOTIF .'[]" type="text" value="' . $mot->NOMMOTIF .'" readonly="readonly" /></label></p><p><label>Pieces à ramener au RDV :  <input name"'.$mot->IDMOTIF .'[]" type="text" value="' . $mot->LISTEPIECES .'" readonly="readonly" /></label></p>';
+	
+	
+		$contenu=afficherMenuAgent().'<fieldset><legend>Synthese client </legend>'.$contenu.'<p><fieldset><legend>Liste des comptes du client</legend>'.$co.'</fieldset><p><fieldset><legend>Liste des contrat du client</legend>'.$contrats.'</fieldset></fieldset><fieldset><legend>Details du RDV</legend>'.$motif.'</fieldset></fieldset>';
+    }
+	else {
+		$contenu=afficherMenuAgent().'<p>Ce client est un nouveau client</p>';
+	}
+	
+	require_once ('gabarit.php');
+
+}
+

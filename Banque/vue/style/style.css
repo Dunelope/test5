@@ -30,18 +30,12 @@ legend {
 	font-family : comic sans ms;
 }
 
-caption {
-	
-	background : #2ECEC6;
-	padding : 90px;
-	font-size : 40px;
-	color : white;
-}
 
 ul {
 	margin-top:0px;
-	background-color : #999999;
+	background-color : #003333;
 }
+
 
 td {
 	width : 120px;
@@ -52,13 +46,14 @@ td {
 }
 
 th {
+	border-collapse : collapse;
 	height : 40px;
-	width : 40px;
+	width : 60px;
 	background-color:#669999;
 }
 
 td.requete {
-	background-color : #2ECEC6;
+	background-color : black;
 	color : white;
 	border-radius : 50px;
 	
@@ -67,5 +62,10 @@ td.requete {
 td.tdErreur {
 	vertical-align : center;
 	background-color : red;
+}
+
+table, th, td {
+  border: 1px solid black;
+  border-collapse : collapse;
 }
 

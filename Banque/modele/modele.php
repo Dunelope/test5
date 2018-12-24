@@ -468,6 +468,38 @@ function enregisterIndispo($daterdv,$idEmploye){ // format Y-m-d H:i
     $connexion->query($requete);
 }
 
+function getClientRDV($dateRDV){
+	$connexion=getConnect();
+    $requete = "SELECT * FROM rendez_vous WHERE DATERDV='$dateRDV'";
+    $resultat=$connexion->query($requete);
+    $resultat->setFetchMode(PDO::FETCH_OBJ);
+    $clientRDV=$resultat->fetch();
+    $resultat->closeCursor();
+    return $clientRDV;
+}
+
+function IDClientEstNull($idEmploye,$rdv){
+	$connexion=getConnect();
+    $requete = "SELECT * FROM rendez_vous WHERE idClient='null' and idEmploye='$idEmploye' and dateRDV='$rdv' ";
+    $resultat=$connexion->query($requete);
+    $resultat->setFetchMode(PDO::FETCH_OBJ);
+    $idClientRDV=$resultat->fetchAll();
+    $resultat->closeCursor();
+    return $idClientRDV;
+}
+
+function getMotifRDV($idMotif){
+	$connexion=getConnect();
+    $requete = "SELECT * FROM motifs WHERE idMotif='$idMotif'";
+    $resultat=$connexion->query($requete);
+    $resultat->setFetchMode(PDO::FETCH_OBJ);
+    $motifRDV=$resultat->fetch();
+    $resultat->closeCursor();
+    return $motifRDV;
+}
+	
+	
+
 function estNewClient($idClient){
     $connexion=getConnect();
     $requete="select client.IDCLIENT from client left JOIN contratclient USING (IDCLIENT) LEFT JOIN compteclient USING(IDCLIENT) where contratclient.IDCLIENT is null AND compteclient.IDCLIENT is null AND client.idClient='$idClient'";
