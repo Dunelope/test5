@@ -6,7 +6,7 @@ function afficherMenuConseiller(){
 }
 
 function afficherConseiller(){
-    $contenu='<form id=Formc1 action="site.php" method="post"> 
+    $contenu=afficherMenuConseiller().'<form id=Formc1 action="site.php" method="post"> 
     <fieldset><legend>Que voulez-vous faire ?</legend>
     <p>
     Menu des Planning :
@@ -26,13 +26,13 @@ Interaction avec un client :
 <input type="submit" value="Sélectionner" name="interCli">
 </p>
     
-    </fieldset></form>'.afficherMenuConseiller();
+    </fieldset></form>';
     require_once ('gabarit.php');
 
 }
 
 function afficherInscrireCli(){
-    $contenu='<form id=Formc2 action="site.php" method="post"> 
+    $contenu=afficherMenuConseiller().'<form id=Formc2 action="site.php" method="post"> 
     <fieldset><legend>Inscrire un nouveau client</legend>
     <p>
     <label for="idCon">ID du Conseiller :</label>
@@ -78,7 +78,7 @@ function afficherInscrireCli(){
     <input type="submit" value="Inscrire le client" name="inscrireClient">
     <input type="reset" value="Effacer" >
     </p>
-    </fieldset></form>'.afficherMenuConseiller();
+    </fieldset></form>';
     require_once ('gabarit.php');
 
 }
@@ -88,7 +88,7 @@ function afficherVendreContrat($contrat){
     foreach ($contrat as $c){
         $x=$x.'<option value="'.$c->NOMCONTRAT.'">'.$c->NOMCONTRAT.'</option>';
     }
-    $contenu='<form id=Formc3 action="site.php" method="post"> 
+    $contenu=afficherMenuConseiller().'<form id=Formc3 action="site.php" method="post"> 
     <fieldset><legend>Vendre un contrat</legend>
     <p>
     Numéro du client :
@@ -108,7 +108,7 @@ function afficherVendreContrat($contrat){
     <input type="submit" value="Vendre le contrat" name="vendreContrat">
     <input type="reset" value="Effacer" >
     </p>
-    </fieldset></form>'.afficherMenuConseiller();
+    </fieldset></form>';
     require_once ('gabarit.php');
 }
 
@@ -117,7 +117,7 @@ function afficherOuvrirCompte($compte){
     foreach ($compte as $c){
         $x=$x.'<option value="'.$c->NOMCOMPTE.'">'.$c->NOMCOMPTE.'</option>';
     }
-    $contenu='<form id=Formc4 action="site.php" method="post"> 
+    $contenu=afficherMenuConseiller().'<form id=Formc4 action="site.php" method="post"> 
     <fieldset><legend>Ouvrir un compte</legend>
     <p>
     Numéro du client :
@@ -150,7 +150,7 @@ function afficherMenuDecouvert($id,$compte){
     foreach ($compte as $c){
         $x=$x.'<option value="'.$c->NOMCOMPTE.'">'.$c->NOMCOMPTE.'</option>';
     }
-    $contenu='<form id=Formc5 action="site.php" method="post"> 
+    $contenu=afficherMenuConseiller().'<form id=Formc5 action="site.php" method="post"> 
     <fieldset><legend>Modifier le découvert</legend>
     <p>
     Numéro du client :
@@ -171,7 +171,7 @@ function afficherMenuDecouvert($id,$compte){
     <input type="submit" value="Modifier" name="modifdec" >
     </p>
     
-    </fieldset></form>'.afficherMenuConseiller();
+    </fieldset></form>';
     require_once ('gabarit.php');
 }
 
@@ -180,7 +180,7 @@ function afficherMenuResContrat($id,$contrat){
     foreach ($contrat as $c){
         $x=$x.'<option value="'.$c->NOMCONTRAT.'">'.$c->NOMCONTRAT.'</option>';
     }
-    $contenu='<form id=Formc6 action="site.php" method="post"> 
+    $contenu=afficherMenuConseiller().'<form id=Formc6 action="site.php" method="post"> 
     <fieldset><legend>Résilier un contrat</legend>
     <p>
     Numéro du client :
@@ -195,7 +195,7 @@ function afficherMenuResContrat($id,$contrat){
     <p>
     <input type="submit" value="Résilier" name="rescontrat" >
     </p>
-    </fieldset></form>'.afficherMenuConseiller();
+    </fieldset></form>';
     require_once ('gabarit.php');
 }
 
@@ -204,7 +204,7 @@ function afficherMenuResCompte($id,$compte){
     foreach ($compte as $c){
         $x=$x.'<option value="'.$c->NOMCOMPTE.'">'.$c->NOMCOMPTE.'</option>';
     }
-    $contenu='<form id=Formc7 action="site.php" method="post"> 
+    $contenu=afficherMenuConseiller().'<form id=Formc7 action="site.php" method="post"> 
     <fieldset><legend>Choisir un client</legend>
     <p>
     Numéro du client :
@@ -219,7 +219,7 @@ function afficherMenuResCompte($id,$compte){
     <p>
     <input type="submit" value="Résilier" name="rescompte" >
     </p>
-    </fieldset></form>'.afficherMenuConseiller();
+    </fieldset></form>';
     require_once ('gabarit.php');
 }
 
@@ -229,7 +229,7 @@ function afficherDecouvert($dec){
     foreach ($dec as $decouvert){
         $d=$d.'<p>'. $decouvert->NOMCOMPTE .'<input type="text" name="decoux[]" value="' . $decouvert->MONTANTDECOUVERT .'" required/> </p>';
     }
-    $contenu='<form id=Formc6 action="site.php" method="post"><fieldset><legend>Modifier les découverts</legend><p>'. $d .'</p><p><input type="submit" name="modifdec" value="Modifier"></p></fieldset></form>'.afficherMenuConseiller();
+    $contenu=afficherMenuConseiller().'<form id=Formc6 action="site.php" method="post"><fieldset><legend>Modifier les découverts</legend><p>'. $d .'</p><p><input type="submit" name="modifdec" value="Modifier"></p></fieldset></form>';
     require_once ('gabarit.php');
 
 }
@@ -241,7 +241,7 @@ function afficherResContrat($contrat){
 
         $d=$d.'<p><input type="checkbox" name="checkcontrat" value="'.$r->NOMCONTRAT.'">'.$r->NOMCONTRAT.'</p>';
     }
-    $contenu='<form id=Formc7 action="site.php" method="post"><fieldset><legend>Résilier un contrat</legend>'.$d.'<p><input type="submit" name="rescontrat" value="Résilier"></p></fieldset></form>'.afficherMenuConseiller();
+    $contenu=afficherMenuConseiller().'<form id=Formc7 action="site.php" method="post"><fieldset><legend>Résilier un contrat</legend>'.$d.'<p><input type="submit" name="rescontrat" value="Résilier"></p></fieldset></form>';
     require_once ('gabarit.php');
 }
 
@@ -267,7 +267,7 @@ function afficherChoixConseiller($employe){
 	foreach ($employe as $emp){
         $c=$c.'<option value="'.$emp->IDEMPLOYE.'">'.$emp->NOMEMPLOYE.'</option>';
     }
-    $contenu='<form id=Formc1 action="site.php" method="post"> 
+    $contenu=afficherMenuConseiller().'<form id=Formc1 action="site.php" method="post"> 
     <fieldset><legend>Afficher Planning : </legend>
 <p>
 Choix de l\'employer :  
@@ -276,7 +276,7 @@ Choix de l\'employer :
 <input type="submit" value="Afficher Planning" name="ChoixConseiller">
 </p>
     
-    </fieldset></form>'.afficherMenuConseiller();
+    </fieldset></form>';
     require_once ('gabarit.php');
 
 }
