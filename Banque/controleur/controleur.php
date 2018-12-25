@@ -335,6 +335,7 @@ function CtlCalendrierRDVEmploye($idConseiller,$dateSemaine){
 
 function CtlEnregisterIndispo($date,$idEmploye){
 	enregisterIndispo($date,$idEmploye);
+	afficherConseiller();
 }
 
 function CtlSyntheseRDV($dateRDV){

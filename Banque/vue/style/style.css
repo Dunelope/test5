@@ -7,7 +7,9 @@ body,html {
 
 body {
 	text-align : center;
+	
 }
+
 
 
 body {
@@ -17,6 +19,33 @@ body {
 fieldset {
 	background-color: #669999;
 }
+
+.synthese {
+	background-color: #d9d9d9;
+	
+}
+
+input { 
+	border-radius :5px;
+	text-align: center;
+	font-size: 15px;
+}
+
+input.menu {
+	color : white;
+	font-family : ;
+	border:none;
+    background:transparent;
+    text-decoration:underline;
+}
+
+}
+
+nav{
+	text-align : left;
+}
+
+	
 
 table {
 	display : inline-block;
@@ -32,6 +61,7 @@ legend {
 
 
 ul {
+	list-style-type: none;
 	margin-top:0px;
 	background-color : #003333;
 }

@@ -1,7 +1,7 @@
 <?php
 
 function afficherMenuConseiller(){
-    $contenu='<form id="formMenu" method="post" action="site.php"><ul><li><input type="submit" value="Retour Menu" name="retourC"></li><li><input type="submit" value="Deconnexion" name="Deco"></li></ul></form>';
+    $contenu='<form id="formMenu" method="post" action="site.php"><nav><ul><li><input class="menu" type="submit" value="Retour Menu" name="retourC"></li><li><input class="menu" type="submit" value="Deconnexion" name="Deco"></li></ul></nav></form>';
     return $contenu;
 }
 
@@ -379,7 +379,7 @@ function afficherDetailsRDV($synthese,$mod,$con,$contrat,$mot,$idClient){
 		$motif='<p><label>Motif du RDV :  <input name"'.$mot->IDMOTIF .'[]" type="text" value="' . $mot->NOMMOTIF .'" readonly="readonly" /></label></p><p><label>Pieces à ramener au RDV :  <input name"'.$mot->IDMOTIF .'[]" type="text" value="' . $mot->LISTEPIECES .'" readonly="readonly" /></label></p>';
 	
 	
-		$contenu=afficherMenuConseiller().'<fieldset><legend>Synthese client </legend>'.$contenu.'<p><fieldset><legend>Liste des comptes du client</legend>'.$co.'</fieldset><p><fieldset><legend>Liste des contrat du client</legend>'.$contrats.'</fieldset></fieldset><fieldset><legend>Details du RDV</legend>'.$motif.'</fieldset></fieldset>';
+		$contenu=afficherMenuConseiller().'<legend>Information du rendez vous</legend>'.$contenu.'<p><fieldset><legend>Liste des comptes du client</legend>'.$co.'</fieldset><p><fieldset><legend>Liste des contrat du client</legend>'.$contrats.'</fieldset><fieldset><legend>Details du RDV</legend>'.$motif.'</fieldset></fieldset>';
     }
 	else {
 		$contenu=afficherMenuConseiller().'<p>Ce client est un nouveau client</p>';
