@@ -10,7 +10,10 @@ body {
 	
 }
 
-
+p{
+	display : inline;
+	text-align: center;
+}
 
 body {
 	background-color: #d9d9d9;
@@ -30,8 +33,12 @@ input {
 	text-align: center;
 	font-size: 15px;
 }
+input[type=submit] {
+  cursor: pointer;
+}
 
 input.menu {
+	
 	color : white;
 	font-family : ;
 	border:none;
