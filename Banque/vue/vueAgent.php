@@ -15,14 +15,14 @@ function afficherLogAgent(){
 
 function afficherClient(){
 
-    $contenu=afficherMenuAgent().'<form id="monForm1" action="site.php" method="post"><fieldset><legend>Modification Informations Client</legend><p>Entrez identifiant du client recherché : <input type="text"  name="SelectClientModif"> <input type="submit" name="RechercherClientModif" value="Rechercher ce Client" /></fieldset></form>';
+    $contenu=afficherMenuAgent().'<form id="monForm1" action="site.php" method="post"><fieldset><legend>Modification Informations Client</legend><p>Entrez identifiant du client recherché : <input type="text" required  name="SelectClientModif"> <input type="submit" name="RechercherClientModif" value="Rechercher ce Client" /></fieldset></form>';
     require_once('gabarit.php');
 }
 
 
 function afficherModif($mod){
     $c='';
-    $c=$c.'<p><input type="checkbox" checked name="idClient[]" value="' . $mod->IDCLIENT .'">'.$mod->NOMCLI.'  Adresse : <input name="'. $mod->IDCLIENT  .'[]" type="text" value="' . $mod->ADRESSE .'" />  Numéro : <input name="'. $mod->IDCLIENT  .'[]" type="text" value="' . $mod->NUMTEL .'" />  eMail : <input name="'. $mod->IDCLIENT  .'[]" type="text" value="' . $mod->EMAIL .'" />  Profession : <input name="'. $mod->IDCLIENT  .'[]" type="text" value="' . $mod->PROFESSION .'" />  Situation Familiale : <input name="'. $mod->IDCLIENT  .'[]" type="text" value="' . $mod->SITUATION_FAMILIALE .'" /></p>';
+    $c=$c.'<p><input type="checkbox" checked name="idClient[]" value="' . $mod->IDCLIENT .'">'.$mod->NOMCLI.'  Adresse : <input required name="'. $mod->IDCLIENT  .'[]" type="text"  value="' . $mod->ADRESSE .'" />  Numéro : <input required name="'. $mod->IDCLIENT  .'[]" type="text" value="' . $mod->NUMTEL .'" />  eMail : <input required name="'. $mod->IDCLIENT  .'[]" type="text" value="' . $mod->EMAIL .'" />  Profession : <input required name="'. $mod->IDCLIENT  .'[]" type="text" value="' . $mod->PROFESSION .'" />  Situation Familiale : <input required name="'. $mod->IDCLIENT  .'[]" type="text" value="' . $mod->SITUATION_FAMILIALE .'" /></p>';
 
     $contenu=afficherMenuAgent().'<form id="formModifs" action="site.php" method="post"><fieldset><legend>Recherche client </legend>'.$c.'<p><input type="submit" value="Modifier Client" name="modClient"/></p></fieldset></form>';
     require_once ('gabarit.php');
@@ -31,7 +31,7 @@ function afficherModif($mod){
 
 function afficherClientSynthese(){
 
-    $contenu=afficherMenuAgent().'<form id="monForm2" action="site.php" method="post"><fieldset><legend>Synthese Client</legend><p>Entrez identifiant du client recherché : <input type="text"  name="SelectClientSynthese"> <input type="submit" name="RechercherClientSynthese" value="Afficher Synthese" /></fieldset></form>';
+    $contenu=afficherMenuAgent().'<form id="monForm2" action="site.php" method="post"><fieldset><legend>Synthese Client</legend><p>Entrez identifiant du client recherché : <input type="text" required name="SelectClientSynthese"> <input type="submit" name="RechercherClientSynthese" value="Afficher Synthese" /></fieldset></form>';
     require_once('gabarit.php');
 }
 
@@ -57,7 +57,7 @@ function afficherSynthese($synthese,$mod,$con,$contrat){
 
 function afficherClientOperation(){
 
-    $contenu=afficherMenuAgent().'<form id="monForm2" action="site.php" method="post"><fieldset><legend>Opération sur un compte</legend><p>Entrez identifiant du client : <input type="text"  name="SelectClientOperation"> <input type="submit" name="RechercherClientOperation" value="Afficher les comptes" /></fieldset></form>';
+    $contenu=afficherMenuAgent().'<form id="monForm2" action="site.php" method="post"><fieldset><legend>Opération sur un compte</legend><p>Entrez identifiant du client : <input type="text"  required name="SelectClientOperation"> <input type="submit" name="RechercherClientOperation" value="Afficher les comptes" /></fieldset></form>';
     require_once('gabarit.php');
 }
 
@@ -69,19 +69,19 @@ function afficherOperation($operation,$idClient){
     foreach ($operation as $ope){
         $c=$c.'<option value="'.$ope->NOMCOMPTE.'">'.$ope->NOMCOMPTE.'</option>';
     }
-    $contenu=afficherMenuAgent().'<form id="formOpe" action="site.php" method="post"><fieldset><legend>Opération sur un compte </legend><p><label>Id du Client </label><input type="text" name="idduClient" value="'.$idClient.'" readonly="readonly"></p><p>Nom du compte : <select name="opeClient">'.$c.'</select></p> <p>Montant opération : <input type="text" name="montantOpe"/></p><p><input type="submit" value="Dépot" name="DepotClient"/><input type="submit" value="Retrait" name="RetraitClient"/></p></fieldset></form>';
+    $contenu=afficherMenuAgent().'<form id="formOpe" action="site.php" method="post"><fieldset><legend>Opération sur un compte </legend><p><label>Id du Client </label><input type="text" name="idduClient" value="'.$idClient.'" readonly="readonly"></p><p>Nom du compte : <select name="opeClient">'.$c.'</select></p> <p>Montant opération : <input required type="text" name="montantOpe"/></p><p><input type="submit" value="Dépot" name="DepotClient"/><input type="submit" value="Retrait" name="RetraitClient"/></p></fieldset></form>';
     require_once ('gabarit.php');
 }
 
 
 function afficherClientRechercheID(){
 
-    $contenu=afficherMenuAgent().'<form id="monForm3" action="site.php" method="post"><fieldset><legend>Recherce identifiant client</legend><p>Entrez nom du client recherché : <input type="text"  name="SelectClientNom"> Date de naissance du client recherché : <input type="date"  name="SelectClientDateN"> <input type="submit" name="RechercherClientID" value="Afficher id client" /></fieldset></form>';
+    $contenu=afficherMenuAgent().'<form id="monForm3" action="site.php" method="post"><fieldset><legend>Recherce identifiant client</legend><p>Entrez nom du client recherché : <input required type="text"  name="SelectClientNom"> Date de naissance du client recherché : <input type="date"  required name="SelectClientDateN"> <input type="submit" name="RechercherClientID" value="Afficher id client" /></fieldset></form>';
     require_once('gabarit.php');
 }
 
 function afficherIDCli($cli) {
-    $contenu =afficherMenuAgent().'<p><fieldset><legend>Recherche identifiant client</legend><p>Identifiant du client : <input name="IDCLIENT" type="text" value="' . $cli->IDCLIENT .'" /></p></legend></p';
+    $contenu =afficherMenuAgent().'<p><fieldset><legend>Recherche identifiant client</legend><p>Identifiant du client : <input name="IDCLIENT" required type="text" value="' . $cli->IDCLIENT .'" /></p></legend></p';
 
     require_once ('gabarit.php');
 }
@@ -92,10 +92,9 @@ function afficherMenuAgent(){
     $contenu='<form id="formMenu" method="post" action="site.php"><nav><ul><li><input type="submit" value="Aller à la selection des operation" name="retourAgent"></li><li><input type="submit" value="Deconnexion" name="Deco"></li></ul></nav></form>';
     return $contenu;
 }
-//--------------------------------------------------------------------
 function afficherdemandeIdrdv(){
     $contenu =afficherMenuAgent().
-        '<form id="formRdv" action="site.php" method="post"><fieldset><legend>Planning</legend><label>Entrez l\'id d\'un client</label><input type="text" name="idCli"><input type="submit" name="afficherSemaine" value="Rechercher"></fieldset>';
+        '<form id="formRdv" action="site.php" method="post"><fieldset><legend>Planning</legend><label>Entrez l\'id d\'un client</label><input type="text" required name="idCli"><input type="submit" name="afficherSemaine" value="Rechercher"></fieldset>';
 
     require_once ('gabarit.php');
 }
