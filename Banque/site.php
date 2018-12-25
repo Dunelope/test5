@@ -261,11 +261,7 @@ try {
     if(isset($_POST['retourC'])){
         CtlConseiller();
     }
-	
-	if (isset($_POST['menuPlanning'])){
-		CtlListeConseiller();
-	
-	}
+
 	
 	if(isset($_POST['changerDateConseiller'])) {
         $daterdv=$_POST['nouvelledateConseiller'];
@@ -322,6 +318,10 @@ try {
         if($val=='resilierCompte') {
             CtlAfficherChoixClient3();
             //CtlAfficherMenuResCompte();
+        }
+        if ($val=='Planning'){
+            CtlListeConseiller();
+
         }
     }
 

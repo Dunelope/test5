@@ -357,6 +357,16 @@ function getidMotif($nomMotif){
 
 /*------------------------------------------CONSEILLER-------------------------------------------*/
 
+function getrdvEmployeSansClient($idemploye,$datedebutSemaine,$dateFinSemaine){
+    $connexion=getConnect();
+    $requete="Select DATERDV from rendez_vous where idemploye='$idemploye' and idClient is NULL and daterdv between '$datedebutSemaine' and '$dateFinSemaine' order by TIME(daterdv),daterdv asc";
+    $resultat=$connexion->query($requete);
+    $resultat->setFetchMode(pdo::FETCH_OBJ);
+    $rdvEmploye=$resultat->fetchAll();
+    $resultat->closeCursor();
+    return $rdvEmploye;
+}
+
 function addClient($id,$nom,$prenom,$datN,$adresse,$numT,$email,$profession,$situation){
     $connexion = getConnect();
     $requete = "INSERT INTO Client VALUES (DEFAULT,'$id','$nom','$prenom','$datN','$adresse','$numT','$email','$profession','$situation') ";

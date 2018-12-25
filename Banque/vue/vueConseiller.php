@@ -8,17 +8,14 @@ function afficherMenuConseiller(){
 function afficherConseiller(){
     $contenu=afficherMenuConseiller().'<form id=Formc1 action="site.php" method="post"> 
     <fieldset><legend>Que voulez-vous faire ?</legend>
-    <p>
-    Menu des Planning :
-    <input type="submit" value="Planning" name="menuPlanning">
-    
-</p>
+
 <p>
 Interaction avec un client : 
 <select name="interactionCli">
-<option value="inscrireCli" selected>Inscrire un Client</option>
+<option value="inscrireCli" >Inscrire un Client</option>
 <option value="vendreContrat">Vendre un contrat</option>
 <option value="ouvrirCompte">Ouvrir un compte</option>
+<option value="Planning"> Planning </option>
 <option value="modifDecouvert">Modifier la valeur d\'un découvert</option>
 <option value="resilierContrat">Résilier un contrat</option>
 <option value="resilierCompte">Résilier un compte</option>
@@ -282,11 +279,16 @@ Choix de l\'employer :
 }
 	
 
-function afficherCalendrierConseiller($idEmploye,$dateSemaine,$rdvemploye){
+function afficherCalendrierConseiller($idEmploye,$dateSemaine,$rdvemploye,$rdvSansClient){
     $tab= array();
+    $tabSansClient=array();
     foreach ($rdvemploye as $rdv){
         array_push($tab,$rdv);
     }
+    foreach ($rdvSansClient as $rdvsc){
+        array_push($tabSansClient,$rdvsc);
+    }
+
     $x=new DateTime($dateSemaine);
     $y=$x;
     $jourd=$x->format("w");// numéro du $x actuel 0 dimanche, 6 samedi
@@ -328,14 +330,27 @@ function afficherCalendrierConseiller($idEmploye,$dateSemaine,$rdvemploye){
                 $jour = $datetest->format("d");
                 $heure = $datetest->format("G:i");
             }
+
+            if (!empty($tabSansClient)){
+                $dateSansClient= new DateTime($tabSansClient[0]->DATERDV);
+                $jourSansCli=$dateSansClient->format("d");
+                $heureSansCli=$dateSansClient->format("G:i");
+            }
             if ($h == 0) {
                 $contenu = $contenu . '<th>' . $jourTexte[$j] . ' ' . date("d", mktime(0, 0, 0, $x->format("n"), ($x->format("d")) - $jourd + $j, $x->format("y"))) . '</th>';
             }
 			else {
                 if (!empty($tab) && $jour==date("d", mktime(0, 0, 0, $x->format("n"), ($x->format("d")) - $jourd + $j, $x->format("y"))) && $heure==($h+7) ) {
-                    $contenu = $contenu . '<td align="center" style="background-color: red; color : black">Details RDV <input type="radio" checked name="detailRDVButtonRadio" value="' . date("Y-m-d H:i", mktime($h + 7, 0, 0, $x->format("n"), ($x->format("d")) - $jourd + $j, $x->format("y"))) . '"></td>';
-                    array_shift($tab);
-				}
+
+                    if (!empty($tabSansClient) && $jour == $jourSansCli && $heure == $heureSansCli) {
+                        $contenu = $contenu . '<td align="center" style="background-color: red; color : black">Conseiller Non Disponoble</td>';
+                        array_shift($tab);
+                        array_shift($tabSansClient);
+                    } else {
+                        $contenu = $contenu . '<td align="center" style="background-color: red; color : black">Details RDV <input type="radio" checked name="detailRDVButtonRadio" value="' . date("Y-m-d H:i", mktime($h + 7, 0, 0, $x->format("n"), ($x->format("d")) - $jourd + $j, $x->format("y"))) . '"></td>';
+                        array_shift($tab);
+                    }
+                }
 			
                 else { 
 					$contenu = $contenu . '<td align="center"><input type="radio"  checked name="dateTimeBouttonRadio" value="' . date("Y-m-d H:i", mktime($h + 7, 0, 0, $x->format("n"), ($x->format("d")) - $jourd + $j, $x->format("y"))) . '"></td>';

@@ -329,8 +329,9 @@ function CtlCalendrierRDVEmploye($idConseiller,$dateSemaine){
     $dateDebSemaineFrd = date("Y-m-d",mktime(0,0,0,$x->format("n"),($x->format("d"))-$jourd+1,$x->format("y")));
     $dateFinSemaineFrd = date("Y-m-d",mktime(0,0,0,$x->format("n"),($x->format("d"))-$jourd+7,$x->format("y")));
     $rdvDuConseiller=getrdvEmploye($idConseiller,$dateDebSemaineFrd,$dateFinSemaineFrd);
+    $rdvSansClient=getrdvEmployeSansClient($idConseiller,$dateDebSemaineFrd,$dateFinSemaineFrd);
 	
-    afficherCalendrierConseiller($idConseiller,$dateSemaine,$rdvDuConseiller);
+    afficherCalendrierConseiller($idConseiller,$dateSemaine,$rdvDuConseiller,$rdvSansClient);
 }
 
 function CtlEnregisterIndispo($date,$idEmploye){
