@@ -291,8 +291,11 @@ try {
     }
 	
 	if (isset($_POST['afficherDetailsRDV'])){
-		$val=$_POST['detailRDVButtonRadio'];
-		CtlSyntheseRDV($val);
+	    $val=null;
+	    if (isset($_POST['detailRDVButtonRadio']))
+		    $val=$_POST['detailRDVButtonRadio'];
+		$idEmploye=$_POST['idEmploye'];
+		CtlSyntheseRDV($val,$idEmploye);
 	}
 	
 
@@ -352,6 +355,7 @@ try {
 
     if(isset($_POST['choixcli'])){
         $cli=$_POST['choixClient'];
+
         $x=CtlChercheCompte($cli);
         CtlAfficherMenuDecouvert($cli,$x);
     }

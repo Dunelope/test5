@@ -240,18 +240,26 @@ function CtlAfficherInscrireCli(){
     afficherInscrireCli();
 }
 
-function CtlInscrireCli($id,$nom,$prenom,$datN,$adresse,$numT,$email,$profession,$situation){
-    addClient($id,$nom,$prenom,$datN,$adresse,$numT,$email,$profession,$situation);
-    afficherConseiller();
+function CtlInscrireCli($idconseiller,$nom,$prenom,$datN,$adresse,$numT,$email,$profession,$situation){
+    if (verifConseiller($idconseiller) && verifConseiller($idconseiller)->TYPEEMPLOYE=="Conseiller") {
+        addClient($idconseiller, $nom, $prenom, $datN, $adresse, $numT, $email, $profession, $situation);
+        afficherConseiller();
+    }else
+        afficherInscrireCli();
 }
 
 function CtlAfficherVendreContrat(){
     afficherVendreContrat(listeContrat());
 }
 
-function CtlVendreContrat($id,$compte,$tarif){
-    vendreContrat($id,$compte,$tarif);
-    afficherConseiller();
+function CtlVendreContrat($idclient,$contrat,$tarif){
+    $x=verifContratClient($idclient,$contrat);
+    $y=$tarif;
+    if (is_numeric($y) && $y>=0 && verifClient($idclient) && !$x) {
+        vendreContrat($idclient, $contrat, $tarif);
+        afficherConseiller();
+    }else
+        CtlAfficherVendreContrat();
 }
 
 function CtlAfficherOuvrirCompte(){
@@ -259,22 +267,34 @@ function CtlAfficherOuvrirCompte(){
 }
 
 function CtlOuvrirCompte($id,$compte,$solde,$decouvert){
-    ouvrirCompte($id,$compte,$solde,$decouvert);
-    afficherConseiller();
+    $x=verifcompteClient($id,$compte);
+
+    if (is_numeric($solde) && $solde>=0 && $decouvert >=0 && is_numeric($decouvert) && verifClient($id) && !$x){
+        ouvrirCompte($id,$compte,$solde,$decouvert);
+        afficherConseiller();
+    }else
+        CtlafficherOuvrirCompte();
 }
 
 function CtlAfficherMenuDecouvert($id,$compte){
-    afficherMenuDecouvert($id,$compte);
+    if (verifClient($id))
+        afficherMenuDecouvert($id,$compte);
+    else afficherChoixClient();
 }
 
 
 function CtlModifDecouvert($id,$compte,$valeur){
-    modifDecouvert($id,$compte,$valeur);
+    if ($valeur>=0)
+        modifDecouvert($id,$compte,$valeur);
     afficherConseiller();
+
 }
 
 function CtlAfficherMenuResContrat($id,$contrat){
-    afficherMenuResContrat($id,$contrat);
+    if (verifClient($id))
+        afficherMenuResContrat($id,$contrat);
+    else
+        afficherChoixClient2();
 }
 
 function CtlResContrat($id,$contrat){
@@ -284,7 +304,10 @@ function CtlResContrat($id,$contrat){
 
 
 function CtlAfficherMenuResCompte($id,$compte){
-    afficherMenuResCompte($id,$compte);
+    if (verifClient($id))
+        afficherMenuResCompte($id,$compte);
+    else
+        afficherChoixClient3();
 }
 
 function CtlResCompte($id,$compte){
@@ -335,19 +358,29 @@ function CtlCalendrierRDVEmploye($idConseiller,$dateSemaine){
 }
 
 function CtlEnregisterIndispo($date,$idEmploye){
-	enregisterIndispo($date,$idEmploye);
-	afficherConseiller();
+    $x= date("Y-m-d H:i");
+    $y=strtotime($date);
+    $x=strtotime($x);
+
+    if ($y>=$x) {
+        enregisterIndispo($date, $idEmploye);
+        afficherConseiller();
+    }else
+        CtlCalendrierRDVEmploye($idEmploye,$date);
 }
 
-function CtlSyntheseRDV($dateRDV){
-	$id=getClientRDV($dateRDV)->IDCLIENT;
-	$idmot=getClientRDV($dateRDV)->IDMOTIF;
-	$mot=getMotifRDV($idmot);
-	$syn=getSynthese($id);
-	$mod=getModif($id);
-	$con=getConseiller($id);
-	$cont=getContratClient($id);
-    afficherDetailsRDV($syn,$mod,$con,$cont,$mot,$id);
+function CtlSyntheseRDV($dateRDV,$idemploye){
+    if (isset($dateRDV)) {
+        $id = getClientRDV($dateRDV)->IDCLIENT;
+        $idmot = getClientRDV($dateRDV)->IDMOTIF;
+        $mot = getMotifRDV($idmot);
+        $syn = getSynthese($id);
+        $mod = getModif($id);
+        $con = getConseiller($id);
+        $cont = getContratClient($id);
+        afficherDetailsRDV($syn, $mod, $con, $cont, $mot, $id);
+    }else
+        CtlCalendrierRDVEmploye($idemploye,date("Y-m-d H:i"));
 }
 
 function CtlIDClientEstNull($idEmploye,$tab){

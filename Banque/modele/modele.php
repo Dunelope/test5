@@ -357,6 +357,45 @@ function getidMotif($nomMotif){
 
 /*------------------------------------------CONSEILLER-------------------------------------------*/
 
+function verifClient($idClient){
+    $connexion=getConnect();
+    $requete="Select * from client where idclient='$idClient'";
+    $resultat=$connexion->query($requete);
+    $resultat->setFetchMode(pdo::FETCH_OBJ);
+    $clientExite=$resultat->fetch();
+    $resultat->closeCursor();
+    return $clientExite;
+}
+
+function verifConseiller($idConseiller){
+    $connexion=getConnect();
+    $requete="Select * from employe where idemploye='$idConseiller'";
+    $resultat=$connexion->query($requete);
+    $resultat->setFetchMode(pdo::FETCH_OBJ);
+    $clientExite=$resultat->fetch();
+    $resultat->closeCursor();
+    return $clientExite;
+}
+function verifContratClient($idclient,$contrat){
+    $connexion=getConnect();
+    $requete="Select * from contratclient where idclient='$idclient' and nomcontrat='$contrat'";
+    $resultat=$connexion->query($requete);
+    $resultat->setFetchMode(pdo::FETCH_OBJ);
+    $clientExite=$resultat->fetch();
+    $resultat->closeCursor();
+    return $clientExite;
+}
+
+function verifcompteClient($id,$compte){
+    $connexion=getConnect();
+    $requete="Select * from compteclient where idclient='$id' and nomcompte='$compte'";
+    $resultat=$connexion->query($requete);
+    $resultat->setFetchMode(pdo::FETCH_OBJ);
+    $clientExite=$resultat->fetch();
+    $resultat->closeCursor();
+    return $clientExite;
+}
+
 function getrdvEmployeSansClient($idemploye,$datedebutSemaine,$dateFinSemaine){
     $connexion=getConnect();
     $requete="Select DATERDV from rendez_vous where idemploye='$idemploye' and idClient is NULL and daterdv between '$datedebutSemaine' and '$dateFinSemaine' order by TIME(daterdv),daterdv asc";

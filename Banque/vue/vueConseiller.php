@@ -57,7 +57,7 @@ function afficherInscrireCli(){
     </p>
     <p>
     <label for="emailCli">eMail du Client : </label>
-    <input type="text" name="emailCli" id="emailCli" required/>
+    <input type="email" name="emailCli" id="emailCli" required/>
     </p>
     <p>
     <label for="professionCli">Profession du Client : </label>
@@ -65,11 +65,7 @@ function afficherInscrireCli(){
     </p>
     <p>
     <label for="situationCli">Situation familiale du Client :</label>
-    <select name="situationCli">
-    <option value="celibataire" selected>Célibataire</option>
-    <option value="marie">Marié</option>
-    <option value="pacse">Pacsé</option>
-    </select>
+    <input type="text" required name="situationCli">
     </p>
     <p>
     <input type="submit" value="Inscrire le client" name="inscrireClient">
