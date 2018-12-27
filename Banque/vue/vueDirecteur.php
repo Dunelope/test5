@@ -23,7 +23,7 @@ function afficherContrat($contrats){
 
     foreach ($contrats as $con){
         $conSansEspace=preg_replace('/\s+/', '', $con->NOMCONTRAT);
-        $c=$c.'<p><input type="checkbox" name="nomContrats[]" value="' . $con->NOMCONTRAT .'"> Nom Contrat : <input name="'. $conSansEspace .'" type="text" value="' . $con->NOMCONTRAT .'" /> </p>';
+        $c=$c.'<p><input type="checkbox" name="nomContrats[]" value="' . $con->NOMCONTRAT .'"><label>Nom Contrat : </label> <input name="'. $conSansEspace .'" type="text" value="' . $con->NOMCONTRAT .'" /> </p>';
     }
     $contenu=afficherMenuDirecteur().'<form id="formContrats" action="site.php" method="post"><fieldset><legend>Listes des contrats</legend>'.$c.'<p><label>  Ajouter nom Contrat  : </label><input type="text" name="contrat"  /></p><p><input type="submit" value="Ajouter Contrat" name="AjoutContr"  /><input type="submit" value="Supprimer Contrat" name="delcontrat"  /><input type="submit" value="Modifier Contrat" name="modcontrat"/></p></fieldset></form>';
     require_once ('gabarit.php');
@@ -34,7 +34,7 @@ function afficherComptes($comptes){
     $c='';
     foreach ($comptes as $com){
         $comSansEspace=preg_replace('/\s+/', '', $com->NOMCOMPTE);
-        $c=$c.'<p><input type="checkbox" name="nomcomptes[]" value="' . $com->NOMCOMPTE .'"> Nom Compte : <input name="' . $comSansEspace .'" type="text" value="' . $com->NOMCOMPTE .'" /> </p>';
+        $c=$c.'<p><input type="checkbox" name="nomcomptes[]" value="' . $com->NOMCOMPTE .'"><label>Nom Compte : </label> <input name="' . $comSansEspace .'" type="text" value="' . $com->NOMCOMPTE .'" /> </p>';
     }
     $contenu=afficherMenuDirecteur().'<form id="formComptes" action="site.php" method="post"><fieldset><legend>Listes des Comptes</legend>'.$c.'<p><label>  Ajouter nom Compte  : </label><input type="text" name="compte"  /></p><p><input type="submit" value="Ajouter Compte" name="AjoutCompte"  /> <input type="submit" value="Supprimer Comptes" name="delComptes"  /><input type="submit" value="Modifier Comptes" name="modComptes"/></p></fieldset></form>';
     require_once ('gabarit.php');
@@ -43,7 +43,7 @@ function afficherComptes($comptes){
 function afficherMotif($motif){
     $c='';
     foreach ($motif as $mot){
-        $c=$c.'<p><input type="checkbox" name="idMotif[]" value="' . $mot->IDMOTIF .'"> Pieces pour le motif '.$mot->NOMMOTIF.' <input name="'. $mot->IDMOTIF  .'" type="text" value="' . $mot->LISTEPIECES .'" /> </p>';
+        $c=$c.'<p><input type="checkbox" name="idMotif[]" value="' . $mot->IDMOTIF .'"><label> Pieces pour le motif '.$mot->NOMMOTIF.'</label> <input name="'. $mot->IDMOTIF  .'" type="text" value="' . $mot->LISTEPIECES .'" /> </p>';
     }
     $contenu=afficherMenuDirecteur().'<form id="formMotifs" action="site.php" method="post"><fieldset><legend>Listes des Motifs</legend>'.$c.'<p><label>  Ajouter motif  : </label><input type="text" name="motif"  /> <label> Pieces : </label><input type="text" name="pieces"  /></p><p><input type="submit" value="Ajouter Motif" name="AjoutMotif"  /> <input type="submit" value="Supprimer Motif" name="delMotif"  /><input type="submit" value="Modifier Motif" name="modMotif"/></p></fieldset></form>';
     require_once ('gabarit.php');
@@ -51,7 +51,7 @@ function afficherMotif($motif){
 function afficherEmployer($login){
     $c='';
     foreach ($login as $log){
-        $c=$c.'<p><input type="checkbox" name="idEmploye[]" value="' . $log->IDEMPLOYE .'"> Login pour : '.$log->TYPEEMPLOYE.'  ' .$log->NOMEMPLOYE.' <input name="'. $log->IDEMPLOYE  .'[]" type="text" value="' . $log->LOGINEMPLOYE .'" /> <input name="'. $log->IDEMPLOYE  .'[]" type="text" value="' . $log->MDPEMPLOYE .'" /></p>';
+        $c=$c.'<p><input type="checkbox" name="idEmploye[]" value="' . $log->IDEMPLOYE .'"><label> Login pour : '.$log->TYPEEMPLOYE.'  ' .$log->NOMEMPLOYE.' </label><input name="'. $log->IDEMPLOYE  .'[]" type="text" value="' . $log->LOGINEMPLOYE .'" /> <input name="'. $log->IDEMPLOYE  .'[]" type="text" value="' . $log->MDPEMPLOYE .'" /></p>';
 
     }
     $contenu=afficherMenuDirecteur().'<form id="formMotifs" action="site.php" method="post"><fieldset><legend>Listes des Employes </legend>'.$c.'<p><label>  Ajouter Employer : Nom   : </label><input type="text" name="NomEmploye"  /> <label> Login : </label><input type="text" name="LogienEmploye"  /><label> Mot De passe : </label><input type="text" name="MdpEmploye"  /> <label> Type : </label><select name="TypeEmploye" ><option value="Conseiller">Conseiller</option><option value="Agent">Agent</option></select> </p> <p><input type="submit" value="Ajouter Employé" name="AjoutEmploye"  /><input type="submit" value="Modifier Employé" name="modEmploye"/></p></fieldset></form>';
