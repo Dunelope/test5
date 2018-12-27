@@ -277,7 +277,7 @@ function CtlOuvrirCompte($id,$compte,$solde,$decouvert){
 }
 
 function CtlAfficherMenuDecouvert($id,$compte){
-    if (verifClient($id))
+    if (is_numeric($id) && verifClient($id))
         afficherMenuDecouvert($id,$compte);
     else afficherChoixClient();
 }
@@ -291,7 +291,7 @@ function CtlModifDecouvert($id,$compte,$valeur){
 }
 
 function CtlAfficherMenuResContrat($id,$contrat){
-    if (verifClient($id))
+    if (is_numeric($id) && verifClient($id))
         afficherMenuResContrat($id,$contrat);
     else
         afficherChoixClient2();
@@ -304,7 +304,7 @@ function CtlResContrat($id,$contrat){
 
 
 function CtlAfficherMenuResCompte($id,$compte){
-    if (verifClient($id))
+    if (is_numeric($id) && verifClient($id))
         afficherMenuResCompte($id,$compte);
     else
         afficherChoixClient3();
