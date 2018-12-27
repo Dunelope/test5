@@ -90,12 +90,13 @@ function afficherVendreContrat($contrat){
     <p>
 	<label>
     Type de contrat : 
-    </label><select name="contratAVendre">
+    </label><select class="conseiller" name="contratAVendre">
     '.$x.'
     </select>
     </p>
     <p>
-    <label for="tarif">Tarif Mensuel :</label>
+    <label>Tarif Mensuel : 
+	</label>
     <input type="text" name="tarif" id="tarif" required/>
     </p>
     <p>
@@ -119,7 +120,7 @@ function afficherOuvrirCompte($compte){
     </p>
     <p><label>
     Type de compte : 
-    </label><select name="compteAOuvrir">
+    </label><select class="conseiller" name="compteAOuvrir">
     '.$x.'
     </select>
     </p>
@@ -152,7 +153,7 @@ function afficherMenuDecouvert($id,$compte){
     </p>
     <p><label>
     Type de compte : 
-    </label><select name="compte">
+    </label><select class="conseiller" name="compte">
     '.$x.'
     </select>
     </p>
@@ -182,7 +183,7 @@ function afficherMenuResContrat($id,$contrat){
     </p>
     <p><label>
     Type de contrat : 
-    </label><select name="contratares">
+    </label><select class="conseiller" name="contratares">
     '.$x.'
     </select>
     </p>
@@ -206,7 +207,7 @@ function afficherMenuResCompte($id,$compte){
     </p>
     <p><label>
     Type de compte : 
-    </label><select name="compteares">
+    </label><select class="conseiller" name="compteares">
     '.$x.'
     </select>
     </p>

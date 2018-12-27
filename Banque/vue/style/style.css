@@ -23,6 +23,31 @@ label {
 	
 }
 
+label.motifDirecteur{
+	display : inline-block;
+	text-align:left;
+	width: 350px;
+}
+
+input.motifDirecteur{
+	width:450px;
+}
+
+input.modifDirecteur{
+	width:265px;
+	margin-left:-30px;
+	margin-right:25px;
+}
+
+label.stat{
+	display : inline-block;
+	text-align:left;
+	width: 450px;
+}
+
+label.statDate{
+	width:72px;
+}
 
 body {
 	background-color: #d9d9d9;
@@ -37,6 +62,15 @@ fieldset {
 	
 }
 
+select.conseiller{
+	margin-right:25px;
+	width:164px;
+}
+
+select {
+	text-align : center;
+}
+
 input {
 	border-radius :5px;
 	text-align: center;
@@ -46,6 +80,9 @@ input {
 
 
 input[type=submit] {
+  cursor: pointer;
+}
+input[type=reset] {
   cursor: pointer;
 }
 

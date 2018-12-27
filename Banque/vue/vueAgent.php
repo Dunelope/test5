@@ -67,7 +67,7 @@ function afficherOperation($operation,$idClient){
     foreach ($operation as $ope){
         $c=$c.'<option value="'.$ope->NOMCOMPTE.'">'.$ope->NOMCOMPTE.'</option>';
     }
-    $contenu=afficherMenuAgent().'<form id="formOpe" action="site.php" method="post"><fieldset><legend>Opération sur un compte </legend><p><label>Id du Client </label><input type="text" name="idduClient" value="'.$idClient.'" readonly="readonly"></p><p><label>Nom du compte : </label><select name="opeClient">'.$c.'</select></p> <p><label>Montant opération : </label><input required type="text" name="montantOpe"/></p><p><input type="submit" value="Dépot" name="DepotClient"/><input type="submit" value="Retrait" name="RetraitClient"/></p></fieldset></form>';
+    $contenu=afficherMenuAgent().'<form id="formOpe" action="site.php" method="post"><fieldset><legend>Opération sur un compte </legend><p><label>Id du Client </label><input type="text" name="idduClient" value="'.$idClient.'" readonly="readonly"></p><p><label>Nom du compte : </label><select class="conseiller" name="opeClient">'.$c.'</select></p> <p><label>Montant opération : </label><input required type="text" name="montantOpe"/></p><p><input type="submit" value="Dépot" name="DepotClient"/><input type="submit" value="Retrait" name="RetraitClient"/></p></fieldset></form>';
     require_once ('gabarit.php');
 }
 

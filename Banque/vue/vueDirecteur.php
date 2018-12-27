@@ -14,7 +14,7 @@ function afficherDirecteur() {
 }
 
 function afficherStats($con,$red,$nbCli,$montanttot){
-    $contenu=afficherMenuDirecteur().'<form id=monForm3 action="site.php" method="post"> <fieldset><legend>Statistiques banque</legend><p><label>Nombre Contrats Souscrits (Entre \'Date 1\' et \'Date 2\') : '.$con.'</label><p><label>Nombre de rendez-vous pris (Entre \'Date 1\' et \'Date 2\') : '.$red.'</label></p><p><label>Nombre clients (Avant \'Date 2\') : '.$nbCli.' </label></p><p><label>Solde Total Actuel : '.$montanttot.'</label></p><p><label>Date 1 : </label><input type="date" name="date1"><label> Date 2 : </label><input type="date" name="date2"><p><input type="submit" value="Selectionner" name="Stats"></p></fieldset></form>';
+    $contenu=afficherMenuDirecteur().'<form id=monForm3 action="site.php" method="post"> <fieldset><legend>Statistiques banque</legend><p><label class="stat">Nombre Contrats Souscrits (Entre \'Date 1\' et \'Date 2\') : '.$con.'</label><p><label class="stat">Nombre de rendez-vous pris (Entre \'Date 1\' et \'Date 2\') : '.$red.'</label></p><p><label class="stat">Nombre clients (Avant \'Date 2\') : '.$nbCli.' </label></p><p><label class="stat">Solde Total Actuel : '.$montanttot.'</label></p><p><label class="statDate">Date 1 : </label><input type="date" name="date1"><label class="statDate"> Date 2 : </label><input type="date" name="date2"><p><input type="submit" value="Selectionner" name="Stats"></p></fieldset></form>';
     require_once ('gabarit.php');
 }
 
@@ -43,9 +43,9 @@ function afficherComptes($comptes){
 function afficherMotif($motif){
     $c='';
     foreach ($motif as $mot){
-        $c=$c.'<p><input type="checkbox" name="idMotif[]" value="' . $mot->IDMOTIF .'"><label> Pieces pour le motif '.$mot->NOMMOTIF.'</label> <input name="'. $mot->IDMOTIF  .'" type="text" value="' . $mot->LISTEPIECES .'" /> </p>';
+        $c=$c.'<p><input type="checkbox" name="idMotif[]" value="' . $mot->IDMOTIF .'"><label class="motifDirecteur"> Pieces pour le motif '.$mot->NOMMOTIF.' : </label> <input class="motifDirecteur" name="'. $mot->IDMOTIF  .'" type="text" value="' . $mot->LISTEPIECES .'" /> </p>';
     }
-    $contenu=afficherMenuDirecteur().'<form id="formMotifs" action="site.php" method="post"><fieldset><legend>Listes des Motifs</legend>'.$c.'<p><label>  Ajouter motif  : </label><input type="text" name="motif"  /> <label> Pieces : </label><input type="text" name="pieces"  /></p><p><input type="submit" value="Ajouter Motif" name="AjoutMotif"  /> <input type="submit" value="Supprimer Motif" name="delMotif"  /><input type="submit" value="Modifier Motif" name="modMotif"/></p></fieldset></form>';
+    $contenu=afficherMenuDirecteur().'<form id="formMotifs" action="site.php" method="post"><fieldset><legend>Listes des Motifs</legend>'.$c.'<p><label>  Ajouter motif  : </label><input class="modifDirecteur" type="text" name="motif"  /> <label> Pieces : </label><input class="modifDirecteur" type="text" name="pieces"  /></p><p><input type="submit" value="Ajouter Motif" name="AjoutMotif"  /> <input type="submit" value="Supprimer Motif" name="delMotif"  /><input type="submit" value="Modifier Motif" name="modMotif"/></p></fieldset></form>';
     require_once ('gabarit.php');
 }
 function afficherEmployer($login){
