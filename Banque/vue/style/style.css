@@ -10,9 +10,17 @@ body {
 	
 }
 
-p{
-	display : inline;
-	text-align: center;
+.test {
+	text-align:center;
+	
+
+}
+
+label {
+	display : inline-block;
+	text-align:right;
+	padding-right:40px;
+	margin-right:40px;
 }
 
 body {
@@ -40,13 +48,11 @@ input[type=submit] {
 input.menu {
 	
 	color : white;
-	font-family : ;
 	border:none;
     background:transparent;
     text-decoration:underline;
 }
 
-}
 
 nav{
 	text-align : left;
