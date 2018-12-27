@@ -83,13 +83,14 @@ function afficherVendreContrat($contrat){
     }
     $contenu=afficherMenuConseiller().'<form id=Formc3 action="site.php" method="post"> 
     <fieldset><legend>Vendre un contrat</legend>
-    <p>
+    <p><label>
     Numéro du client :
-    <input type="text" name="numCli" required>
+    </label><input type="text" name="numCli" required>
     </p>
     <p>
+	<label>
     Type de contrat : 
-    <select name="contratAVendre">
+    </label><select name="contratAVendre">
     '.$x.'
     </select>
     </p>
@@ -112,29 +113,29 @@ function afficherOuvrirCompte($compte){
     }
     $contenu=afficherMenuConseiller().'<form id=Formc4 action="site.php" method="post"> 
     <fieldset><legend>Ouvrir un compte</legend>
-    <p>
+    <p><label>
     Numéro du client :
-    <input type="text" name="numCli" required>
+    </label><input type="text" name="numCli" required>
     </p>
-    <p>
+    <p><label>
     Type de compte : 
-    <select name="compteAOuvrir">
+    </label><select name="compteAOuvrir">
     '.$x.'
     </select>
     </p>
-    <p>
-    Solde :
-    <input type="text" name="soldeContrat" required>
+    <p><label>
+    Solde du compte : 
+    </label><input type="text" name="soldeContrat" required>
     </p>
-    <p>
-    Montant du découvert :
-    <input type="text" name="montantDecouvert" required>
+    <p><label>
+    Montant du découvert : 
+    </label><input type="text" name="montantDecouvert" required>
     </p>
     <p>
     <input type="submit" value="Ouvrir le compte" name="ouvrirCompte">
     <input type="reset" value="Effacer" >
     </p>
-    </fieldset></form>'.afficherMenuConseiller();
+    </fieldset></form>';
     require_once ('gabarit.php');
 }
 
@@ -145,19 +146,19 @@ function afficherMenuDecouvert($id,$compte){
     }
     $contenu=afficherMenuConseiller().'<form id=Formc5 action="site.php" method="post"> 
     <fieldset><legend>Modifier le découvert</legend>
-    <p>
+    <p><label>
     Numéro du client :
-    <input type="text" name="numClient" value="'.$id.'" required readonly>
+    </label><input type="text" name="numClient" value="'.$id.'" required readonly>
     </p>
-    <p>
+    <p><label>
     Type de compte : 
-    <select name="compte">
+    </label><select name="compte">
     '.$x.'
     </select>
     </p>
-    <p>
+    <p><label>
     Nouveau découvert :
-    <input type="text" name="montantDecouvert" required>
+    </label><input type="text" name="montantDecouvert" required>
     </p>
     <p>
     <p>
@@ -175,13 +176,13 @@ function afficherMenuResContrat($id,$contrat){
     }
     $contenu=afficherMenuConseiller().'<form id=Formc6 action="site.php" method="post"> 
     <fieldset><legend>Résilier un contrat</legend>
-    <p>
+    <p><label>
     Numéro du client :
-    <input type="text" name="numCli" value="'.$id.'" readonly>
+    </label><input type="text" name="numCli" value="'.$id.'" readonly>
     </p>
-    <p>
+    <p><label>
     Type de contrat : 
-    <select name="contratares">
+    </label><select name="contratares">
     '.$x.'
     </select>
     </p>
@@ -199,13 +200,13 @@ function afficherMenuResCompte($id,$compte){
     }
     $contenu=afficherMenuConseiller().'<form id=Formc7 action="site.php" method="post"> 
     <fieldset><legend>Choisir un client</legend>
-    <p>
+    <p><label>
     Numéro du client :
-    <input type="text" name="numCli" value="'.$id.'" readonly>
+    </label><input type="text" name="numCli" value="'.$id.'" readonly>
     </p>
-    <p>
+    <p><label>
     Type de compte : 
-    <select name="compteares">
+    </label><select name="compteares">
     '.$x.'
     </select>
     </p>
@@ -240,17 +241,17 @@ function afficherResContrat($contrat){
 
 function afficherChoixClient(){
 
-    $contenu=afficherMenuConseiller().'<form id="monFormc8" action="site.php" method="post"><fieldset><legend>Choisir un client</legend><p>Identifiant du client : <input type="text"  name="choixClient" required></p><p><input type="submit" value="Choisir" name="choixcli" /></fieldset></form>';
+    $contenu=afficherMenuConseiller().'<form id="monFormc8" action="site.php" method="post"><fieldset><legend>Choisir un client</legend><p><label>Identifiant du client : </label><input type="text"  name="choixClient" required></p><p><input type="submit" value="Choisir" name="choixcli" /></fieldset></form>';
     require_once('gabarit.php');
 }
 function afficherChoixClient2(){
 
-    $contenu=afficherMenuConseiller().'<form id="monFormc9" action="site.php" method="post"><fieldset><legend>Choisir un client</legend><p>Entrez identifiant du client : <input type="text"  name="choixClient2" required></p><p><input type="submit" name="choixcli2" value="Choisir" /></fieldset></form>';
+    $contenu=afficherMenuConseiller().'<form id="monFormc9" action="site.php" method="post"><fieldset><legend>Choisir un client</legend><p><label>Identifiant du client : </label><input type="text"  name="choixClient2" required></p><p><input type="submit" name="choixcli2" value="Choisir" /></fieldset></form>';
     require_once('gabarit.php');
 }
 function afficherChoixClient3(){
 
-    $contenu=afficherMenuConseiller().'<form id="monFormc10" action="site.php" method="post"><fieldset><legend>Choisir un client</legend><p>Entrez identifiant du client : <input type="text"  name="choixClient3" required></p><p><input type="submit" name="choixcli3" value="Choisir" /></fieldset></form>';
+    $contenu=afficherMenuConseiller().'<form id="monFormc10" action="site.php" method="post"><fieldset><legend>Choisir un client</legend><p><label>Identifiant du client : </label><input type="text"  name="choixClient3" required></p><p><input type="submit" name="choixcli3" value="Choisir" /></fieldset></form>';
     require_once('gabarit.php');
 }
 
@@ -262,9 +263,9 @@ function afficherChoixConseiller($employe){
     }
     $contenu=afficherMenuConseiller().'<form id=Formc1 action="site.php" method="post"> 
     <fieldset><legend>Afficher Planning : </legend>
-<p>
+<p><label>
 Choix de l\'employer :  
-<select name="choixListeConseiller">'.$c.'
+</label><select name="choixListeConseiller">'.$c.'
 </select>
 <input type="submit" value="Afficher Planning" name="ChoixConseiller">
 </p>
@@ -339,24 +340,19 @@ function afficherCalendrierConseiller($idEmploye,$dateSemaine,$rdvemploye,$rdvSa
                 if (!empty($tab) && $jour==date("d", mktime(0, 0, 0, $x->format("n"), ($x->format("d")) - $jourd + $j, $x->format("y"))) && $heure==($h+7) ) {
 
                     if (!empty($tabSansClient) && $jour == $jourSansCli && $heure == $heureSansCli) {
-                        $contenu = $contenu . '<td align="center" style="background-color: red; color : black">Conseiller Non Disponoble</td>';
+                        $contenu = $contenu . '<td class=tdErreur>Conseiller Non Disponible</td>';
                         array_shift($tab);
                         array_shift($tabSansClient);
                     } else {
-                        $contenu = $contenu . '<td align="center" style="background-color: red; color : black">Details RDV <input type="radio" checked name="detailRDVButtonRadio" value="' . date("Y-m-d H:i", mktime($h + 7, 0, 0, $x->format("n"), ($x->format("d")) - $jourd + $j, $x->format("y"))) . '"></td>';
+                        $contenu = $contenu . '<td class=tdErreur>Details RDV <input type="radio" checked name="detailRDVButtonRadio" value="' . date("Y-m-d H:i", mktime($h + 7, 0, 0, $x->format("n"), ($x->format("d")) - $jourd + $j, $x->format("y"))) . '"></td>';
                         array_shift($tab);
                     }
                 }
 			
                 else { 
-					$contenu = $contenu . '<td align="center"><input type="radio"  checked name="dateTimeBouttonRadio" value="' . date("Y-m-d H:i", mktime($h + 7, 0, 0, $x->format("n"), ($x->format("d")) - $jourd + $j, $x->format("y"))) . '"></td>';
+					$contenu = $contenu . '<td><input type="radio"  checked name="dateTimeBouttonRadio" value="' . date("Y-m-d H:i", mktime($h + 7, 0, 0, $x->format("n"), ($x->format("d")) - $jourd + $j, $x->format("y"))) . '"></td>';
 				}
 				
-				/*if (!empty($tab) && CtlIDClientEstNull($idEmploye,$tab) && $jour==date("d", mktime(0, 0, 0, $x->format("n"), ($x->format("d")) - $jourd + $j, $x->format("y"))) && $heure==($h+7) ) {
-					$contenu = $contenu . '<td align="center" style="background-color: red; color : black">Occupé </td>';
-					array_shift($tab);
-					
-				}*/
 			}
 		}
         $contenu = $contenu . '</tr>';
@@ -376,9 +372,9 @@ function afficherDetailsRDV($synthese,$mod,$con,$contrat,$mot,$idClient){
 	
 	if (!CtlestNouveauClient($idClient)){
 		
-		$c=$c.'<p><label>Nom du client : <input name="'. $mod->NOMCLI  .'[]" type="text" value="' . $mod->NOMCLI .'" readonly="readonly" /></label></p><p><label>Adresse : <input name="'. $mod->NOMCLI  .'[]" type="text" value="' . $mod->ADRESSE .'" readonly="readonly" /> </label></p><p><label> Numéro : <input name="'. $mod->NOMCLI  .'[]" type="text" value="' . $mod->NUMTEL .'" readonly="readonly" /></label></p><p><label>eMail : <input name="'. $mod->NOMCLI  .'[]" type="text" value="' . $mod->EMAIL .'" readonly="readonly" /></label></p><p><label>Profession : <input name="'. $mod->NOMCLI  .'[]" type="text" value="' . $mod->PROFESSION .'" readonly="readonly"/></label></p><p><label>Situation Familiale : <input name="'. $mod->NOMCLI  .'[]" type="text" value="' . $mod->SITUATION_FAMILIALE .'" readonly="readonly"/></label></p>';
+		$c=$c.'<p><label>Nom du client : </label><input name="'. $mod->NOMCLI  .'[]" type="text" value="' . $mod->NOMCLI .'" readonly="readonly" /></p><p><label>Adresse : </label><input name="'. $mod->NOMCLI  .'[]" type="text" value="' . $mod->ADRESSE .'" readonly="readonly" /></p><p><label> Numéro : </label><input name="'. $mod->NOMCLI  .'[]" type="text" value="' . $mod->NUMTEL .'" readonly="readonly" /></p><p><label>eMail : </label><input name="'. $mod->NOMCLI  .'[]" type="text" value="' . $mod->EMAIL .'" readonly="readonly" /></p><p><label>Profession : </label><input name="'. $mod->NOMCLI  .'[]" type="text" value="' . $mod->PROFESSION .'" readonly="readonly"/></p><p><label>Situation Familiale : </label><input name="'. $mod->NOMCLI  .'[]" type="text" value="' . $mod->SITUATION_FAMILIALE .'" readonly="readonly"/></p>';
 
-		$contenu='<p><fieldset><legend>Liste informations client</legend>'.$c.'<p>Nom du conseiller : <input name="'. $con->NOMEMPLOYE .'[]" type="text" value="' . $con->NOMEMPLOYE .'" readonly="readonly"/></p></fieldset>';
+		$contenu='<p><fieldset><legend>Liste informations client</legend>'.$c.'<p><label>Nom du conseiller : </label><input name="'. $con->NOMEMPLOYE .'[]" type="text" value="' . $con->NOMEMPLOYE .'" readonly="readonly"/></p></fieldset>';
 
 		foreach ($synthese as $syn){
 			$co=$co.'<p>Nom du compte : <input name="'. $syn->NOMCOMPTE  .'[]" type="text" value="' . $syn->NOMCOMPTE .'" readonly="readonly" />  Date ouverture : <input name="'. $syn->NOMCOMPTE  .'[]" type="text" value="' . $syn->DATEOUVERTURE .'" readonly="readonly"/>  Solde : <input name="'. $syn->NOMCOMPTE  .'[]" type="text" value="' . $syn->SOLDE .'" readonly="readonly"/>  Montant du decouvert autorisé : <input name="'. $syn->NOMCOMPTE  .'[]" type="text" value="' . $syn->MONTANTDECOUVERT .'" readonly="readonly"/></p>';
@@ -387,7 +383,7 @@ function afficherDetailsRDV($synthese,$mod,$con,$contrat,$mot,$idClient){
 			$contrats=$contrats.'<p>Nom du contrat : <input name="'. $ctr->NOMCONTRAT  .'[]" type="text" value="' . $ctr->NOMCONTRAT .'" readonly="readonly" />  Date ouverture : <input name="'. $ctr->NOMCONTRAT  .'[]" type="text" value="' . $ctr->DATEOUVERTURECONTRAT .'" readonly="readonly"/>  Tarif mensuel : <input name="'. $ctr->NOMCONTRAT  .'[]" type="text" value="' . $ctr->TARIFMENSUEL .'" readonly="readonly"/></p>';
 		}
 		$motif='';
-		$motif='<p><label>Motif du RDV :  <input name"'.$mot->IDMOTIF .'[]" type="text" value="' . $mot->NOMMOTIF .'" readonly="readonly" /></label></p><p><label>Pieces à ramener au RDV :  <input name"'.$mot->IDMOTIF .'[]" type="text" value="' . $mot->LISTEPIECES .'" readonly="readonly" /></label></p>';
+		$motif='<p><label>Motif du RDV :  </label><input name"'.$mot->IDMOTIF .'[]" type="text" value="' . $mot->NOMMOTIF .'" readonly="readonly" /></p><p><label>Pieces à ramener :  </label><input name"'.$mot->IDMOTIF .'[]" type="text" value="' . $mot->LISTEPIECES .'" readonly="readonly" /></p>';
 	
 	
 		$contenu=afficherMenuConseiller().'<legend>Information du rendez vous</legend>'.$contenu.'<p><fieldset><legend>Liste des comptes du client</legend>'.$co.'</fieldset><p><fieldset><legend>Liste des contrat du client</legend>'.$contrats.'</fieldset><fieldset><legend>Details du RDV</legend>'.$motif.'</fieldset></fieldset>';

@@ -20,7 +20,9 @@ label {
 	display : inline-block;
 	text-align:left;
 	width: 150px;
+	
 }
+
 
 body {
 	background-color: #d9d9d9;
@@ -39,9 +41,16 @@ input {
 	border-radius :5px;
 	text-align: center;
 	font-size: 15px;
+	margin-right:25px;
 }
+
+
 input[type=submit] {
   cursor: pointer;
+}
+
+input[type=checkbox] {
+  display:none;
 }
 
 input.menu {
@@ -83,7 +92,7 @@ td {
 	height : 20px;
 	vertical-align : center;
 	padding : 10px;
-	background-color : #fcfcfc;	
+	background-color : #fcfcfc;
 }
 
 th {
@@ -93,12 +102,6 @@ th {
 	background-color:#669999;
 }
 
-td.requete {
-	background-color : black;
-	color : white;
-	border-radius : 50px;
-	
-}
 
 td.tdErreur {
 	vertical-align : center;
