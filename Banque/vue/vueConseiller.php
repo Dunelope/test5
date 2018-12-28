@@ -1,7 +1,7 @@
 <?php
 
 function afficherMenuConseiller(){
-    $contenu='<form id="formMenu" method="post" action="site.php"><nav><ul><li><input class="menu" type="submit" value="Retour Menu" name="retourC"></li><li><input class="menu" type="submit" value="Deconnexion" name="Deco"></li></ul></nav></form>';
+    $contenu='<form id="formMenu" method="post" action="site.php"><nav><ul><li><input class="menu" type="submit" value="Aller à la selection des opérations" name="retourC"></li><li class="déco"><input class="menu" type="submit" value="Déconnexion" name="Deco"></li></ul></nav></form>';
     return $contenu;
 }
 
@@ -10,8 +10,7 @@ function afficherConseiller(){
     <fieldset><legend>Que voulez-vous faire ?</legend>
 
 <p>
-Interaction avec un client : 
-<select name="interactionCli">
+<select class="menu" name="interactionCli">
 <option value="inscrireCli" >Inscrire un Client</option>
 <option value="vendreContrat">Vendre un contrat</option>
 <option value="ouvrirCompte">Ouvrir un compte</option>

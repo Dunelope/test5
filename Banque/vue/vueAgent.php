@@ -2,7 +2,7 @@
 
 
 function afficherAgent(){
-    $contenu=afficherMenuAgent().'<form id=monForm2 action="site.php" method="post"> <fieldset><legend>Selection opperation</legend><p><select name="opeAgent"><option value="c1">Modifier informations client</option><option value="c2">Synthese client</option><option value="c3">Opération sur le compte</option><option value="c4">Rendez-vous</option><option value="c5">Retrouver identifiant client</option></select><input type="submit" value="Selectionner" name="operaAgent"></p></fieldset></form>';
+    $contenu=afficherMenuAgent().'<form id=monForm2 action="site.php" method="post"> <fieldset><legend>Selection opperation</legend><p><select class="menu" name="opeAgent"><option value="c1">Modifier informations client</option><option value="c2">Synthese client</option><option value="c3">Opération sur le compte</option><option value="c4">Rendez-vous</option><option value="c5">Retrouver identifiant client</option></select><input type="submit" value="Selectionner" name="operaAgent"></p></fieldset></form>';
     require_once('gabarit.php');
 }
 
@@ -87,7 +87,7 @@ function afficherIDCli($cli) {
 
 
 function afficherMenuAgent(){
-    $contenu='<form id="formMenu" method="post" action="site.php"><nav><ul><li><input type="submit" value="Aller à la selection des operation" name="retourAgent"></li><li><input type="submit" value="Deconnexion" name="Deco"></li></ul></nav></form>';
+    $contenu='<form id="formMenu" method="post" action="site.php"><nav><ul><li><input class="menu" type="submit" value="Aller à la selection des opérations" name="retourAgent"></li><li class="déco"><input class="menu" type="submit" value="Déconnexion" name="Deco"></li></ul></nav></form>';
     return $contenu;
 }
 function afficherdemandeIdrdv(){
