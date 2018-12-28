@@ -136,7 +136,9 @@ function CtlErreur($erreur){
 /*-----------------------------------------------------FONCTION AGENT-------------------------------------*/
 
 function CtlModifierClient($idClient,$adresse,$numTel,$eMail,$profession,$situation_familiale){
-    modifClient($idClient,$adresse,$numTel,$eMail,$profession,$situation_familiale);
+	if (is_numeric($numTel)){
+		modifClient($idClient,$adresse,$numTel,$eMail,$profession,$situation_familiale);
+	}
 }
 function CtlafficherClient(){
 	afficherClient();
