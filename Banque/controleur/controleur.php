@@ -142,20 +142,28 @@ function CtlafficherClient(){
 	afficherClient();
 }
 function CtlModifier($id){
-	$mod=getModif($id);
-    afficherModif($mod);
+	if (is_numeric($id) && verifClient($id)){
+		$mod=getModif($id);
+		afficherModif($mod);
+	}else {
+		afficherClient();
+	}
 }
 
 function CtlafficherClientSynthese(){
 	afficherClientSynthese();
 }
 
-function CtlSynthese($id){	
-	$syn=getSynthese($id);
-	$mod=getModif($id);
-	$con=getConseiller($id);
-	$cont=getContratClient($id);
-    afficherSynthese($syn,$mod,$con,$cont);
+function CtlSynthese($id){
+	if (is_numeric($id) && verifClient($id)){	
+		$syn=getSynthese($id);
+		$mod=getModif($id);
+		$con=getConseiller($id);
+		$cont=getContratClient($id);
+		afficherSynthese($syn,$mod,$con,$cont);
+	}else{
+		afficherClientSynthese();
+	}		
 }
 
 function CtlAfficherOperation(){	
@@ -163,8 +171,13 @@ function CtlAfficherOperation(){
 }
 
 function CtlOperationClient($id){
-	$ope=getOperation($id);
-	afficherOperation($ope,$id);
+	if (is_numeric($id) && verifClient($id)){
+		$ope=getOperation($id);
+		afficherOperation($ope,$id);
+	}
+	else{
+		afficherClientOperation();
+	}	
 }
 
 function CtlOperation($idClient,$nomCompte,$montant,$nomOperation){
@@ -199,8 +212,13 @@ function CtlAfficherIDClient(){
 }
 
 function CtlTrouverIDClient($nom,$dateN){
-    $cli=getIDcli($nom,$dateN);
-    afficherIDCli($cli);
+	if (verifRechercheClient($nom,$dateN)){
+		$cli=getIDcli($nom,$dateN);
+		afficherIDCli($cli);
+	}
+	else{
+		afficherClientRechercheID();
+	}		
 }
 //---------------------------------------------------------------------------------------------------------------------
 function CtldemanderIdCliRDV(){
@@ -208,14 +226,18 @@ function CtldemanderIdCliRDV(){
 }
 
 function CtlCalendrierRDV($idClient,$dateSemaine){
-    $idConseiller=trouverConseillerDeClient($idClient)->idemploye;
-    $x=new DateTime($dateSemaine);
-    $jourd=$x->format("w");// numéro du $x actuel 0 dimanche, 6 samedi
-    $dateDebSemaineFrd = date("Y-m-d",mktime(0,0,0,$x->format("n"),($x->format("d"))-$jourd+1,$x->format("y")));
-    $dateFinSemaineFrd = date("Y-m-d",mktime(0,0,0,$x->format("n"),($x->format("d"))-$jourd+7,$x->format("y")));
-    $rdvDuConseiller=getrdvEmploye($idConseiller,$dateDebSemaineFrd,$dateFinSemaineFrd);
-    $motif=getMotif();
-    afficherCalendrier($idClient,$dateSemaine,$rdvDuConseiller,$motif);
+	if (is_numeric($idClient) && verifClient($idClient)){
+		$idConseiller=trouverConseillerDeClient($idClient)->idemploye;
+		$x=new DateTime($dateSemaine);
+		$jourd=$x->format("w");// numéro du $x actuel 0 dimanche, 6 samedi
+		$dateDebSemaineFrd = date("Y-m-d",mktime(0,0,0,$x->format("n"),($x->format("d"))-$jourd+1,$x->format("y")));
+		$dateFinSemaineFrd = date("Y-m-d",mktime(0,0,0,$x->format("n"),($x->format("d"))-$jourd+7,$x->format("y")));
+		$rdvDuConseiller=getrdvEmploye($idConseiller,$dateDebSemaineFrd,$dateFinSemaineFrd);
+		$motif=getMotif();
+		afficherCalendrier($idClient,$dateSemaine,$rdvDuConseiller,$motif);
+	}else{
+		afficherdemandeIdrdv();
+	}		
 }
 
 function CtlListePieces($motif){

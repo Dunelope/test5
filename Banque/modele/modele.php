@@ -353,6 +353,15 @@ function getidMotif($nomMotif){
         return $idMotifs;
 }
 
+function verifRechercheClient($nomClient,$dateN){
+    $connexion=getConnect();
+    $requete="Select * from client where nomCli='$nomClient' and dateNaissCli='$dateN'";
+    $resultat=$connexion->query($requete);
+    $resultat->setFetchMode(pdo::FETCH_OBJ);
+    $clientExite=$resultat->fetch();
+    $resultat->closeCursor();
+    return $clientExite;
+}
 
 
 /*------------------------------------------CONSEILLER-------------------------------------------*/
