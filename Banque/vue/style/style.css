@@ -20,15 +20,30 @@ label {
 	display : inline-block;
 	text-align:left;
 	width: 150px;
+	color:black;	
+}
+label.indispo {
+	display : inline-block;
+	text-align:left;
+	width: 200px;
 	color:black;
-	
-	
+}
+
+label.inscriCli {
+	display : inline-block;
+	text-align:left;
+	width: 200px;
+	color:black;
 }
 
 label.motifDirecteur{
 	display : inline-block;
 	text-align:left;
 	width: 350px;
+}
+
+input.dateInscriCli{
+	width:158px;	
 }
 
 input.motifDirecteur{
@@ -105,16 +120,31 @@ input[type=checkbox] {
 input.menu {
 	color : black;
 	border:none;
-    background: #D3D3D3;
+    background:#FFEBCD;
 	font-weight: bold;
 	padding:15px;
 	
 }
 
 input.menu:hover{
+	background-color: #ccbca4;
+
+}
+
+input.deco {
+	color : black;
+	border:none;
+    background:#D3D3D3;
+	font-weight: bold;
+	padding:15px;
+	
+}
+
+input.deco:hover{
 	background-color: #858585;
 
 }
+
 
 select.menu{
 	font-size:15px;

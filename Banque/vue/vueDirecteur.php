@@ -58,7 +58,7 @@ function afficherEmployer($login){
 }
 
 function afficherMenuDirecteur(){
-    $contenu='<form id="formMenu" method="post" action="site.php"><nav><ul><li><input class="menu" type="submit" value="Aller à la selection des opérations" name="retour"></li><li class="déco"><input class="menu" type="submit" value="Déconnexion" name="Deco"></li></ul></nav></form>';
+    $contenu='<form id="formMenu" method="post" action="site.php"><nav><ul><li><input class="menu" type="submit" value="Aller à la sélection des opérations" name="retour"></li><li class="déco"><input class="deco" type="submit" value="Déconnexion" name="Deco"></li></ul></nav></form>';
     return $contenu;
 }
 

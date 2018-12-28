@@ -1,7 +1,7 @@
 <?php
 
 function afficherMenuConseiller(){
-    $contenu='<form id="formMenu" method="post" action="site.php"><nav><ul><li><input class="menu" type="submit" value="Aller à la selection des opérations" name="retourC"></li><li class="déco"><input class="menu" type="submit" value="Déconnexion" name="Deco"></li></ul></nav></form>';
+    $contenu='<form id="formMenu" method="post" action="site.php"><nav><ul><li><input class="menu" type="submit" value="Aller à la sélection des opérations" name="retourC"></li><li class="déco"><input class="deco" type="submit" value="Déconnexion" name="Deco"></li></ul></nav></form>';
     return $contenu;
 }
 
@@ -31,39 +31,39 @@ function afficherInscrireCli(){
     $contenu=afficherMenuConseiller().'<form id=Formc2 action="site.php" method="post"> 
     <fieldset><legend>Inscrire un nouveau client</legend>
     <p>
-    <label for="idCon">ID du Conseiller :</label>
+    <label class="inscriCli">ID du Conseiller :</label>
     <input type="text" name="idCon" id="idCon" required/>
     </p>
     <p>
-    <label for="nomCli">Nom du Client :</label>
+    <label class="inscriCli">Nom du Client :</label>
     <input type="text" name="nomCli" id="nomCli" required/>
     </p>
     <p>
-    <label for="prenomCli">Prénom du Client : </label>
+    <label class="inscriCli">Prénom du Client : </label>
     <input type="text" name="prenomCli" id="prenomCli" required/>
     </p>
     <p>
-    <label for="dateNCli">Date de naissance du Client :</label>
-    <input type="date" name="dateNCli" id="dateNCli" required/>
+    <label class="inscriCli">Date de naissance du Client :</label>
+    <input class="dateInscriCli" type="date" name="dateNCli" id="dateNCli" required/>
     </p>
     <p>
-    <label for="adresseCli">Adresse du Client : </label>
+    <label class="inscriCli">Adresse du Client : </label>
     <input type="text" name="adresseCli" id="adresseCli" required/>
     </p>
     <p>
-    <label for="numTelCli">Numéro de téléphone du Client : </label>
+    <label class="inscriCli">Numéro de téléphone du Client : </label>
     <input type="text" name="numTelCli" id="numTelCli" maxlength="10" required/>
     </p>
     <p>
-    <label for="emailCli">eMail du Client : </label>
+    <label class="inscriCli">eMail du Client : </label>
     <input type="email" name="emailCli" id="emailCli" required/>
     </p>
     <p>
-    <label for="professionCli">Profession du Client : </label>
+    <label class="inscriCli">Profession du Client : </label>
     <input type="text" name="professionCli" id="professionCli" required/>
     </p>
     <p>
-    <label for="situationCli">Situation familiale du Client :</label>
+    <label class="inscriCli">Situation familiale du Client :</label>
     <input type="text" required name="situationCli">
     </p>
     <p>
@@ -359,7 +359,7 @@ function afficherCalendrierConseiller($idEmploye,$dateSemaine,$rdvemploye,$rdvSa
     }
     $contenu=$contenu.'</table>';
 	
-	$contenu=$contenu.'<p><label>Rendre plage indisponible : </label></select><input type="submit" name="rendreIndispo" value="Valider"></p><p><label>Afficher les détails :  </label></select><input type="submit" name="afficherDetailsRDV" value="Afficher"></p></form>';
+	$contenu=$contenu.'<p><label class="indispo">Rendre plage indisponible : </label></select><input type="submit" name="rendreIndispo" value="Valider"></p><p><label class="indispo">Afficher les détails :  </label></select><input type="submit" name="afficherDetailsRDV" value="Afficher"></p></form>';
     require_once ('gabarit.php');
 
 }

@@ -87,7 +87,7 @@ function afficherIDCli($cli) {
 
 
 function afficherMenuAgent(){
-    $contenu='<form id="formMenu" method="post" action="site.php"><nav><ul><li><input class="menu" type="submit" value="Aller à la selection des opérations" name="retourAgent"></li><li class="déco"><input class="menu" type="submit" value="Déconnexion" name="Deco"></li></ul></nav></form>';
+    $contenu='<form id="formMenu" method="post" action="site.php"><nav><ul><li><input class="menu" type="submit" value="Aller à la sélection des opérations" name="retourAgent"></li><li class="déco"><input class="deco" type="submit" value="Déconnexion" name="Deco"></li></ul></nav></form>';
     return $contenu;
 }
 function afficherdemandeIdrdv(){
