@@ -194,7 +194,7 @@ function CtlOperation($idClient,$nomCompte,$montant,$nomOperation){
         ajouterOperation($idClient, $nomCompte, $nomOperation, $montant);
     }
     else
-        echo '<p>Operation Impossible, decouvert dépassé</p>';
+        echo '<p class="opeImpossible">Operation Impossible, decouvert dépassé</p>';
 
     CtlOperationClient($idClient);
 }

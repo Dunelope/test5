@@ -12,9 +12,15 @@ body {
 
 .test {
 	text-align:center;
-	
-
 }
+
+p.opeImpossible{
+	position:absolute;
+	bottom:640;
+	left:650;
+}
+
+
 
 label {
 	display : inline-block;
