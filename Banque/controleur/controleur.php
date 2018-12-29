@@ -300,16 +300,21 @@ function CtlOuvrirCompte($id,$compte,$solde,$decouvert){
         CtlafficherOuvrirCompte();
 }
 
-function CtlAfficherMenuDecouvert($id,$compte){
+function CtlAfficherMenuDecouvert($id){
+    $x=CtlChercheCompte($id);
     if (is_numeric($id) && verifClient($id))
-        afficherMenuDecouvert($id,$compte);
+        afficherMenuDecouvert($id,$x);
     else afficherChoixClient();
 }
 
 
 function CtlModifDecouvert($id,$compte,$valeur){
-    if ($valeur>=0)
-        modifDecouvert($id,$compte,$valeur);
+    if (is_numeric($valeur)&& $valeur>=0) {
+        modifDecouvert($id, $compte, $valeur);
+        afficherConseiller();
+    }
+    else
+        CtlAfficherMenuDecouvert($id);
     afficherConseiller();
 
 }

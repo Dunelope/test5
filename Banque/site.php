@@ -356,8 +356,7 @@ try {
     if(isset($_POST['choixcli'])){
         $cli=$_POST['choixClient'];
 
-        $x=CtlChercheCompte($cli);
-        CtlAfficherMenuDecouvert($cli,$x);
+        CtlAfficherMenuDecouvert($cli);
     }
 
     if(isset($_POST['choixcli2'])){
