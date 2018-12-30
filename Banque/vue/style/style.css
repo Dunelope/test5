@@ -17,16 +17,17 @@ body {
 p.opeImpossible{
 	position:absolute;
 	bottom:640;
-	left:650;
+	left: 650;
 }
 
 
 
 label {
 	display : inline-block;
+	margin : auto;
 	text-align:left;
 	width: 150px;
-	color:black;	
+	color:black;
 }
 label.indispo {
 	display : inline-block;
@@ -77,7 +78,7 @@ body {
 }
 
 fieldset {
-	background-color: #669999;
+	background-color: #3882be;
 }
 
 .synthese {
@@ -147,7 +148,7 @@ input.deco {
 }
 
 input.deco:hover{
-	background-color: #858585;
+	background-color: #9a2422;
 
 }
 
@@ -178,8 +179,12 @@ table {
 }
 
 legend {
-	font-size : 35px;
-	font-family : comic sans ms;
+	font-size : 40px;
+	font-family : "Adobe Arabic";
+	background-color: white ;
+    font-weight: bold;
+    border-radius :10px;
+
 }
 
 
@@ -188,7 +193,7 @@ ul {
 	margin: 0;
 	padding: 0;
 	overflow: hidden;
-	background-color: #003333;
+	background-color: #3882be;
 }
 
 li {
