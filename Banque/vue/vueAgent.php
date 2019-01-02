@@ -50,7 +50,7 @@ function afficherSynthese($synthese,$mod,$con,$contrat){
     foreach ($contrat as $ctr){
         $contrats=$contrats.'<p><label>Nom du contrat : </label><input name="'. $ctr->NOMCONTRAT  .'[]" type="text" value="' . $ctr->NOMCONTRAT .'" readonly="readonly" /><label>Date ouverture : </label><input name="'. $ctr->NOMCONTRAT  .'[]" type="text" value="' . $ctr->DATEOUVERTURECONTRAT .'" readonly="readonly"/><label>Tarif mensuel : </label><input name="'. $ctr->NOMCONTRAT  .'[]" type="text" value="' . $ctr->TARIFMENSUEL .'" readonly="readonly"/></p>';
     }
-    $contenu=afficherMenuAgent().'<legend>Synthese client </legend>'.$contenu.'<p><fieldset><legend>Liste des comptes du client</legend>'.$co.'</fieldset><p><fieldset><legend>Liste des contrat du client</legend>'.$contrats.'</fieldset>';
+    $contenu=afficherMenuAgent().'<legend>Synthese client </legend>'.$contenu.'<p><fieldset><legend>Liste des comptes du client</legend>'.$co.'</fieldset><p><fieldset><legend>Liste des contrats du client</legend>'.$contrats.'</fieldset>';
     require_once ('gabarit.php');
 }
 
@@ -151,7 +151,7 @@ function afficherCalendrier($idcli,$dateSemaine,$rdvemploye,$motif){
                 $contenu = $contenu . '<th>' . $jourTexte[$j] . ' ' . date("d", mktime(0, 0, 0, $x->format("n"), ($x->format("d")) - $jourd + $j, $x->format("y"))) . '</th>';
             } else {
                 if (!empty($tab) && $jour==date("d", mktime(0, 0, 0, $x->format("n"), ($x->format("d")) - $jourd + $j, $x->format("y"))) && $heure==($h+7) ) {
-                    $contenu = $contenu . '<td class="tdErreur">Pas dispo</td>';
+                    $contenu = $contenu . '<td class="tdErreur">Pas disponible</td>';
                     array_shift($tab);
                 }else
                     $contenu = $contenu . '<td><input type="radio"  checked name="dateTimeBouttonRadio" value="' . date("Y-m-d H:i", mktime($h + 7, 0, 0, $x->format("n"), ($x->format("d")) - $jourd + $j, $x->format("y"))) . '"></td>';
@@ -171,7 +171,7 @@ function afficherCalendrier($idcli,$dateSemaine,$rdvemploye,$motif){
 }
 
 function afficherPiecesAApporter($listePieces){
-    $contenu=afficherMenuAgent().'<p>Votre Reservation a été enregistrée </p><p>N\'oubliez pas d\'apporter : '.$listePieces.'</p>';
+    $contenu=afficherMenuAgent().'<p>La reservation a été enregistrée </p><p>Faites penser au client d\'apporter : '.$listePieces.'</p>';
     require_once ('gabarit.php');
 
 }

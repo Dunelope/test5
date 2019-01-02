@@ -24,9 +24,8 @@ function afficherContrat($contrats){
         $conSansEspace=preg_replace('/\s+/', '', $con->NOMCONTRAT);
         $c=$c.'<p><input type="checkbox" name="nomContrats[]" value="' . $con->NOMCONTRAT .'"><label>Nom Contrat : </label> <input name="'. $conSansEspace .'" type="text" value="' . $con->NOMCONTRAT .'" /> </p>';
     }
-    // test(`formContrats`,`contrat`)
-    //onsubmit="return verifierModifContrat(`formContrats`);"
-    $contenu=afficherMenuDirecteur().'<form onsubmit="return verifierButtonInvi(`formContrats`,`VraiOuFauxInvisible`)"  id="formContrats" action="site.php" method="post"><fieldset><legend>Listes des contrats</legend>'.$c.'<p><label>  Ajouter nom Contrat  : </label><input  type="text" name="contrat"  /></p><p><input type="submit" onclick="VerifAjoutContratEcrire(`formContrats`,`contrat`,`VraiOuFauxInvisible`)" value="Ajouter Contrat" name="AjoutContr"  /><input onclick="verifSupprContratEcrire(`formContrats`,`VraiOuFauxInvisible`)" type="submit" value="Supprimer Contrat" name="delcontrat"  /><input type="submit" onclick="verifierModifContratEcrire(`formContrats`,`VraiOuFauxInvisible`);" value="Modifier Contrat" name="modcontrat"/><input class="invisiblebuton" name="VraiOuFauxInvisible" type="text"></p></fieldset></form>';
+
+    $contenu=afficherMenuDirecteur().'<form onsubmit="return verifierButtonInvi(`formContrats`,`VraiOuFauxInvisible`)"  id="formContrats" action="site.php" method="post"><fieldset><legend>Listes des contrats</legend>'.$c.'<p><label>  Ajouter nom Contrat  : </label><input  type="text" name="contrat"  /></p><p><input type="submit" onclick="VerifAjoutContratEcrire(`formContrats`,`contrat`,`VraiOuFauxInvisible`,5)" value="Ajouter Contrat" name="AjoutContr"  /><input onclick="verifSupprContratEcrire(`formContrats`,`VraiOuFauxInvisible`,5)" type="submit" value="Supprimer Contrat" name="delcontrat"  /><input type="submit" onclick="verifierModifContratEcrire(`formContrats`,`VraiOuFauxInvisible`,5);" value="Modifier Contrat" name="modcontrat"/><input class="invisiblebuton" name="VraiOuFauxInvisible" type="text"></p></fieldset></form>';
     require_once ('gabarit.php');
 
 }
@@ -37,16 +36,16 @@ function afficherComptes($comptes){
         $comSansEspace=preg_replace('/\s+/', '', $com->NOMCOMPTE);
         $c=$c.'<p><input type="checkbox" name="nomcomptes[]" value="' . $com->NOMCOMPTE .'"><label>Nom Compte : </label> <input name="' . $comSansEspace .'" type="text" value="' . $com->NOMCOMPTE .'" /> </p>';
     }
-    $contenu=afficherMenuDirecteur().'<form id="formComptes" action="site.php" method="post"><fieldset><legend>Listes des Comptes</legend>'.$c.'<p><label>  Ajouter nom Compte  : </label><input type="text" name="compte"  /></p><p><input type="submit" value="Ajouter Compte" name="AjoutCompte"  /> <input type="submit" value="Supprimer Comptes" name="delComptes"  /><input type="submit" value="Modifier Comptes" name="modComptes"/></p></fieldset></form>';
+    $contenu=afficherMenuDirecteur().'<form onsubmit="return verifierButtonInvi(`formComptes`,`VraiOuFauxInvisible`)" id="formComptes" action="site.php" method="post"><fieldset><legend>Listes des Comptes</legend>'.$c.'<p><label>  Ajouter nom Compte  : </label><input type="text" name="compte"  /></p><p><input type="submit" onclick="VerifAjoutContratEcrire(`formComptes`,`compte`,`VraiOuFauxInvisible`,5)" value="Ajouter Compte" name="AjoutCompte"  /> <input onclick="verifSupprContratEcrire(`formComptes`,`VraiOuFauxInvisible`,5)" type="submit" value="Supprimer Comptes" name="delComptes"  /><input type="submit" onclick="verifierModifContratEcrire(`formComptes`,`VraiOuFauxInvisible`,5)" value="Modifier Comptes" name="modComptes"/><input class="invisiblebuton" name="VraiOuFauxInvisible" type="text"></p></fieldset></form>';
     require_once ('gabarit.php');
 
 }
 function afficherMotif($motif){
     $c='';
     foreach ($motif as $mot){
-        $c=$c.'<p><input type="checkbox" name="idMotif[]" value="' . $mot->IDMOTIF .'"><label class="motifDirecteur"> Pieces pour le motif '.$mot->NOMMOTIF.' : </label> <input class="motifDirecteur" name="'. $mot->IDMOTIF  .'" type="text" value="' . $mot->LISTEPIECES .'" /> </p>';
+        $c=$c.'<p><input type="checkbox" name="idMotif[]" value="' . $mot->IDMOTIF .'"><label class="motifDirecteur"> Pieces pour le motif '.$mot->NOMMOTIF.' : </label> <input class="motifDirecteur" name="'. $mot->IDMOTIF  .'" type="text" value="' . $mot->LISTEPIECES .'" /><input type="text" class="invisiblebuton" value="'.$mot->NOMMOTIF.'"> </p>';
     }
-    $contenu=afficherMenuDirecteur().'<form id="formMotifs" action="site.php" method="post"><fieldset><legend>Listes des Motifs</legend>'.$c.'<p><label>  Ajouter motif  : </label><input class="modifDirecteur" type="text" name="motif"  /> <label> Pieces : </label><input class="modifDirecteur" type="text" name="pieces"  /></p><p><input type="submit" value="Ajouter Motif" name="AjoutMotif"  /> <input type="submit" value="Supprimer Motif" name="delMotif"  /><input type="submit" value="Modifier Motif" name="modMotif"/></p></fieldset></form>';
+    $contenu=afficherMenuDirecteur().'<form onsubmit="return verifierButtonInvi(`formMotifs`,`VraiOuFauxInvisible`)" id="formMotifs" action="site.php" method="post"><fieldset><legend>Listes des Motifs</legend>'.$c.'<p><label>  Ajouter motif  : </label><input class="modifDirecteur" type="text" name="motif"  /> <label> Pieces : </label><input class="modifDirecteur" type="text" name="pieces"  /></p><p><input onclick="VerifAjoutContratEcrire(`formMotifs`,`motif`,`VraiOuFauxInvisible`,6)" type="submit" value="Ajouter Motif" name="AjoutMotif"  /> <input onclick="verifSupprContratEcrire(`formMotifs`,`VraiOuFauxInvisible`,6)" type="submit" value="Supprimer Motif" name="delMotif"  /><input type="submit" onclick="verifierModifContratEcrire(`formMotifs`,`VraiOuFauxInvisible`,6)" value="Modifier Motif" name="modMotif"/><input class="invisiblebuton" name="VraiOuFauxInvisible" type="text"></p></fieldset></form>';
     require_once ('gabarit.php');
 }
 function afficherEmployer($login){
@@ -55,7 +54,7 @@ function afficherEmployer($login){
         $c=$c.'<p><input type="checkbox" name="idEmploye[]" value="' . $log->IDEMPLOYE .'"><label> '.$log->TYPEEMPLOYE.'  ' .$log->NOMEMPLOYE.' </label><input name="'. $log->IDEMPLOYE  .'[]" type="text" value="' . $log->LOGINEMPLOYE .'" /> <input name="'. $log->IDEMPLOYE  .'[]" type="text" value="' . $log->MDPEMPLOYE .'" /></p>';
 
     }
-    $contenu=afficherMenuDirecteur().'<form id="formMotifs" action="site.php" method="post"><fieldset><legend>Listes des Employes </legend>'.$c.'<p><label>  Ajouter Employer : Nom   : </label><input type="text" name="NomEmploye"  /> <label> Login : </label><input type="text" name="LogienEmploye"  /><label> Mot De passe : </label><input type="text" name="MdpEmploye"  /> <label> Type : </label><select name="TypeEmploye" ><option value="Conseiller">Conseiller</option><option value="Agent">Agent</option></select> </p> <p><input type="submit" value="Ajouter Employé" name="AjoutEmploye"  /><input type="submit" value="Modifier Employé" name="modEmploye"/></p></fieldset></form>';
+    $contenu=afficherMenuDirecteur().'<form onsubmit="return verifierButtonInvi(`formMotifs`,`VraiOuFauxInvisible`)" id="formMotifs" action="site.php" method="post"><fieldset><legend>Listes des Employes </legend>'.$c.'<p><label>  Ajouter Employer : Nom   : </label><input type="text" name="NomEmploye"  /> <label> Login : </label><input type="text" name="LogienEmploye"  /><label> Mot De passe : </label><input type="text" name="MdpEmploye"  /> <label> Type : </label><select name="TypeEmploye" ><option value="Conseiller">Conseiller</option><option value="Agent">Agent</option></select> </p> <p><input type="submit" onclick="verifAddEmploye(`formMotifs`,`VraiOuFauxInvisible`,`NomEmploye`,`LogienEmploye`,`MdpEmploye`)" value="Ajouter Employé" name="AjoutEmploye"  /><input type="submit" onclick="verifierModifContratEcrire(`formMotifs`,`VraiOuFauxInvisible`,7)" value="Modifier Employé" name="modEmploye"/><input class="invisiblebuton" name="VraiOuFauxInvisible" type="text"></p></fieldset></form>';
     require_once ('gabarit.php');
 }
 
