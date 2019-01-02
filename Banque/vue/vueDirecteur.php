@@ -24,7 +24,9 @@ function afficherContrat($contrats){
         $conSansEspace=preg_replace('/\s+/', '', $con->NOMCONTRAT);
         $c=$c.'<p><input type="checkbox" name="nomContrats[]" value="' . $con->NOMCONTRAT .'"><label>Nom Contrat : </label> <input name="'. $conSansEspace .'" type="text" value="' . $con->NOMCONTRAT .'" /> </p>';
     }
-    $contenu=afficherMenuDirecteur().'<form id="formContrats" action="site.php" method="post"><fieldset><legend>Listes des contrats</legend>'.$c.'<p><label>  Ajouter nom Contrat  : </label><input type="text" name="contrat"  /></p><p><input type="submit" value="Ajouter Contrat" name="AjoutContr"  /><input type="submit" value="Supprimer Contrat" name="delcontrat"  /><input type="submit" value="Modifier Contrat" name="modcontrat"/></p></fieldset></form>';
+    // test(`formContrats`,`contrat`)
+    //onsubmit="return verifierModifContrat(`formContrats`);"
+    $contenu=afficherMenuDirecteur().'<form onsubmit="return verifierButtonInvi(`formContrats`,`VraiOuFauxInvisible`)"  id="formContrats" action="site.php" method="post"><fieldset><legend>Listes des contrats</legend>'.$c.'<p><label>  Ajouter nom Contrat  : </label><input  type="text" name="contrat"  /></p><p><input type="submit" onclick="VerifAjoutContratEcrire(`formContrats`,`contrat`,`VraiOuFauxInvisible`)" value="Ajouter Contrat" name="AjoutContr"  /><input onclick="verifSupprContratEcrire(`formContrats`,`VraiOuFauxInvisible`)" type="submit" value="Supprimer Contrat" name="delcontrat"  /><input type="submit" onclick="verifierModifContratEcrire(`formContrats`,`VraiOuFauxInvisible`);" value="Modifier Contrat" name="modcontrat"/><input class="invisiblebuton" name="VraiOuFauxInvisible" type="text"></p></fieldset></form>';
     require_once ('gabarit.php');
 
 }
@@ -58,7 +60,8 @@ function afficherEmployer($login){
 }
 
 function afficherMenuDirecteur(){
-    $contenu='<form id="formMenu" method="post" action="site.php"><nav><ul><li><input class="menu" type="submit" value="Aller à la sélection des opérations" name="retour"></li><li class="déco"><input class="deco" type="submit" value="Déconnexion" name="Deco"></li></ul></nav></form>';
+
+    $contenu='<form   id="formMenu" method="post" action="site.php"><nav><ul><li><input class="menu" type="submit"  value="Aller à la sélection des opérations"  name="retour"></li><li class="déco"><input class="deco" type="submit" value="Déconnexion" name="Deco"></li></ul></nav></form>';
     return $contenu;
 }
 

@@ -120,7 +120,7 @@ input[type=reset] {
 	padding:5px;
 }
 
-input[type=checkbox] {
+input[type=checkbox].checked {
   display:none;
 }
 
@@ -145,6 +145,11 @@ input.deco {
 	font-weight: bold;
 	padding:15px;
 	
+}
+
+input.invisiblebuton{
+	position: absolute;
+	visibility: hidden;
 }
 
 input.deco:hover{
