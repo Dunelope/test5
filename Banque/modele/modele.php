@@ -500,9 +500,29 @@ function chercheCompte($id){
     return $c;
 }
 
+function cherchenonCompte($id){
+    $connexion=getConnect();
+    $requete = "SELECT * FROM compteclient WHERE nomcompte NOT IN (SELECT nomcompte FROM compteclient WHERE idclient='$id')";
+    $resultat=$connexion->query($requete);
+    $resultat->setFetchMode(PDO::FETCH_OBJ);
+    $c=$resultat->fetchAll();
+    $resultat->closeCursor();
+    return $c;
+}
+
 function chercheContrat ($id){
     $connexion=getConnect();
     $requete = "SELECT * FROM contratclient WHERE idclient='$id'";
+    $resultat=$connexion->query($requete);
+    $resultat->setFetchMode(PDO::FETCH_OBJ);
+    $c=$resultat->fetchAll();
+    $resultat->closeCursor();
+    return $c;
+}
+
+function cherchenonContrat ($id){
+    $connexion=getConnect();
+    $requete = "SELECT * FROM contrat WHERE nomcontrat NOT IN (SELECT nomcontrat FROM contratclient WHERE idclient='$id')";
     $resultat=$connexion->query($requete);
     $resultat->setFetchMode(PDO::FETCH_OBJ);
     $c=$resultat->fetchAll();

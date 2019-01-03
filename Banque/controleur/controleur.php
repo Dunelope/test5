@@ -282,8 +282,12 @@ function CtlInscrireCli($idconseiller,$nom,$prenom,$datN,$adresse,$numT,$email,$
         afficherInscrireCli();
 }
 
-function CtlAfficherVendreContrat(){
-    afficherVendreContrat(listeContrat());
+function CtlAfficherVendreContrat($cli){
+    if (is_numeric($cli) && verifClient($cli))
+        afficherVendreContrat($cli,cherchenonContrat($cli));
+    else
+        afficherChoixClient4();
+
 }
 
 function CtlVendreContrat($idclient,$contrat,$tarif){
@@ -296,8 +300,11 @@ function CtlVendreContrat($idclient,$contrat,$tarif){
         CtlAfficherVendreContrat();
 }
 
-function CtlAfficherOuvrirCompte(){
-    afficherOuvrirCompte(listeCompte());
+function CtlAfficherOuvrirCompte($cli){
+    if (is_numeric($cli) && verifClient($cli))
+        afficherOuvrirCompte($cli,cherchenonCompte($cli));
+    else
+        afficherChoixClient5();
 }
 
 function CtlOuvrirCompte($id,$compte,$solde,$decouvert){
@@ -364,6 +371,14 @@ function CtlAfficherChoixClient2(){
 
 function CtlAfficherChoixClient3(){
     afficherChoixClient3();
+}
+
+function CtlAfficherChoixClient4(){
+    afficherChoixClient4();
+}
+
+function CtlAfficherChoixClient5(){
+    afficherChoixClient5();
 }
 
 function CtlCercheContrat($id){

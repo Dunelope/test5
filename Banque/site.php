@@ -305,10 +305,10 @@ try {
             CtlAfficherInscrireCli();
         }
         if($val=='vendreContrat'){
-            CtlAfficherVendreContrat();
+            CtlAfficherChoixClient4();
         }
         if($val=='ouvrirCompte') {
-            CtlAfficherOuvrirCompte();
+            CtlAfficherChoixClient5();
         }
         if($val=='modifDecouvert') {
             CtlAfficherChoixClient();
@@ -369,6 +369,19 @@ try {
         $cli=$_POST['choixClient3'];
         $x=CtlChercheCompte($cli);
         CtlAfficherMenuResCompte($cli,$x);
+    }
+
+    if(isset($_POST['choixcli4'])){
+        $cli=$_POST['choixClient4'];
+        $x=CtlChercheContrat($cli);
+        CtlAfficherVendreContrat($cli);
+
+    }
+
+    if(isset($_POST['choixcli5'])){
+        $cli=$_POST['choixClient5'];
+        $x=CtlChercheCompte($cli);
+        CtlAfficherOuvrirCompte($cli);
     }
 
 

@@ -6,23 +6,7 @@ function afficherMenuConseiller(){
 }
 
 function afficherConseiller(){
-    $contenu=afficherMenuConseiller().'<form id=Formc1 action="site.php" method="post"> 
-    <fieldset><legend>Que voulez-vous faire ?</legend>
-
-<p>
-<select class="menu" name="interactionCli">
-<option value="inscrireCli" >Inscrire un Client</option>
-<option value="vendreContrat">Vendre un contrat</option>
-<option value="ouvrirCompte">Ouvrir un compte</option>
-<option value="Planning"> Planning </option>
-<option value="modifDecouvert">Modifier la valeur d\'un découvert</option>
-<option value="resilierContrat">Résilier un contrat</option>
-<option value="resilierCompte">Résilier un compte</option>
-</select>
-<input type="submit" value="Sélectionner" name="interCli">
-</p>
-    
-    </fieldset></form>';
+    $contenu=afficherMenuConseiller().'<form id=Formc1 action="site.php" method="post"> <fieldset><legend>Que voulez-vous faire ?</legend><p><select class="menu" name="interactionCli"><option value="inscrireCli" >Inscrire un Client</option><option value="vendreContrat">Vendre un contrat</option><option value="ouvrirCompte">Ouvrir un compte</option><option value="Planning"> Planning </option><option value="modifDecouvert">Modifier la valeur d\'un découvert</option><option value="resilierContrat">Résilier un contrat</option><option value="resilierCompte">Résilier un compte</option></select> <input type="submit" value="Sélectionner" name="interCli"></p></fieldset></form>';
     require_once ('gabarit.php');
 
 }
@@ -75,7 +59,7 @@ function afficherInscrireCli(){
 
 }
 
-function afficherVendreContrat($contrat){
+function afficherVendreContrat($client,$contrat){
     $x='';
     foreach ($contrat as $c){
         $x=$x.'<option value="'.$c->NOMCONTRAT.'">'.$c->NOMCONTRAT.'</option>';
@@ -84,7 +68,7 @@ function afficherVendreContrat($contrat){
     <fieldset><legend>Vendre un contrat</legend>
     <p><label>
     Numéro du client :
-    </label><input type="text" name="numCli" required>
+    </label><input type="text" name="numCli" value="'.$client.'" required readonly>
     </p>
     <p>
 	<label>
@@ -106,7 +90,7 @@ function afficherVendreContrat($contrat){
     require_once ('gabarit.php');
 }
 
-function afficherOuvrirCompte($compte){
+function afficherOuvrirCompte($client,$compte){
     $x='';
     foreach ($compte as $c){
         $x=$x.'<option value="'.$c->NOMCOMPTE.'">'.$c->NOMCOMPTE.'</option>';
@@ -115,7 +99,7 @@ function afficherOuvrirCompte($compte){
     <fieldset><legend>Ouvrir un compte</legend>
     <p><label>
     Numéro du client :
-    </label><input type="text" name="numCli" required>
+    </label><input type="text" name="numCli" value="'.$client.'" required readonly>
     </p>
     <p><label>
     Type de compte : 
@@ -255,6 +239,15 @@ function afficherChoixClient3(){
     require_once('gabarit.php');
 }
 
+function afficherChoixClient4(){
+    $contenu=afficherMenuConseiller().'<form id="monFormc11" action="site.php" method="post"><fieldset><legend>Choisir un client</legend><p><label>Identifiant du client : </label><input type="text"  name="choixClient4" required></p><p><input type="submit" name="choixcli4" value="Choisir" /></fieldset></form>';
+    require_once('gabarit.php');
+}
+
+function afficherChoixClient5(){
+    $contenu=afficherMenuConseiller().'<form id="monFormc12" action="site.php" method="post"><fieldset><legend>Choisir un client</legend><p><label>Identifiant du client : </label><input type="text"  name="choixClient5" required></p><p><input type="submit" name="choixcli5" value="Choisir" /></fieldset></form>';
+    require_once('gabarit.php');
+}
 function afficherChoixConseiller($employe){
 	$c='';
 	
@@ -262,7 +255,7 @@ function afficherChoixConseiller($employe){
         $c=$c.'<option value="'.$emp->IDEMPLOYE.'">'.$emp->NOMEMPLOYE.'</option>';
     }
     $contenu=afficherMenuConseiller().'<form id=Formc1 action="site.php" method="post"> 
-    <fieldset><legend>Afficher Planning : </legend>
+    <fieldset><legend>Afficher Planning</legend>
 <p><label>
 Choix de l\'employer :  
 </label><select name="choixListeConseiller">'.$c.'
