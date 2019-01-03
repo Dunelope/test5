@@ -184,29 +184,39 @@ function CtlOperationClient($id){
 
 function CtlOperation($idClient,$nomCompte,$montant,$nomOperation){
     $faireOpe=true;
-	if ($nomOperation=="Debiter") {
-        $faireOpe = CtlOperationPossible($idClient, $nomCompte, $montant);
-    }
-    if ($faireOpe) {
-        $soldeDuCompte = getSolde($idClient, $nomCompte)->SOLDE;
-        $nouveauSolde = $soldeDuCompte + $montant;
-        modifSolde($idClient, $nomCompte, $nouveauSolde);
-        ajouterOperation($idClient, $nomCompte, $nomOperation, $montant);
-    }
-    else
-        echo '<p class="opeImpossible">Operation Impossible, decouvert dépassé</p>';
-
-    CtlOperationClient($idClient);
+	if (is_numeric($montant)){
+		if ($nomOperation=="Debiter") {
+			$faireOpe = CtlOperationPossible($idClient, $nomCompte, $montant);
+		}
+		if ($faireOpe) {
+			$soldeDuCompte = getSolde($idClient, $nomCompte)->SOLDE;
+			if ($nomOperation=="Debiter") {
+				$nouveauSolde = $soldeDuCompte - $montant;
+				modifSolde($idClient, $nomCompte, $nouveauSolde);
+				ajouterOperation($idClient, $nomCompte, $nomOperation, $montant);
+			}
+			else {				
+			$nouveauSolde = $soldeDuCompte + $montant;
+			modifSolde($idClient, $nomCompte, $nouveauSolde);
+			ajouterOperation($idClient, $nomCompte, $nomOperation, $montant);
+			}
+		}
+		else {
+			echo '<p class="opeImpossible">Operation Impossible, decouvert dépassé</p>';
+		}
+	}	
+	CtlOperationClient($idClient);
 }
 
 function CtlOperationPossible($idClient,$nomCompte,$montantSouhaitantEtreRetirer){
-    $getsolde=getSolde($idClient,$nomCompte);
-    $montantDecouvert=-$getsolde->MONTANTDECOUVERT;
-    $soldeActuel=$getsolde->SOLDE;
-    $soldeApresRetrait=$soldeActuel+$montantSouhaitantEtreRetirer;
-    if ($soldeApresRetrait<$montantDecouvert)
-        return false;
-    return true;
+
+	$getsolde=getSolde($idClient,$nomCompte);
+	$montantDecouvert=-$getsolde->MONTANTDECOUVERT;
+	$soldeActuel=$getsolde->SOLDE;
+	$soldeApresRetrait=$soldeActuel-$montantSouhaitantEtreRetirer;
+	if ($soldeApresRetrait<$montantDecouvert)
+		return false;
+	return true;
 }
 
 function CtlAfficherIDClient(){

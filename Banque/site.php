@@ -217,9 +217,9 @@ try {
 	if (isset($_POST['RetraitClient'])) {
         $montantEntree=$_POST['montantOpe'];
         $nomcompte=$_POST['opeClient'];
-        $montanttotal=-$montantEntree;
+        // $montanttotal=-$montantEntree;
         $id=$_POST['idduClient'];
-		CtlOperation($id,$nomcompte,$montanttotal,'Debiter');
+		CtlOperation($id,$nomcompte,$montantEntree,'Debiter');
 	}
 		
 	//---------------------------------------------------------
