@@ -135,7 +135,7 @@ function afficherCalendrier($idcli,$dateSemaine,$rdvemploye,$motif){
     $jourTexte = array(1=>'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi');
     $plageH = array('',1=>'08:00','09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00');
 
-    $contenu=afficherMenuAgent().'<form action="site.php" method="post"><p><label>Id du client : </label><input type="text" name="idCli" value="'.$idcli.'" readonly="readonly"></p><p><label>Selectionnez une date : </label><input name="nouvelledate" type="date"><input type="submit" name="changerDate" value="aller à"></p><p> Semaine '.$num_weekd.' </p>';
+    $contenu=afficherMenuAgent().'<form onsubmit="return verifCheckBoxAgent(`FormPlanning`)" id="FormPlanning" action="site.php" method="post"><p><label>Id du client : </label><input type="text" name="idCli" value="'.$idcli.'" readonly="readonly"></p><p><label>Selectionnez une date : </label><input name="nouvelledate" type="date"><input type="submit" name="changerDate" value="aller à"></p><p> Semaine '.$num_weekd.' </p>';
     $contenu = $contenu . '<p> du '.$dateDebSemaineFrd.' au '.$dateFinSemaineFrd.'</p>';
     $contenu = $contenu . '<h2>'.$nom_moisd.' '.$anneed.'</h2>';
     $contenu = $contenu . '<table border="1">';
@@ -154,7 +154,7 @@ function afficherCalendrier($idcli,$dateSemaine,$rdvemploye,$motif){
                     $contenu = $contenu . '<td class="tdErreur">Pas disponible</td>';
                     array_shift($tab);
                 }else
-                    $contenu = $contenu . '<td><input type="radio"  checked name="dateTimeBouttonRadio" value="' . date("Y-m-d H:i", mktime($h + 7, 0, 0, $x->format("n"), ($x->format("d")) - $jourd + $j, $x->format("y"))) . '"></td>';
+                    $contenu = $contenu . '<td><input type="radio" name="dateTimeBouttonRadio" value="' . date("Y-m-d H:i", mktime($h + 7, 0, 0, $x->format("n"), ($x->format("d")) - $jourd + $j, $x->format("y"))) . '"></td>';
             }
         }
         $contenu = $contenu . '</tr>';
@@ -164,7 +164,7 @@ function afficherCalendrier($idcli,$dateSemaine,$rdvemploye,$motif){
     foreach ($motif as $m){
         $optionsMotifs=$optionsMotifs.'<option value="'.$m->NOMMOTIF.'">'.$m->NOMMOTIF.'</option>';
     }
-    $contenu=$contenu.'<p><label>Selectionnez le motif :  </label><select name="choixmotif" >'.$optionsMotifs.'</select><input type="submit" name="prendreRDV" value="Valider"></p></form>';
+    $contenu=$contenu.'<p><label>Selectionnez le motif :  </label><select name="choixmotif" >'.$optionsMotifs.'</select><input type="submit" name="prendreRDV" value="Valider" onclick="verifCheckBoxAgent(`FormPlanning`)"></p></form>';
 
     require_once ('gabarit.php');
 

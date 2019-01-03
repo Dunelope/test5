@@ -88,3 +88,20 @@ function verifAddEmploye(form,desti,nom,login,mdp) {
     }
 
 /*----------------------------------------*/
+
+function verifCheckBoxAgent(form){
+    for (i = 0; i < document.forms[form].elements.length; i++) {
+        if (document.forms[form].elements[i].type === "radio") {
+            if (document.forms[form].elements[i].checked) {
+               return true;
+			}
+        }
+    }
+	alert('Aucun bouton radio sélectionné');
+	return false;
+	
+}
+
+
+
+	
