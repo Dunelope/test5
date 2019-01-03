@@ -502,7 +502,7 @@ function chercheCompte($id){
 
 function cherchenonCompte($id){
     $connexion=getConnect();
-    $requete = "SELECT * FROM compteclient WHERE nomcompte NOT IN (SELECT nomcompte FROM compteclient WHERE idclient='$id')";
+    $requete = "SELECT * FROM compte WHERE nomcompte NOT IN (SELECT nomcompte FROM compteclient WHERE idclient='$id')";
     $resultat=$connexion->query($requete);
     $resultat->setFetchMode(PDO::FETCH_OBJ);
     $c=$resultat->fetchAll();
