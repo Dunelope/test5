@@ -2,7 +2,7 @@
 
 
 function afficherAgent(){
-    $contenu=afficherMenuAgent().'<form id=monForm2 action="site.php" method="post"> <fieldset><legend>Selection opperation</legend><p><select class="menu" name="opeAgent"><option value="c1">Modifier informations client</option><option value="c2">Synthese client</option><option value="c3">Opération sur le compte</option><option value="c4">Rendez-vous</option><option value="c5">Retrouver identifiant client</option></select><input type="submit" value="Selectionner" name="operaAgent"></p></fieldset></form>';
+    $contenu=afficherMenuAgent().'<form id=monForm2 action="site.php" method="post"> <fieldset><legend>Selection opération</legend><p><select class="menu" name="opeAgent"><option value="c1">Modifier informations client</option><option value="c2">Synthese client</option><option value="c3">Opération sur le compte</option><option value="c4">Rendez-vous</option><option value="c5">Retrouver identifiant client</option></select><input type="submit" value="Selectionner" name="operaAgent"></p></fieldset></form>';
     require_once('gabarit.php');
 }
 
@@ -135,7 +135,7 @@ function afficherCalendrier($idcli,$dateSemaine,$rdvemploye,$motif){
     $jourTexte = array(1=>'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi');
     $plageH = array('',1=>'08:00','09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00');
 
-    $contenu=afficherMenuAgent().'<form onsubmit="return verifCheckBoxAgent(`FormPlanning`)" id="FormPlanning" action="site.php" method="post"><p><label>Id du client : </label><input type="text" name="idCli" value="'.$idcli.'" readonly="readonly"></p><p><label>Selectionnez une date : </label><input name="nouvelledate" type="date"><input type="submit" name="changerDate" value="aller à"></p><p> Semaine '.$num_weekd.' </p>';
+    $contenu=afficherMenuAgent().'<form onsubmit="return verifierButtonInvi(`FormPlanning`,`VraiOuFauxInvisible`)" id="FormPlanning" action="site.php" method="post"><p><label>Id du client : </label><input type="text" name="idCli" value="'.$idcli.'" readonly="readonly"></p><p><label>Selectionnez une date : </label><input name="nouvelledate" type="date"><input type="submit" onclick="mettreTrue(`FormPlanning`,`VraiOuFauxInvisible`)" name="changerDate" value="aller à"></p><p> Semaine '.$num_weekd.' </p>';
     $contenu = $contenu . '<p> du '.$dateDebSemaineFrd.' au '.$dateFinSemaineFrd.'</p>';
     $contenu = $contenu . '<h2>'.$nom_moisd.' '.$anneed.'</h2>';
     $contenu = $contenu . '<table border="1">';
@@ -150,11 +150,26 @@ function afficherCalendrier($idcli,$dateSemaine,$rdvemploye,$motif){
             if ($h == 0) {
                 $contenu = $contenu . '<th>' . $jourTexte[$j] . ' ' . date("d", mktime(0, 0, 0, $x->format("n"), ($x->format("d")) - $jourd + $j, $x->format("y"))) . '</th>';
             } else {
-                if (!empty($tab) && $jour==date("d", mktime(0, 0, 0, $x->format("n"), ($x->format("d")) - $jourd + $j, $x->format("y"))) && $heure==($h+7) ) {
-                    $contenu = $contenu . '<td class="tdErreur">Pas disponible</td>';
+                if (!empty($tab) && $jour == date("d", mktime(0, 0, 0, $x->format("n"), ($x->format("d")) - $jourd + $j, $x->format("y"))) && $heure == ($h + 7)) {
+                    $dateactuelle = date("Y-m-d H:i");
+                    $datedurendezadjbhqsdb = strtotime(date("Y-m-d H:i", mktime($h + 7, 0, 0, $x->format("n"), ($x->format("d")) - $jourd + $j, $x->format("y"))));
+                    $secondesactuemles = strtotime($dateactuelle);
+                    if ($datedurendezadjbhqsdb >= $secondesactuemles) {
+                        $contenu = $contenu . '<td class="hachures2">Pas Disponible</td>';
+                    }else
+                        $contenu = $contenu . '<td class="hachures"></td>';
+
                     array_shift($tab);
-                }else
-                    $contenu = $contenu . '<td><input type="radio" name="dateTimeBouttonRadio" value="' . date("Y-m-d H:i", mktime($h + 7, 0, 0, $x->format("n"), ($x->format("d")) - $jourd + $j, $x->format("y"))) . '"></td>';
+                } else {
+                    $dateactuelle = date("Y-m-d H:i");
+                    $datedurendezadjbhqsdb = strtotime(date("Y-m-d H:i", mktime($h + 7, 0, 0, $x->format("n"), ($x->format("d")) - $jourd + $j, $x->format("y"))));
+                    $secondesactuemles = strtotime($dateactuelle);
+                    if ($datedurendezadjbhqsdb >= $secondesactuemles) {
+                        $contenu = $contenu . '<td><input type="radio" name="dateTimeBouttonRadio" value="' . date("Y-m-d H:i", mktime($h + 7, 0, 0, $x->format("n"), ($x->format("d")) - $jourd + $j, $x->format("y"))) . '"></td>';
+                    }else
+                        $contenu = $contenu . '<td class="hachures"></td>';
+
+                }
             }
         }
         $contenu = $contenu . '</tr>';
@@ -164,7 +179,7 @@ function afficherCalendrier($idcli,$dateSemaine,$rdvemploye,$motif){
     foreach ($motif as $m){
         $optionsMotifs=$optionsMotifs.'<option value="'.$m->NOMMOTIF.'">'.$m->NOMMOTIF.'</option>';
     }
-    $contenu=$contenu.'<p><label>Selectionnez le motif :  </label><select name="choixmotif" >'.$optionsMotifs.'</select><input type="submit" name="prendreRDV" value="Valider" onclick="verifCheckBoxAgent(`FormPlanning`)"></p></form>';
+    $contenu=$contenu.'<p><label>Selectionnez le motif :  </label><select name="choixmotif" >'.$optionsMotifs.'</select><input type="submit" onclick="verifCheckBoxAgentEcrire(`FormPlanning`,`VraiOuFauxInvisible`)" name="prendreRDV" value="Valider" ><input class="invisiblebuton" name="VraiOuFauxInvisible" type="text"></p></form>';
 
     require_once ('gabarit.php');
 

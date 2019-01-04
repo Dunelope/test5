@@ -16,8 +16,8 @@ body {
 
 p.opeImpossible{
 	position:absolute;
-	bottom:640;
-	left: 650;
+	bottom:640px;
+	left: 650px;
 }
 
 
@@ -138,6 +138,42 @@ input.menu:hover{
 
 }
 
+td.hachures{
+
+	background:
+		/* On "top" */
+			repeating-linear-gradient(
+					45deg,
+					transparent,
+					transparent 10px,
+					#b0b0b0 10px,
+					#b0b0b0 20px
+			),
+				/* on "bottom" */
+			linear-gradient(
+					to bottom,
+					#eee,
+					#636363
+			);
+}
+
+td.hachures2 {
+	background: /* On "top" */ repeating-linear-gradient(
+			45deg,
+			transparent,
+			transparent 10px,
+			#ccc 10px,
+			#ccc 20px
+	),
+		/* on "bottom" */ linear-gradient(
+			to bottom,
+			#eee,
+			#aaaaaa
+	);
+}
+
+
+
 input.deco {
 	color : black;
 	border:none;
@@ -222,13 +258,13 @@ th {
 	border-collapse : collapse;
 	height : 40px;
 	width : 60px;
-	background-color:#669999;
+	background-color:#4f8383;
 }
 
 
 td.tdErreur {
 	vertical-align : center;
-	background-color : red;
+	background-color : #669999;
 }
 
 table, th, td {

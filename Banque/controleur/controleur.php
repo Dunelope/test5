@@ -17,10 +17,10 @@ function ctlSeConnecter($logi,$mdp){
         } elseif ($type == 'Agent') {
             CtlAgent();
         } else {
-            throw new Exception("Type employe incorecte");
+           // throw new Exception("Type employe incorecte");
     }
     }else{
-        throw new Exception("Un des champs est vide");
+        //throw new Exception("Un des champs est vide");
     }
 }
 
@@ -202,7 +202,9 @@ function CtlOperation($idClient,$nomCompte,$montant,$nomOperation){
 			}
 		}
 		else {
-			echo '<p class="opeImpossible">Operation Impossible, decouvert dépassé</p>';
+		    echo '<script>alert("Operation Impossible, decouvert dépassé");</script>';
+
+			//echo '<p class="opeImpossible">Operation Impossible, decouvert dépassé</p>';
 		}
 	}	
 	CtlOperationClient($idClient);
@@ -248,7 +250,7 @@ function CtlCalendrierRDV($idClient,$dateSemaine){
 		$motif=getMotif();
 		afficherCalendrier($idClient,$dateSemaine,$rdvDuConseiller,$motif);
 	}else{
-		afficherdemandeIdrdv();
+        afficherdemandeIdrdv();
 	}		
 }
 
@@ -297,7 +299,7 @@ function CtlVendreContrat($idclient,$contrat,$tarif){
         vendreContrat($idclient, $contrat, $tarif);
         afficherConseiller();
     }else
-        CtlAfficherVendreContrat();
+        CtlAfficherVendreContrat($idclient);
 }
 
 function CtlAfficherOuvrirCompte($cli){
@@ -314,7 +316,7 @@ function CtlOuvrirCompte($id,$compte,$solde,$decouvert){
         ouvrirCompte($id,$compte,$solde,$decouvert);
         afficherConseiller();
     }else
-        CtlafficherOuvrirCompte();
+        CtlafficherOuvrirCompte($id);
 }
 
 function CtlAfficherMenuDecouvert($id){

@@ -99,7 +99,60 @@ function verifCheckBoxAgent(form){
     }
 	alert('Aucun bouton radio sélectionné');
 	return false;
-	
+}
+
+function verifCheckBoxAgentEcrire(form,desti) {
+    if (verifCheckBoxAgent(form))
+        document.forms[form].elements[desti].value='true';
+    else
+        document.forms[form].elements[desti].value='false';
+}
+
+function  verifCheckBoxConseiller1(form) {
+
+    for (i = 0; i < document.forms[form].elements.length; i++) {
+        if (document.forms[form].elements[i].type === "radio" && document.forms[form].elements[i].id==="radio1") {
+            if (document.forms[form].elements[i].checked ) {
+                return true;
+            }
+        }
+    }
+    alert('Aucun bouton radio sélectionné');
+    return false;
+}
+
+function verifcheckBoxConseiller1Ecrire(form,desti) {
+    if (verifCheckBoxConseiller1(form))
+        document.forms[form].elements[desti].value='true';
+    else
+        document.forms[form].elements[desti].value='false';
+}
+
+function verifCheckBoxConseiller2(form) {
+    for (i = 0; i < document.forms[form].elements.length; i++) {
+        if (document.forms[form].elements[i].type === "radio" && document.forms[form].elements[i].id==="radio2") {
+            if (document.forms[form].elements[i].checked) {
+                return true;
+            }
+        }
+    }
+    alert('Aucun bouton radio sélectionné');
+    return false;
+}
+
+
+
+function verifcheckBoxConseiller2Ecrire(form,desti) {
+    if (verifCheckBoxConseiller2(form))
+        document.forms[form].elements[desti].value='true';
+    else
+        document.forms[form].elements[desti].value='false';
+}
+
+function mettreTrue(form,desti) {
+    document.forms[form].elements[desti].value='true';
+
+
 }
 
 
