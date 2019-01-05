@@ -22,7 +22,7 @@ function afficherClient(){
 
 function afficherModif($mod){
     $c='';
-    $c=$c.'<p><input type="checkbox" class="checked" checked name="idClient[]" value="' . $mod->IDCLIENT .'">'.$mod->NOMCLI.'  Adresse : <input required name="'. $mod->IDCLIENT  .'[]" type="text"  value="' . $mod->ADRESSE .'" />  Numéro : <input required name="'. $mod->IDCLIENT  .'[]" type="text" value="' . $mod->NUMTEL .'" />  eMail : <input required name="'. $mod->IDCLIENT  .'[]" type="text" value="' . $mod->EMAIL .'" />  Profession : <input required name="'. $mod->IDCLIENT  .'[]" type="text" value="' . $mod->PROFESSION .'" />  Situation Familiale : <input required name="'. $mod->IDCLIENT  .'[]" type="text" value="' . $mod->SITUATION_FAMILIALE .'" /></p>';
+    $c=$c.'<p><input type="checkbox" class="checked" checked name="idClient[]" value="' . $mod->IDCLIENT .'">'.$mod->NOMCLI.'  Adresse : <input required name="'. $mod->IDCLIENT  .'[]" type="text"  value="' . $mod->ADRESSE .'" />  Numéro : <input required maxlength="10" minlength="10" name="'. $mod->IDCLIENT  .'[]" type="text" value="' . $mod->NUMTEL .'" />  eMail : <input required name="'. $mod->IDCLIENT  .'[]" type="email" value="' . $mod->EMAIL .'" />  Profession : <input required name="'. $mod->IDCLIENT  .'[]" type="text" value="' . $mod->PROFESSION .'" />  Situation Familiale : <input required name="'. $mod->IDCLIENT  .'[]" type="text" value="' . $mod->SITUATION_FAMILIALE .'" /></p>';
 
     $contenu=afficherMenuAgent().'<form id="formModifs" action="site.php" method="post"><fieldset><legend>Recherche client </legend>'.$c.'<p><input type="submit" value="Modifier Client" name="modClient"/></p></fieldset></form>';
     require_once ('gabarit.php');
@@ -45,12 +45,12 @@ function afficherSynthese($synthese,$mod,$con,$contrat){
     $contenu='<p><fieldset><legend>Liste informations client</legend>'.$c.'<p><label>Nom du conseiller : </label><input name="'. $con->NOMEMPLOYE .'[]" type="text" value="' . $con->NOMEMPLOYE .'" readonly="readonly"/></p></fieldset>';
 
     foreach ($synthese as $syn){
-        $co=$co.'<p><label>Nom du compte : </label><input name="'. $syn->NOMCOMPTE  .'[]" type="text" value="' . $syn->NOMCOMPTE .'" readonly="readonly" /><label>  Date ouverture : </label><input name="'. $syn->NOMCOMPTE  .'[]" type="text" value="' . $syn->DATEOUVERTURE .'" readonly="readonly"/><label>Solde du compte: </label><input name="'. $syn->NOMCOMPTE  .'[]" type="text" value="' . $syn->SOLDE .'" readonly="readonly"/><label>Découvert autorisé : </label><input name="'. $syn->NOMCOMPTE  .'[]" type="text" value="' . $syn->MONTANTDECOUVERT .'" readonly="readonly"/></p>';
+        $co=$co.'<p>Nom du compte :  <input name="'. $syn->NOMCOMPTE  .'[]" type="text" value="' . $syn->NOMCOMPTE .'" readonly="readonly" />Date ouverture :  <input name="'. $syn->NOMCOMPTE  .'[]" type="text" value="' . $syn->DATEOUVERTURE .'" readonly="readonly"/>Solde du compte:  <input name="'. $syn->NOMCOMPTE  .'[]" type="text" value="' . $syn->SOLDE .'" readonly="readonly"/>Découvert autorisé :  <input name="'. $syn->NOMCOMPTE  .'[]" type="text" value="' . $syn->MONTANTDECOUVERT .'" readonly="readonly"/></p>';
     }
     foreach ($contrat as $ctr){
-        $contrats=$contrats.'<p><label>Nom du contrat : </label><input name="'. $ctr->NOMCONTRAT  .'[]" type="text" value="' . $ctr->NOMCONTRAT .'" readonly="readonly" /><label>Date ouverture : </label><input name="'. $ctr->NOMCONTRAT  .'[]" type="text" value="' . $ctr->DATEOUVERTURECONTRAT .'" readonly="readonly"/><label>Tarif mensuel : </label><input name="'. $ctr->NOMCONTRAT  .'[]" type="text" value="' . $ctr->TARIFMENSUEL .'" readonly="readonly"/></p>';
+        $contrats=$contrats.'<p>Nom du contrat :  <input name="'. $ctr->NOMCONTRAT  .'[]" type="text" value="' . $ctr->NOMCONTRAT .'" readonly="readonly" />Date ouverture :  <input name="'. $ctr->NOMCONTRAT  .'[]" type="text" value="' . $ctr->DATEOUVERTURECONTRAT .'" readonly="readonly"/>Tarif mensuel :  <input name="'. $ctr->NOMCONTRAT  .'[]" type="text" value="' . $ctr->TARIFMENSUEL .'" readonly="readonly"/></p>';
     }
-    $contenu=afficherMenuAgent().'<legend>Synthese client </legend>'.$contenu.'<p><fieldset><legend>Liste des comptes du client</legend>'.$co.'</fieldset><p><fieldset><legend>Liste des contrats du client</legend>'.$contrats.'</fieldset>';
+    $contenu=afficherMenuAgent().'<h1>Synthèse client</h1>'.$contenu.'<p><fieldset><legend>Liste des comptes du client</legend>'.$co.'</fieldset><p><fieldset><legend>Liste des contrats du client</legend>'.$contrats.'</fieldset>';
     require_once ('gabarit.php');
 }
 
@@ -92,7 +92,7 @@ function afficherMenuAgent(){
 }
 function afficherdemandeIdrdv(){
     $contenu =afficherMenuAgent().
-        '<form id="formRdv" action="site.php" method="post"><fieldset><legend>Planning</legend><label>Entrez l\'id d\'un client</label><input type="text" required name="idCli"><input type="submit" name="afficherSemaine" value="Rechercher"></fieldset>';
+        '<form id="formRdv" action="site.php" method="post"><fieldset><legend>Planning</legend><label>Entrez l\'id d\'un client</label><input type="text" required name="idCli"><input type="submit" name="afficherSemaine" value="Rechercher"></fieldset></form>';
 
     require_once ('gabarit.php');
 }
@@ -138,7 +138,7 @@ function afficherCalendrier($idcli,$dateSemaine,$rdvemploye,$motif){
     $contenu=afficherMenuAgent().'<form onsubmit="return verifierButtonInvi(`FormPlanning`,`VraiOuFauxInvisible`)" id="FormPlanning" action="site.php" method="post"><p><label>Id du client : </label><input type="text" name="idCli" value="'.$idcli.'" readonly="readonly"></p><p><label>Selectionnez une date : </label><input name="nouvelledate" type="date"><input type="submit" onclick="mettreTrue(`FormPlanning`,`VraiOuFauxInvisible`)" name="changerDate" value="aller à"></p><p> Semaine '.$num_weekd.' </p>';
     $contenu = $contenu . '<p> du '.$dateDebSemaineFrd.' au '.$dateFinSemaineFrd.'</p>';
     $contenu = $contenu . '<h2>'.$nom_moisd.' '.$anneed.'</h2>';
-    $contenu = $contenu . '<table border="1">';
+    $contenu = $contenu . '<table>';
     for ($h = 0; $h <= 11; $h++) {
         $contenu = $contenu . '<tr><th>' . $plageH[$h] . '</th>';
         for ($j = 1; $j < 7; $j++) {

@@ -588,3 +588,16 @@ function estNewClient($idClient){
     return $idClientTrouve;
 
 }
+
+
+function verifEmploye($logi,$mdp){
+	$connexion=getConnect();
+    $requete="Select * from Employe where loginEmploye='$logi' and mdpEmploye='$mdp'";
+    $resultat=$connexion->query($requete);
+    $resultat->setFetchMode(pdo::FETCH_OBJ);
+    $verifemploye=$resultat->fetch();
+    $resultat->closeCursor();
+    return $verifemploye;
+}
+
+	

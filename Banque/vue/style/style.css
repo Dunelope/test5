@@ -20,7 +20,9 @@ p.opeImpossible{
 	left: 650px;
 }
 
-
+h1{
+	font-size:52px;
+}
 
 label {
 	display : inline-block;
@@ -42,6 +44,7 @@ label.inscriCli {
 	width: 200px;
 	color:black;
 }
+
 
 label.motifDirecteur{
 	display : inline-block;
@@ -122,6 +125,9 @@ input[type=reset] {
 
 input[type=checkbox].checked {
   display:none;
+}
+input[type=checkbox].checkInvi {
+  opacity:0;
 }
 
 input.menu {

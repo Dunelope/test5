@@ -36,7 +36,7 @@ function afficherInscrireCli(){
     </p>
     <p>
     <label class="inscriCli">Numéro de téléphone du Client : </label>
-    <input type="text" name="numTelCli" id="numTelCli" maxlength="10" required/>
+    <input type="text" minlength="10" name="numTelCli" id="numTelCli" maxlength="10" required/>
     </p>
     <p>
     <label class="inscriCli">eMail du Client : </label>
@@ -311,7 +311,7 @@ function afficherCalendrierConseiller($idEmploye,$dateSemaine,$rdvemploye,$rdvSa
     $contenu=afficherMenuConseiller().'<form onsubmit="return verifierButtonInvi(`formConseillerPlanning`,`VraiOuFauxInvisible`)" id="formConseillerPlanning" action="site.php" method="post"><p><label>Id du conseiller</label><input type="text" name="idEmploye" value="'.$idEmploye.'" readonly="readonly"></p><label>Selectionnez une date </label><input name="nouvelledateConseiller" type="date"><input type="submit" onclick="mettreTrue(`formConseillerPlanning`,`VraiOuFauxInvisible`)" name="changerDateConseiller" value="aller à"><p> Semaine '.$num_weekd.' </p>';
     $contenu = $contenu . '<p> du '.$dateDebSemaineFrd.' au '.$dateFinSemaineFrd.'</p>';
     $contenu = $contenu . '<h2>'.$nom_moisd.' '.$anneed.'</h2>';
-    $contenu = $contenu . '<table border="1">';
+    $contenu = $contenu . '<table>';
     for ($h = 0; $h <= 11; $h++) {
         $contenu = $contenu . '<tr><th>' . $plageH[$h] . '</th>';
         for ($j = 1; $j < 7; $j++) {
@@ -364,7 +364,7 @@ function afficherCalendrierConseiller($idEmploye,$dateSemaine,$rdvemploye,$rdvSa
     }
     $contenu=$contenu.'</table>';
 	
-	$contenu=$contenu.'<p><label class="indispo">Rendre plage indisponible : </label></select><input type="submit" onclick="verifcheckBoxConseiller1Ecrire(`formConseillerPlanning`,`VraiOuFauxInvisible`) " name="rendreIndispo" value="Valider"></p><p><label class="indispo">Afficher les détails :  </label></select><input type="submit" onclick="verifcheckBoxConseiller2Ecrire(`formConseillerPlanning`,`VraiOuFauxInvisible`)" name="afficherDetailsRDV" value="Afficher"><input class="invisiblebuton" name="VraiOuFauxInvisible" type="text"></p></form>';
+	$contenu=$contenu.'<p><label class="indispo">Rendre plage indisponible : </label><input type="submit" onclick="verifcheckBoxConseiller1Ecrire(`formConseillerPlanning`,`VraiOuFauxInvisible`) " name="rendreIndispo" value="Valider"></p><p><label class="indispo">Afficher les détails :  </label><input type="submit" onclick="verifcheckBoxConseiller2Ecrire(`formConseillerPlanning`,`VraiOuFauxInvisible`)" name="afficherDetailsRDV" value="Afficher"><input class="invisiblebuton" name="VraiOuFauxInvisible" type="text"></p></form>';
     require_once ('gabarit.php');
 
 }
@@ -388,10 +388,10 @@ function afficherDetailsRDV($synthese,$mod,$con,$contrat,$mot,$idClient){
 			$contrats=$contrats.'<p>Nom du contrat : <input name="'. $ctr->NOMCONTRAT  .'[]" type="text" value="' . $ctr->NOMCONTRAT .'" readonly="readonly" />  Date ouverture : <input name="'. $ctr->NOMCONTRAT  .'[]" type="text" value="' . $ctr->DATEOUVERTURECONTRAT .'" readonly="readonly"/>  Tarif mensuel : <input name="'. $ctr->NOMCONTRAT  .'[]" type="text" value="' . $ctr->TARIFMENSUEL .'" readonly="readonly"/></p>';
 		}
 		$motif='';
-		$motif='<p><label>Motif du RDV :  </label><input name"'.$mot->IDMOTIF .'[]" type="text" value="' . $mot->NOMMOTIF .'" readonly="readonly" /></p><p><label>Pieces à ramener :  </label><input name"'.$mot->IDMOTIF .'[]" type="text" value="' . $mot->LISTEPIECES .'" readonly="readonly" /></p>';
+		$motif='<p><label>Motif du RDV :  </label><input name="'.$mot->IDMOTIF .'[]" type="text" value="' . $mot->NOMMOTIF .'" readonly="readonly" /></p><p><label>Pieces à ramener :  </label><input name="'.$mot->IDMOTIF .'[]" type="text" value="' . $mot->LISTEPIECES .'" readonly="readonly" /></p>';
 	
 	
-		$contenu=afficherMenuConseiller().'<legend>Information du rendez vous</legend>'.$contenu.'<p><fieldset><legend>Liste des comptes du client</legend>'.$co.'</fieldset><p><fieldset><legend>Liste des contrat du client</legend>'.$contrats.'</fieldset><fieldset><legend>Details du RDV</legend>'.$motif.'</fieldset></fieldset>';
+		$contenu=afficherMenuConseiller().'<h1>Information du rendez vous</h1>'.$contenu.'<p><fieldset><legend>Liste des comptes du client</legend>'.$co.'</fieldset><p><fieldset><legend>Liste des contrat du client</legend>'.$contrats.'</fieldset><fieldset><legend>Details du RDV</legend>'.$motif.'</fieldset>';
     }
 	else {
 		$contenu=afficherMenuConseiller().'<p>Ce client est un nouveau client</p>';
