@@ -111,7 +111,7 @@ function verifCheckBoxAgentEcrire(form,desti) {
 function  verifCheckBoxConseiller1(form) {
 
     for (i = 0; i < document.forms[form].elements.length; i++) {
-        if (document.forms[form].elements[i].type === "radio" && document.forms[form].elements[i].id==="radio1") {
+        if (document.forms[form].elements[i].type === "radio" && document.forms[form].elements[i].name==="dateTimeBouttonRadio") {
             if (document.forms[form].elements[i].checked ) {
                 return true;
             }
@@ -130,7 +130,7 @@ function verifcheckBoxConseiller1Ecrire(form,desti) {
 
 function verifCheckBoxConseiller2(form) {
     for (i = 0; i < document.forms[form].elements.length; i++) {
-        if (document.forms[form].elements[i].type === "radio" && document.forms[form].elements[i].id==="radio2") {
+        if (document.forms[form].elements[i].type === "radio" && document.forms[form].elements[i].name==="detailRDVButtonRadio") {
             if (document.forms[form].elements[i].checked) {
                 return true;
             }
@@ -152,7 +152,10 @@ function verifcheckBoxConseiller2Ecrire(form,desti) {
 function mettreTrue(form,desti) {
     document.forms[form].elements[desti].value='true';
 
+}
 
+function afficheralert() {
+    alert("Veuillez entrer un nombre dans la case montant");
 }
 
 

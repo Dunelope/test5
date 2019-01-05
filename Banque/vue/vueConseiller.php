@@ -166,7 +166,7 @@ function afficherMenuResContrat($id,$contrat){
     </p>
     <p><label>
     Type de contrat : 
-    </label><select class="conseiller" name="contratares">
+    </label><select  required class="conseiller" name="contratares">
     '.$x.'
     </select>
     </p>
@@ -183,14 +183,14 @@ function afficherMenuResCompte($id,$compte){
         $x=$x.'<option value="'.$c->NOMCOMPTE.'">'.$c->NOMCOMPTE.'</option>';
     }
     $contenu=afficherMenuConseiller().'<form id=Formc7 action="site.php" method="post"> 
-    <fieldset><legend>Choisir un client</legend>
+    <fieldset><legend>Résilier un client</legend>
     <p><label>
     Numéro du client :
     </label><input type="text" name="numCli" value="'.$id.'" readonly>
     </p>
     <p><label>
     Type de compte : 
-    </label><select class="conseiller" name="compteares">
+    </label><select required class="conseiller" name="compteares">
     '.$x.'
     </select>
     </p>
@@ -344,7 +344,7 @@ function afficherCalendrierConseiller($idEmploye,$dateSemaine,$rdvemploye,$rdvSa
                         array_shift($tab);
                         array_shift($tabSansClient);
                     } else {
-                        $contenu = $contenu . '<td class=tdErreur>Details RDV <input type="radio" id="radio2"  name="detailRDVButtonRadio" value="' . date("Y-m-d H:i", mktime($h + 7, 0, 0, $x->format("n"), ($x->format("d")) - $jourd + $j, $x->format("y"))) . '"></td>';
+                        $contenu = $contenu . '<td class=tdErreur>Details RDV <input type="radio"  name="detailRDVButtonRadio" value="' . date("Y-m-d H:i", mktime($h + 7, 0, 0, $x->format("n"), ($x->format("d")) - $jourd + $j, $x->format("y"))) . '"></td>';
                         array_shift($tab);
                     }
                 } else {
@@ -352,7 +352,7 @@ function afficherCalendrierConseiller($idEmploye,$dateSemaine,$rdvemploye,$rdvSa
                     $datedurendezadjbhqsdb = strtotime(date("Y-m-d H:i", mktime($h + 7, 0, 0, $x->format("n"), ($x->format("d")) - $jourd + $j, $x->format("y"))));
                     $secondesactuemles = strtotime($dateactuelle);
                     if ($datedurendezadjbhqsdb >= $secondesactuemles) {
-                        $contenu = $contenu . '<td><input type="radio" id="radio1"  name="dateTimeBouttonRadio" value="' . date("Y-m-d H:i", mktime($h + 7, 0, 0, $x->format("n"), ($x->format("d")) - $jourd + $j, $x->format("y"))) . '"></td>';
+                        $contenu = $contenu . '<td><input type="radio"  name="dateTimeBouttonRadio" value="' . date("Y-m-d H:i", mktime($h + 7, 0, 0, $x->format("n"), ($x->format("d")) - $jourd + $j, $x->format("y"))) . '"></td>';
                     } else {
                         $contenu.='<td class="hachures"></td>';
                     }

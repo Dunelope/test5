@@ -9,5 +9,4 @@
     </head>
 	<body>
             <?php echo $contenu ; ?>
-    </body>
-</html>
+

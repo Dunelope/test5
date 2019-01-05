@@ -15,7 +15,7 @@ function afficherLogAgent(){
 
 function afficherClient(){
 
-    $contenu=afficherMenuAgent().'<form id="monForm1" action="site.php" method="post"><fieldset><legend>Modification Informations Client</legend><p>Entrez identifiant du client recherché : <input type="text" required  name="SelectClientModif"> <input type="submit" name="RechercherClientModif" value="Rechercher ce Client" /></fieldset></form>';
+    $contenu=afficherMenuAgent().'<form id="monForm1" action="site.php" method="post"><fieldset><legend>Recherche client</legend><p>Entrez identifiant du client recherché : <input type="text" required  name="SelectClientModif"> <input type="submit" name="RechercherClientModif" value="Rechercher ce Client" /></fieldset></form>';
     require_once('gabarit.php');
 }
 
@@ -24,14 +24,14 @@ function afficherModif($mod){
     $c='';
     $c=$c.'<p><input type="checkbox" class="checked" checked name="idClient[]" value="' . $mod->IDCLIENT .'">'.$mod->NOMCLI.'  Adresse : <input required name="'. $mod->IDCLIENT  .'[]" type="text"  value="' . $mod->ADRESSE .'" />  Numéro : <input required maxlength="10" minlength="10" name="'. $mod->IDCLIENT  .'[]" type="text" value="' . $mod->NUMTEL .'" />  eMail : <input required name="'. $mod->IDCLIENT  .'[]" type="email" value="' . $mod->EMAIL .'" />  Profession : <input required name="'. $mod->IDCLIENT  .'[]" type="text" value="' . $mod->PROFESSION .'" />  Situation Familiale : <input required name="'. $mod->IDCLIENT  .'[]" type="text" value="' . $mod->SITUATION_FAMILIALE .'" /></p>';
 
-    $contenu=afficherMenuAgent().'<form id="formModifs" action="site.php" method="post"><fieldset><legend>Recherche client </legend>'.$c.'<p><input type="submit" value="Modifier Client" name="modClient"/></p></fieldset></form>';
+    $contenu=afficherMenuAgent().'<form id="formModifs" action="site.php" method="post"><fieldset><legend>Modification Informations Client</legend>'.$c.'<p><input type="submit" value="Modifier Client" name="modClient"/></p></fieldset></form>';
     require_once ('gabarit.php');
 }
 
 
 function afficherClientSynthese(){
 
-    $contenu=afficherMenuAgent().'<form id="monForm2" action="site.php" method="post"><fieldset><legend>Synthese Client</legend><p>Entrez identifiant du client recherché : <input type="text" required name="SelectClientSynthese"> <input type="submit" name="RechercherClientSynthese" value="Afficher Synthese" /></fieldset></form>';
+    $contenu=afficherMenuAgent().'<form id="monForm2" action="site.php" method="post"><fieldset><legend>Recherche client</legend><p>Entrez identifiant du client recherché : <input type="text" required name="SelectClientSynthese"> <input type="submit" name="RechercherClientSynthese" value="Afficher Synthese" /></fieldset></form>';
     require_once('gabarit.php');
 }
 
@@ -42,7 +42,7 @@ function afficherSynthese($synthese,$mod,$con,$contrat){
     $contrats='';
     $c=$c.'<p><label>Nom du client : </label><input name="'. $mod->NOMCLI  .'[]" type="text" value="' . $mod->NOMCLI .'" readonly="readonly" /></p><p><label>Adresse : </label><input name="'. $mod->NOMCLI  .'[]" type="text" value="' . $mod->ADRESSE .'" readonly="readonly" /> </p><p><label> Numéro : </label><input name="'. $mod->NOMCLI  .'[]" type="text" value="' . $mod->NUMTEL .'" readonly="readonly" /></p><p><label>eMail :</label> <input name="'. $mod->NOMCLI  .'[]" type="text" value="' . $mod->EMAIL .'" readonly="readonly" /></p><p><label>Profession :</label> <input name="'. $mod->NOMCLI  .'[]" type="text" value="' . $mod->PROFESSION .'" readonly="readonly"/></p><p><label>Situation Familiale :</label> <input name="'. $mod->NOMCLI  .'[]" type="text" value="' . $mod->SITUATION_FAMILIALE .'" readonly="readonly"/></p>';
 
-    $contenu='<p><fieldset><legend>Liste informations client</legend>'.$c.'<p><label>Nom du conseiller : </label><input name="'. $con->NOMEMPLOYE .'[]" type="text" value="' . $con->NOMEMPLOYE .'" readonly="readonly"/></p></fieldset>';
+    $contenu='<p><fieldset><legend>Synthèse client</legend>'.$c.'<p><label>Nom du conseiller : </label><input name="'. $con->NOMEMPLOYE .'[]" type="text" value="' . $con->NOMEMPLOYE .'" readonly="readonly"/></p></fieldset>';
 
     foreach ($synthese as $syn){
         $co=$co.'<p>Nom du compte :  <input name="'. $syn->NOMCOMPTE  .'[]" type="text" value="' . $syn->NOMCOMPTE .'" readonly="readonly" />Date ouverture :  <input name="'. $syn->NOMCOMPTE  .'[]" type="text" value="' . $syn->DATEOUVERTURE .'" readonly="readonly"/>Solde du compte:  <input name="'. $syn->NOMCOMPTE  .'[]" type="text" value="' . $syn->SOLDE .'" readonly="readonly"/>Découvert autorisé :  <input name="'. $syn->NOMCOMPTE  .'[]" type="text" value="' . $syn->MONTANTDECOUVERT .'" readonly="readonly"/></p>';
@@ -57,7 +57,7 @@ function afficherSynthese($synthese,$mod,$con,$contrat){
 
 function afficherClientOperation(){
 
-    $contenu=afficherMenuAgent().'<form id="monForm2" action="site.php" method="post"><fieldset><legend>Opération sur un compte</legend><p>Entrez identifiant du client : <input type="text"  required name="SelectClientOperation"> <input type="submit" name="RechercherClientOperation" value="Afficher les comptes" /></fieldset></form>';
+    $contenu=afficherMenuAgent().'<form id="monForm2" action="site.php" method="post"><fieldset><legend>Recherche client</legend><p>Entrez identifiant du client : <input type="text"  required name="SelectClientOperation"> <input type="submit" name="RechercherClientOperation" value="Afficher les comptes" /></fieldset></form>';
     require_once('gabarit.php');
 }
 
@@ -92,7 +92,7 @@ function afficherMenuAgent(){
 }
 function afficherdemandeIdrdv(){
     $contenu =afficherMenuAgent().
-        '<form id="formRdv" action="site.php" method="post"><fieldset><legend>Planning</legend><label>Entrez l\'id d\'un client</label><input type="text" required name="idCli"><input type="submit" name="afficherSemaine" value="Rechercher"></fieldset></form>';
+        '<form id="formRdv" action="site.php" method="post"><fieldset><legend>Recherche client</legend><label>Entrez l\'id d\'un client</label><input type="text" required name="idCli"><input type="submit" name="afficherSemaine" value="Rechercher"></fieldset></form>';
 
     require_once ('gabarit.php');
 }

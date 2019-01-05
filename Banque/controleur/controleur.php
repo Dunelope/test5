@@ -139,14 +139,16 @@ function CtlErreur($erreur){
 function CtlModifierClient($idClient,$adresse,$numTel,$eMail,$profession,$situation_familiale){
 	if (is_numeric($numTel)){
 		modifClient($idClient,$adresse,$numTel,$eMail,$profession,$situation_familiale);
-		echo '<script>alert("Modification effectué.");</script>';
 		afficherAgent();
-	}
+        echo '<script>alert("Modification effectué.");</script>';
+
+    }
 	else {
-		echo '<script>alert("Saisie non valide, veuillez réessayer.");</script>';
 		$mod=getModif($idClient);
 		afficherModif($mod);
-	}
+        echo '<script>alert("Saisie non valide, veuillez réessayer.");</script>';
+
+    }
 }
 
 function CtlafficherClient(){
@@ -158,9 +160,9 @@ function CtlModifier($id){
 		$mod=getModif($id);
 		afficherModif($mod);
 	}else {
-		echo '<script>alert("ID client non valide, veuillez réessayer.");</script>';
 		afficherClient();
-	}
+        echo '<script>alert("ID client non valide, veuillez réessayer.");</script>';
+    }
 }
 
 function CtlafficherClientSynthese(){
@@ -175,9 +177,10 @@ function CtlSynthese($id){
 		$cont=getContratClient($id);
 		afficherSynthese($syn,$mod,$con,$cont);
 	}else{
-		echo '<script>alert("ID client non valide, veuillez réessayer.");</script>';
 		afficherClientSynthese();
-	}		
+        echo '<script>alert("ID client non valide, veuillez réessayer.");</script>';
+
+    }
 }
 
 function CtlAfficherOperation(){	
@@ -190,9 +193,10 @@ function CtlOperationClient($id){
 		afficherOperation($ope,$id);
 	}
 	else{
-		echo '<script>alert("ID client non valide, veuillez réessayer.");</script>';
 		afficherClientOperation();
-	}	
+        echo '<script>alert("ID client non valide, veuillez réessayer.");</script>';
+
+    }
 }
 
 function CtlOperation($idClient,$nomCompte,$montant,$nomOperation){
@@ -207,24 +211,28 @@ function CtlOperation($idClient,$nomCompte,$montant,$nomOperation){
 				$nouveauSolde = $soldeDuCompte - $montant;
 				modifSolde($idClient, $nomCompte, $nouveauSolde);
 				ajouterOperation($idClient, $nomCompte, $nomOperation, $montant);
-				echo '<script>alert("Opération effectué.");</script>';
 				afficherAgent();
-			}
+                echo '<script>alert("Opération effectué.");</script>';
+
+            }
 			else {				
 			$nouveauSolde = $soldeDuCompte + $montant;
 			modifSolde($idClient, $nomCompte, $nouveauSolde);
 			ajouterOperation($idClient, $nomCompte, $nomOperation, $montant);
-			echo '<script>alert("Opération effectué.");</script>';
 			afficherAgent();
-			}
+			echo '<script>alert("Opération effectué.");</script>';
+            }
 		}
 		else {
 		    echo '<script>alert("Operation Impossible, decouvert dépassé");</script>';
 
 			//echo '<p class="opeImpossible">Operation Impossible, decouvert dépassé</p>';
 		}
-	}	
+	}
+
 	CtlOperationClient($idClient);
+    echo '<script>alert("Veuillez entrer un nombre dans la case montant");</script>';
+
 }
 
 function CtlOperationPossible($idClient,$nomCompte,$montantSouhaitantEtreRetirer){
@@ -249,9 +257,10 @@ function CtlTrouverIDClient($nom,$dateN){
 		
 	}
 	else{
-		echo '<script>alert("Client inexistant, veuillez réessayer.");</script>';
 		afficherClientRechercheID();
-	}		
+        echo '<script>alert("Client inexistant, veuillez réessayer.");</script>';
+
+    }
 }
 //---------------------------------------------------------------------------------------------------------------------
 function CtldemanderIdCliRDV(){
@@ -269,9 +278,10 @@ function CtlCalendrierRDV($idClient,$dateSemaine){
 		$motif=getMotif();
 		afficherCalendrier($idClient,$dateSemaine,$rdvDuConseiller,$motif);
 	}else{
-		echo '<script>alert("ID cient non valide, veuillez réessayer.");</script>';
         afficherdemandeIdrdv();
-	}		
+        echo '<script>alert("ID cient non valide, veuillez réessayer.");</script>';
+
+    }
 }
 
 function CtlListePieces($motif){
@@ -299,21 +309,24 @@ function CtlAfficherInscrireCli(){
 function CtlInscrireCli($idconseiller,$nom,$prenom,$datN,$adresse,$numT,$email,$profession,$situation){
     if (verifConseiller($idconseiller) && verifConseiller($idconseiller)->TYPEEMPLOYE=="Conseiller" && is_numeric($numT)) {
         addClient($idconseiller, $nom, $prenom, $datN, $adresse, $numT, $email, $profession, $situation);
-		echo '<script>alert("Inscription réalisé.");</script>';
         afficherConseiller();
+        echo '<script>alert("Inscription réalisé.");</script>';
+
     }else {
-		echo '<script>alert("Erreur de saisie, veuillez réessayer.");</script>';
         afficherInscrireCli();
-	}
+        echo '<script>alert("Erreur de saisie, veuillez réessayer.");</script>';
+
+    }
 }
 
 function CtlAfficherVendreContrat($cli){
     if (is_numeric($cli) && verifClient($cli))
         afficherVendreContrat($cli,cherchenonContrat($cli));
     else {
-		echo '<script>alert("ID client invalide, veuillez réessayer.");</script>';
         afficherChoixClient4();
-	}
+        echo '<script>alert("ID client invalide, veuillez réessayer.");</script>';
+
+    }
 
 }
 
@@ -322,21 +335,24 @@ function CtlVendreContrat($idclient,$contrat,$tarif){
     $y=$tarif;
     if (is_numeric($y) && $y>=0 && verifClient($idclient) && !$x) {
         vendreContrat($idclient, $contrat, $tarif);
-		echo '<script>alert("Contrat vendu.");</script>';
         afficherConseiller();
+        echo '<script>alert("Contrat vendu.");</script>';
+
     }else {
-		echo '<script>alert("Erreur de saisie, veuillez réessayer.");</script>';
         CtlAfficherVendreContrat($idclient);
-	}
+        echo '<script>alert("Erreur de saisie, veuillez réessayer.");</script>';
+
+    }
 }
 
 function CtlAfficherOuvrirCompte($cli){
     if (is_numeric($cli) && verifClient($cli))
         afficherOuvrirCompte($cli,cherchenonCompte($cli));
     else {
-		echo '<script>alert("ID client invalide, veuillez réessayer.");</script>';
         afficherChoixClient5();
-	}
+        echo '<script>alert("ID client invalide, veuillez réessayer.");</script>';
+
+    }
 }
 
 function CtlOuvrirCompte($id,$compte,$solde,$decouvert){
@@ -344,12 +360,14 @@ function CtlOuvrirCompte($id,$compte,$solde,$decouvert){
 
     if (is_numeric($solde) && $solde>=0 && $decouvert >=0 && is_numeric($decouvert) && verifClient($id) && !$x){
         ouvrirCompte($id,$compte,$solde,$decouvert);
-		echo '<script>alert("Compte ouvert.");</script>';
         afficherConseiller();
+        echo '<script>alert("Compte ouvert.");</script>';
+
     }else {
-		echo '<script>alert("Erreur de saisie, veuillez réessayer.");</script>';
         CtlafficherOuvrirCompte($id);
-	}
+        echo '<script>alert("Erreur de saisie, veuillez réessayer.");</script>';
+
+    }
 }
 
 function CtlAfficherMenuDecouvert($id){
@@ -357,9 +375,10 @@ function CtlAfficherMenuDecouvert($id){
     if (is_numeric($id) && verifClient($id))
         afficherMenuDecouvert($id,$x);
     else {
-		echo '<script>alert("ID client invalide, veuillez réessayer.");</script>';
 		afficherChoixClient();
-	}
+        echo '<script>alert("ID client invalide, veuillez réessayer.");</script>';
+
+    }
 	
 }
 
@@ -367,13 +386,15 @@ function CtlAfficherMenuDecouvert($id){
 function CtlModifDecouvert($id,$compte,$valeur){
     if (is_numeric($valeur)&& $valeur>=0) {
         modifDecouvert($id, $compte, $valeur);
-		echo '<script>alert("Découvert modifié.");</script>';
         afficherConseiller();
+        echo '<script>alert("Découvert modifié.");</script>';
+
     }
     else {
-		echo '<script>alert("Erreur de saisie, veuillez réessayer.");</script>';
         CtlAfficherMenuDecouvert($id);
-	}
+        echo '<script>alert("Erreur de saisie, veuillez réessayer.");</script>';
+
+    }
     
 
 }
@@ -382,15 +403,17 @@ function CtlAfficherMenuResContrat($id,$contrat){
     if (is_numeric($id) && verifClient($id))
         afficherMenuResContrat($id,$contrat);
     else {
-		echo '<script>alert("ID client invalide, veuillez réessayer.");</script>';
         afficherChoixClient2();
-	}
+        echo '<script>alert("ID client invalide, veuillez réessayer.");</script>';
+
+    }
 }
 
 function CtlResContrat($id,$contrat){
     resContrat($id,$contrat);
-	echo '<script>alert("Contrat résilié.");</script>';
     afficherConseiller();
+    echo '<script>alert("Contrat résilié.");</script>';
+
 }
 
 
@@ -398,15 +421,17 @@ function CtlAfficherMenuResCompte($id,$compte){
     if (is_numeric($id) && verifClient($id))
         afficherMenuResCompte($id,$compte);
     else {
-		echo '<script>alert("ID client invalide, veuillez réessayer.");</script>';
         afficherChoixClient3();
-	}
+        echo '<script>alert("ID client invalide, veuillez réessayer.");</script>';
+
+    }
 }
 
 function CtlResCompte($id,$compte){
     resCompte($id,$compte);
-	echo '<script>alert("Compte résilié.");</script>';
     afficherConseiller();
+    echo '<script>alert("Compte résilié.");</script>';
+
 }
 
 function CtlAfficherChoixClient(){
@@ -466,8 +491,11 @@ function CtlEnregisterIndispo($date,$idEmploye){
 
     if ($y>=$x) {
         enregisterIndispo($date, $idEmploye);
-		echo '<script>alert("Plage horaire rendu indisponible.");</script>';
-        CtlCalendrierRDVEmploye($idEmploye,$date);
+        //CtlCalendrierRDVEmploye($idEmploye,$date);
+        afficherConseiller();
+        echo '<script>alert("Plage horaire rendu indisponible.");</script>';
+
+
     }else
         CtlCalendrierRDVEmploye($idEmploye,$date);
 }
