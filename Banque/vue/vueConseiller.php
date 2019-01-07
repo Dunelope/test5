@@ -73,7 +73,7 @@ function afficherVendreContrat($client,$contrat){
     <p>
 	<label>
     Type de contrat : 
-    </label><select class="conseiller" name="contratAVendre">
+    </label><select required class="conseiller" name="contratAVendre">
     '.$x.'
     </select>
     </p>
@@ -103,7 +103,7 @@ function afficherOuvrirCompte($client,$compte){
     </p>
     <p><label>
     Type de compte : 
-    </label><select class="conseiller" name="compteAOuvrir">
+    </label><select required class="conseiller" name="compteAOuvrir">
     '.$x.'
     </select>
     </p>
@@ -349,7 +349,7 @@ function afficherCalendrierConseiller($idEmploye,$dateSemaine,$rdvemploye,$rdvSa
                     }
                 } else {
                     $dateactuelle = date("Y-m-d H:i");
-                    $datedurendezadjbhqsdb = strtotime(date("Y-m-d H:i", mktime($h + 7, 0, 0, $x->format("n"), ($x->format("d")) - $jourd + $j, $x->format("y"))));
+                    $datedurendezadjbhqsdb = strtotime(date("Y-m-d H:i", mktime($h + 6, 0, 0, $x->format("n"), ($x->format("d")) - $jourd + $j, $x->format("y"))));
                     $secondesactuemles = strtotime($dateactuelle);
                     if ($datedurendezadjbhqsdb >= $secondesactuemles) {
                         $contenu = $contenu . '<td><input type="radio"  name="dateTimeBouttonRadio" value="' . date("Y-m-d H:i", mktime($h + 7, 0, 0, $x->format("n"), ($x->format("d")) - $jourd + $j, $x->format("y"))) . '"></td>';

@@ -162,7 +162,7 @@ function afficherCalendrier($idcli,$dateSemaine,$rdvemploye,$motif){
                     array_shift($tab);
                 } else {
                     $dateactuelle = date("Y-m-d H:i");
-                    $datedurendezadjbhqsdb = strtotime(date("Y-m-d H:i", mktime($h + 7, 0, 0, $x->format("n"), ($x->format("d")) - $jourd + $j, $x->format("y"))));
+                    $datedurendezadjbhqsdb = strtotime(date("Y-m-d H:i", mktime($h + 6, 0, 0, $x->format("n"), ($x->format("d")) - $jourd + $j, $x->format("y"))));
                     $secondesactuemles = strtotime($dateactuelle);
                     if ($datedurendezadjbhqsdb >= $secondesactuemles) {
                         $contenu = $contenu . '<td><input type="radio" name="dateTimeBouttonRadio" value="' . date("Y-m-d H:i", mktime($h + 7, 0, 0, $x->format("n"), ($x->format("d")) - $jourd + $j, $x->format("y"))) . '"></td>';
