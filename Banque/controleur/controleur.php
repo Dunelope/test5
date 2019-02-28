@@ -21,6 +21,8 @@ function ctlSeConnecter($logi,$mdp){
            // throw new Exception("Type employe incorecte");
     }
     }else{
+		afficherLog();
+		echo '<script>alert("Login ou mot de passe invalide, veuillez réessayer.");</script>';
         //throw new Exception("Un des champs est vide");
     }
 }
@@ -140,7 +142,7 @@ function CtlModifierClient($idClient,$adresse,$numTel,$eMail,$profession,$situat
 	if (is_numeric($numTel)){
 		modifClient($idClient,$adresse,$numTel,$eMail,$profession,$situation_familiale);
 		afficherAgent();
-        echo '<script>alert("Modification effectué.");</script>';
+        echo '<script>alert("Modification effectuée.");</script>';
 
     }
 	else {
@@ -201,7 +203,7 @@ function CtlOperationClient($id){
 
 function CtlOperation($idClient,$nomCompte,$montant,$nomOperation){
     $faireOpe=true;
-	if (is_numeric($montant)){
+	if (is_numeric($montant)&&($montant>0)){
 		if ($nomOperation=="Debiter") {
 			$faireOpe = CtlOperationPossible($idClient, $nomCompte, $montant);
 		}
@@ -212,7 +214,7 @@ function CtlOperation($idClient,$nomCompte,$montant,$nomOperation){
 				modifSolde($idClient, $nomCompte, $nouveauSolde);
 				ajouterOperation($idClient, $nomCompte, $nomOperation, $montant);
 				afficherAgent();
-                echo '<script>alert("Opération effectué.");</script>';
+                echo '<script>alert("Opération effectuée.");</script>';
 
             }
 			else {				
@@ -220,7 +222,7 @@ function CtlOperation($idClient,$nomCompte,$montant,$nomOperation){
 			modifSolde($idClient, $nomCompte, $nouveauSolde);
 			ajouterOperation($idClient, $nomCompte, $nomOperation, $montant);
 			afficherAgent();
-			echo '<script>alert("Opération effectué.");</script>';
+			echo '<script>alert("Opération effectuée.");</script>';
             }
 		}
 		else {
@@ -228,10 +230,11 @@ function CtlOperation($idClient,$nomCompte,$montant,$nomOperation){
 
 			//echo '<p class="opeImpossible">Operation Impossible, decouvert dépassé</p>';
 		}
-	}
+	}else{
 
 	CtlOperationClient($idClient);
     echo '<script>alert("Veuillez entrer un nombre dans la case montant");</script>';
+	}
 
 }
 
@@ -310,7 +313,7 @@ function CtlInscrireCli($idconseiller,$nom,$prenom,$datN,$adresse,$numT,$email,$
     if (verifConseiller($idconseiller) && verifConseiller($idconseiller)->TYPEEMPLOYE=="Conseiller" && is_numeric($numT)) {
         addClient($idconseiller, $nom, $prenom, $datN, $adresse, $numT, $email, $profession, $situation);
         afficherConseiller();
-        echo '<script>alert("Inscription réalisé.");</script>';
+        echo '<script>alert("Inscription réalisée.");</script>';
 
     }else {
         afficherInscrireCli();
@@ -493,7 +496,7 @@ function CtlEnregisterIndispo($date,$idEmploye){
         enregisterIndispo($date, $idEmploye);
         //CtlCalendrierRDVEmploye($idEmploye,$date);
         afficherConseiller();
-        echo '<script>alert("Plage horaire rendu indisponible.");</script>';
+        echo '<script>alert("Plage horaire rendue indisponible.");</script>';
 
 
     }else

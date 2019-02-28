@@ -1,13 +1,13 @@
 <?php
 
 function afficherLog(){
-    $contenu ='<form id="monForm1" action="site.php" method="post"><fieldset><legend>Se connecter</legend><p><label>  Login  : </label><input type="text" name="Login"  /></p><p><label>  Mot de passe  : </label><input type="password" name="Mdp"  /></p><p><input type="submit" value="Se Connecter" name="Connecter"><input type="reset" value="Effacer"></p></fieldset></form>';
+    $contenu ='<form id="monForm1" action="site.php" method="post"><fieldset><legend>Se connecter</legend><p><label>  Login  : </label><input required type="text" name="Login"  /></p><p><label>  Mot de passe  : </label><input required type="password" name="Mdp"  /></p><p><input type="submit" value="Se Connecter" name="Connecter"><input type="reset" value="Effacer"></p></fieldset></form>';
     require_once('gabarit.php');
 	
 }
 function afficherDirecteur() {
 
-    $contenu=afficherMenuDirecteur().'<form id=monForm2 action="site.php" method="post"> <fieldset><legend>Selection opperation</legend><p><select class="menu" name="ope"><option value="c1">Afficher Comptes</option><option value="c2">Afficher Contrats</option><option value="c3">Afficher Motifs</option><option value="c4">Afficher Employés</option><option value="c5">Afficher Stats</option></select><input type="submit" value="Selectionner" name="opera"></p></fieldset></form>';
+    $contenu=afficherMenuDirecteur().'<form id=monForm2 action="site.php" method="post"> <fieldset><legend>Selection opération</legend><p><select class="menu" name="ope"><option value="c1">Afficher Comptes</option><option value="c2">Afficher Contrats</option><option value="c3">Afficher Motifs</option><option value="c4">Afficher Employés</option><option value="c5">Afficher Stats</option></select><input type="submit" value="Selectionner" name="opera"></p></fieldset></form>';
     require_once ('gabarit.php');
 
 }

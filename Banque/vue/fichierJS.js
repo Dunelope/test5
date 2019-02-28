@@ -58,7 +58,7 @@ function verifCasesCoches(form,nombreAsuppr) {
 
         return true
     }
-    alert('Veullez selectionner une case');
+    alert('Veuillez selectionner une case');
     return false;
 }
 
